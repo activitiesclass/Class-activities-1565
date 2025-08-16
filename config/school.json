@@ -1,7 +1,7 @@
 {
-  "schoolName": "",
+  "schoolName": "اسم المدرسة",
   "schoolLogo": "assets/media/images/school-logo.png",
-  "programTitle": "مدرسة .... للتعليم الأساسي - برنامج الأنشطة الصفية",
+  "programTitle": "برنامج الأنشطة الصفية",
   "description": "أنشطة ترفيهية تعليمية تفاعلية  ",
   "themeColor": "#00796B"
 }
