@@ -2,8 +2,8 @@
   "systemAdmins": [
     {
       "id": "admin_001",
-      "username": "Demo",
-      "password": "Demo1234",
+      "username": "user",
+      "password": "user0",
       "fullName": "مدير النظام",
       "role": "system_admin",
       "email": "admin@school.om",
@@ -50,4 +50,5 @@
     "passwordMinLength": 6
   }
 }
+
 
