@@ -1,1 +1,405 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>لوحة إدارة الغياب</title><style>body{font-family:Cairo,Arial,sans-serif;background:linear-gradient(135deg,#e0f7fa 0,#b2dfdb 100%);margin:0;padding:0;color:#222}.container{max-width:1100px;margin:40px auto;background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.12);padding:32px 24px 24px 24px}h1{text-align:center;color:#00796b;margin-bottom:16px;font-size:2.2rem}.stats{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-bottom:24px}.stat{background:#f0f7f6;border-radius:12px;padding:18px 28px;min-width:160px;text-align:center;box-shadow:0 2px 8px rgba(0,121,107,.07)}.stat .num{font-size:2rem;color:#00796b;font-weight:700}.stat .label{color:#555;font-size:1rem}.filters{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:18px}.filters input,.filters select{padding:8px 12px;border-radius:6px;border:1px solid #b2dfdb;font-size:1rem;min-width:120px}table{width:100%;border-collapse:collapse;margin-bottom:18px;background:#fff}td,th{padding:10px 8px;border-bottom:1px solid #e0e0e0;text-align:center}th{background:#00796b;color:#fff;font-weight:600}tr:hover{background:#f5f5f5}.no-data{text-align:center;color:#888;margin:30px 0;font-size:1.1rem}.export-btn{background:#2196f3;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:1rem;cursor:pointer;margin:0 auto 18px auto;display:block;transition:background .2s}.export-btn:hover{background:#1769aa}.top-icons-bar{display:flex;justify-content:flex-end;align-items:center;gap:12px;background:#e0f7fa;padding:10px 18px 4px 18px;border-radius:0 0 16px 16px;box-shadow:0 2px 8px rgba(0,121,107,.07);margin-bottom:8px}.icon-btn{background:0 0;border:none;cursor:pointer;padding:6px;border-radius:50%;transition:background .2s;display:flex;align-items:center;justify-content:center}.icon-btn:hover{background:#b2dfdb}.material-icons{font-family:'Material Icons';font-style:normal;font-weight:400;font-size:2rem;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;color:#00796b}@media (max-width:700px){.container{padding:10px 2vw}.stats{flex-direction:column;align-items:center}.filters{flex-direction:column;align-items:stretch}td,th{font-size:.95rem}}.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin:12px 0 0 0}.pagination button{background:#00796b;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:1rem;cursor:pointer;transition:background .2s}.pagination button[disabled]{background:#b2dfdb;color:#eee;cursor:not-allowed}.pagination span{font-size:1rem;color:#00796b;margin:0 6px}mark{background:#ffe082;color:#222;padding:0 2px;border-radius:2px}</style><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/></head><body><div class="container"><div class="top-icons-bar"><a class="icon-btn" href="index.html" title="الصفحة الرئيسية"><span class="material-icons">home</span> </a><button class="icon-btn" id="fullscreenBtn" title="ملء الشاشة"><span class="material-icons">fullscreen</span></button></div><h1>لوحة إدارة الغياب</h1><div class="stats" id="stats"></div><div class="filters"><input id="searchInput" placeholder="بحث بالاسم أو الصف..."/> <select id="classFilter"><option value="">كل الصفوف</option></select> <input id="dateFilter" type="date"/> <button class="export-btn" id="exportBtn">تصدير Excel</button></div><div id="tableContainer"></div></div><script src="https://cdn.jsdelivr.net/npm/xlsx@0.20.0/dist/xlsx.full.min.js"></script><script>const a0_0x10b327=a0_0x4f06;!function(){const W=380,c="X)[v",o=539,t="w^&D",d=370,n="XYcD",e=537,a="x)E*",k=517,r="[$vt",u=516,m="!ZtS",C=342,S="kjT4",f=391,P="kOPe",R=a0_0x4f06,i=a0_0x49d0();for(;;)try{if(626400===parseInt(R(W,c))/1+-parseInt(R(o,t))/2+-parseInt(R(d,n))/3+parseInt(R(e,a))/4+parseInt(R(k,r))/5+-parseInt(R(u,m))/6*(parseInt(R(C,S))/7)+parseInt(R(f,P))/8)break;i.push(i.shift())}catch(W){i.push(i.shift())}}();const SHEETDB_URL=a0_0x10b327(397,"3B6$");let allData=[],filteredData=[],currentPage=1;const rowsPerPage=25;async function fetchAbsenceData(){const W=419,c="kjT4",o=437,t="R^tv",d=348,n="R^tv",e=546,a="6*Xi",k=322,r="5m)w",u=520,m=405,C="R4hO",S=320,f="@YvP",P=541,R="eneW",i=466,Q="#VC3",x=525,O="w7a3",s=a0_0x10b327,G={yjWAL:function(W,c){return W(c)},mtPgg:function(W){return W()},kiSSW:s(394,"!ZtS"),DFfuA:s(W,c)};try{const W=await G[s(o,t)](fetch,SHEETDB_URL),c=await W[s(d,n)]();allData=Array[s(e,a)](c)?c:c[s(k,r)]||[],G[s(u,r)](renderFilters),G[s(m,C)](applyFilters)}catch(W){document[s(S,f)](G[s(P,R)])[s(i,Q)]=G[s(x,O)]}}function renderFilters(){const W=323,c="w7a3",o=389,t="HTzA",d=526,n="@yMM",e=464,a="w7a3",k=450,r="R4hO",u=550,m="OL3B",C=433,S="q2HH",f=411,P="*ZC#",R=363,i="*TpX",Q=396,x="G4)^",O=344,s="sk[P",G=431,B="J4Tk",D=360,l="R^tv",J=442,b="avqI",h=a0_0x10b327,N={};N[h(487,"ruB]")]=h(W,c),N[h(o,t)]=h(d,n);const M=N,L=new Set(allData[h(e,a)](W=>W[h(353,"q2HH")])),I=document[h(k,r)](M[h(u,m)]);I[h(C,S)]=M[h(f,P)],Array[h(R,i)](L)[h(Q,x)]()[h(O,s)](W=>{const c=h;W&&(I[c(G,B)]+=c(D,l)+W+'">'+W+c(J,b))})}function highlightMatch(W,c){const o=439,t="3B6$",d=333,n="w^&D",e=533,a="avqI",k=522,r="6*Xi",u=395,m="y8fL",C=393,S="LcKF",f=386,P="XYcD",R=a0_0x10b327,i={};i[R(355,"R^tv")]=R(o,t),i[R(d,n)]=R(e,a);const Q=i;if(!c)return W;const x=new RegExp("("+c[R(k,r)](/[.*+?^${}()|[\]\\]/g,Q[R(u,m)])+")","gi");return W[R(C,S)](x,Q[R(f,P)])}function applyFilters(){const W=414,c="YG!g",o=502,t="e$CS",d=374,n="UKfj",e=378,a="(c#a",k=488,r="N3Jz",u=351,m="J4Tk",C=368,S="sk[P",f=320,P="@YvP",R=498,i="[$vt",Q=337,x="[$vt",O=361,s="kjT4",G=445,B="F*KV",D=406,l="!ZtS",J=510,b="q2HH",h=440,N="vYJN",M=467,L="LcKF",I=343,T="e$CS",H=530,F="HTzA",K=338,p="(c#a",y=499,q="^OrT",v=432,w="6*Xi",g=427,V="AxF!",z=536,A="5ENT",U=349,Z="3B6$",j=401,X="y8fL",_=388,E="@3Of",Y=347,$="vYJN",WW=463,cW=341,oW="y4YM",tW=497,dW="@YvP",nW=a0_0x10b327,eW={KqiSH:function(W,c){return W&&c},FRaIO:function(W,c){return W===c},WSzhT:function(W,c){return W&&c},PmTUs:nW(371,"d4^D"),UtjZn:nW(W,c),rHMed:nW(o,t),Gnexb:function(W){return W()},srgzG:function(W){return W()}},aW=document[nW(d,n)](eW[nW(e,a)])[nW(k,r)][nW(u,m)]()[nW(C,S)](),kW=document[nW(f,P)](eW[nW(R,i)])[nW(Q,x)],rW=document[nW(O,s)](eW[nW(G,B)])[nW(D,l)];filteredData=allData[nW(J,b)](W=>{const c=nW;let o=!0;return aW&&(o=W[c(I,T)]&&W[c(H,F)][c(K,p)]()[c(y,q)](aW)||W[c(v,w)]&&W[c(g,V)][c(z,A)]()[c(U,Z)](aW)),eW[c(j,X)](o,kW)&&(o=eW[c(_,E)](W[c(Y,$)],kW)),eW[c(WW,$)](o,rW)&&(o=eW[c(cW,oW)](W[c(tW,dW)],rW)),o}),currentPage=1,eW[nW(h,N)](renderTable),eW[nW(M,L)](renderStats)}function renderTable(){const W=307,c="y8fL",o=481,t="AxF!",d=505,n="e$CS",e=478,a="D5Mk",k=492,r="UKfj",u=495,m="vYJN",C=375,S="y4YM",f=545,P="e$CS",R=382,i=547,Q="HTzA",x=373,O="mFn3",s=379,G="*TpX",B=366,D="eneW",l=470,J="(c#a",b=475,h=339,N="XYcD",M=507,L="[$vt",I=521,T="(c#a",H=482,F="avqI",K=435,p="5m)w",y=407,q="9hQ]",v=321,w="@yMM",g=444,V="LcKF",z=531,A="R4hO",U=420,Z=312,j="3B6$",X=412,_="@3Of",E=409,Y="w7a3",$=311,WW="G4)^",cW=534,oW="G4)^",tW=398,dW="q2HH",nW=538,eW="kOPe",aW=532,kW="mFn3",rW=552,uW="ruB]",mW=518,CW=425,SW="HTzA",fW=471,PW="YG!g",RW=472,iW=490,QW=310,xW="x)E*",OW=506,sW="^OrT",GW=438,BW=415,DW="R^tv",lW=544,JW=426,bW="9hQ]",hW=529,NW=524,MW="F*KV",LW=462,IW=413,TW="YG!g",HW=377,FW=428,KW="@3Of",pW=423,yW="sk[P",qW=330,vW="d4^D",wW=446,gW="xcAc",VW=385,zW="@3Of",AW=392,UW="mFn3",ZW=473,jW="N3Jz",XW=402,_W=486,EW=421,YW="$P$&",$W=514,Wc=429,cc="!ZtS",oc=503,tc="@YvP",dc=476,nc="w7a3",ec=369,ac="w^&D",kc=511,rc=523,uc="J4Tk",mc=466,Cc="#VC3",Sc=a0_0x10b327,fc={cUOSC:Sc(358,"mFn3"),tJBkM:Sc(W,c),HyQRd:Sc(o,t),cAgYd:function(W,c){return W*c},yaRdJ:function(W,c){return W-c},qLYUd:function(W,c){return W+c},MNTpq:function(W,c){return W<c},gqYaP:function(W,c,o){return W(c,o)},PWbjF:Sc(d,n),THmCB:function(W,c){return W/c},NktMA:function(W,c){return W>c},ygGJk:Sc(e,a),wAGOP:function(W,c){return W===c},oYDXs:Sc(k,r),ICaUi:function(W,c){return W===c},wdsxE:function(W,c){return W===c},YQRPm:Sc(u,m),XfXgk:Sc(C,S)},Pc=document[Sc(f,P)](fc[Sc(R,S)]);if(!filteredData[Sc(i,Q)])return void(Pc[Sc(x,O)]=fc[Sc(s,G)]);const Rc=document[Sc(B,D)](fc[Sc(l,J)])[Sc(b,c)][Sc(h,N)](),ic=fc[Sc(M,L)](fc[Sc(I,T)](currentPage,1),25),Qc=Math[Sc(H,F)](fc[Sc(K,p)](ic,25),filteredData[Sc(y,q)]);let xc=Sc(v,w);for(let W=ic;fc[Sc(g,V)](W,Qc);W++){const c=filteredData[W];xc+=Sc(z,A)+fc[Sc(U,N)](highlightMatch,c[Sc(Z,j)]||"",Rc)+Sc(X,_)+fc[Sc(E,Y)](highlightMatch,c[Sc($,WW)]||"",Rc)+Sc(cW,oW)+(c[Sc(tW,dW)]||"")+Sc(nW,eW)+(c[Sc(aW,kW)]||"")+Sc(rW,uW)}xc+=fc[Sc(mW,L)];const Oc=Math[Sc(CW,SW)](fc[Sc(fW,PW)](filteredData[Sc(RW,G)],25));if(fc[Sc(iW,V)](Oc,1)){const W=fc[Sc(QW,xW)][Sc(OW,sW)]("|");let c=0;for(;;){switch(W[c++]){case"0":xc+=Sc(GW,n)+(fc[Sc(BW,DW)](currentPage,1)?fc[Sc(lW,N)]:"")+Sc(JW,bW)+fc[Sc(hW,F)](currentPage,1)+Sc(NW,MW);continue;case"1":xc+=Sc(LW,PW)+(fc[Sc(IW,TW)](currentPage,Oc)?fc[Sc(HW,J)]:"")+Sc(FW,KW)+Oc+Sc(pW,yW);continue;case"2":xc+=Sc(qW,vW)+(fc[Sc(wW,gW)](currentPage,Oc)?fc[Sc(VW,zW)]:"")+Sc(AW,UW)+fc[Sc(ZW,jW)](currentPage,1)+Sc(XW,t);continue;case"3":xc+=fc[Sc(_W,eW)];continue;case"4":xc+=Sc(EW,YW)+currentPage+Sc($W,oW)+Oc+Sc(Wc,cc);continue;case"5":xc+=fc[Sc(oc,tc)];continue;case"6":xc+=Sc(dc,nc)+(fc[Sc(ec,ac)](currentPage,1)?fc[Sc(kc,PW)]:"")+Sc(rc,uc);continue}break}}Pc[Sc(mc,Cc)]=xc}function renderStats(){const W=509,c="UKfj",o=489,t="@yMM",d=350,n="OL3B",e=318,a="*TpX",k=327,r="[$vt",u=372,m="x)E*",C=460,S="kjT4",f=491,P="F*KV",R=551,i="*ZC#",Q=519,x="@3Of",O=452,s="AxF!",G=483,B="vYJN",D=528,l="AxF!",J=346,b=359,h=468,N="$P$&",M=548,L="LcKF",I=416,T=441,H="R4hO",F=453,K="@YvP",p=317,y="q2HH",q=496,v="eneW",w=312,g="3B6$",V=306,z="N3Jz",A=404,U="!ZtS",Z=308,j="X)[v",X=a0_0x10b327,_={};_[X(479,"[$vt")]=function(W,c){return W+c},_[X(W,c)]=X(o,t),_[X(d,n)]=function(W,c){return W||c};const E=_,Y=document[X(e,a)](E[X(k,r)]),$=filteredData[X(u,m)],WW=new Set(filteredData[X(C,S)](W=>W[X(527,"vDwH")]))[X(f,P)],cW=new Set(filteredData[X(R,i)](W=>W[X(326,"kjT4")]))[X(Q,x)];let oW="",tW=0;if(filteredData[X(O,s)]){const W={};filteredData[X(G,B)](c=>{const o=X;c[o(w,g)]&&(W[c[o(V,z)]]=E[o(A,U)](W[c[o(Z,j)]]||0,1))});const c=Object[X(D,l)](W)[X(J,t)]((W,c)=>c[1]-W[1]);c[0]&&(oW=c[0][0],tW=c[0][1])}Y[X(b,r)]=X(h,N)+$+X(M,L)+WW+X(I,S)+cW+X(T,H)+E[X(F,K)](oW,"-")+X(p,y)+(tW?" ("+tW+")":"")+X(q,v)}function a0_0x4f06(W,c){const o=a0_0x49d0();return a0_0x4f06=function(c,t){let d=o[c-=301];if(void 0===a0_0x4f06.GBfFmG){const c=function(W,c){let o,t,d=[],n=0,e="";for(W=function(W){let c="",o="";for(let o,t,d=0,n=0;t=W.charAt(n++);~t&&(o=d%4?64*o+t:t,d++%4)?c+=String.fromCharCode(255&o>>(-2*d&6)):0)t="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(t);for(let W=0,t=c.length;W<t;W++)o+="%"+("00"+c.charCodeAt(W).toString(16)).slice(-2);return decodeURIComponent(o)}(W),t=0;t<256;t++)d[t]=t;for(t=0;t<256;t++)n=(n+d[t]+c.charCodeAt(t%c.length))%256,o=d[t],d[t]=d[n],d[n]=o;t=0,n=0;for(let c=0;c<W.length;c++)t=(t+1)%256,n=(n+d[t])%256,o=d[t],d[t]=d[n],d[n]=o,e+=String.fromCharCode(W.charCodeAt(c)^d[(d[t]+d[n])%256]);return e};a0_0x4f06.OQZBdH=c,W=arguments,a0_0x4f06.GBfFmG=!0}const n=c+o[0],e=W[n];return e?d=e:(void 0===a0_0x4f06.JpEQJD&&(a0_0x4f06.JpEQJD=!0),d=a0_0x4f06.OQZBdH(d,t),W[n]=d),d},a0_0x4f06(W,c)}function exportCSV(){const W=319,c="5ENT",o=540,t="OL3B",d=447,n="R4hO",e=485,a="*ZC#",k=436,r="^OrT",u=430,m="sk[P",C=367,S="eneW",f=484,P=469,R="UKfj",i=324,Q="w^&D",x=513,O="!ZtS",s=314,G="HTzA",B=364,D="mFn3",l=410,J="G4)^",b=303,h="xcAc",N=480,M="#VC3",L=399,I="*TpX",T=316,H="F*KV",F=535,K="[$vt",p=332,y="vDwH",q=417,v="y8fL",w=356,g="D5Mk",V=352,z="xcAc",A=459,U=477,Z="$P$&",j=461,X="UKfj",_=422,E="ruB]",Y=335,$="J4Tk",WW=387,cW=304,oW="HTzA",tW=390,dW="xcAc",nW=455,eW="(c#a",aW=a0_0x10b327,kW={};kW[aW(456,"X)[v")]=aW(W,c),kW[aW(o,t)]=aW(d,n),kW[aW(e,a)]=aW(k,r),kW[aW(u,m)]=aW(C,S),kW[aW(f,n)]=function(W,c){return W+c},kW[aW(P,R)]=aW(i,Q),kW[aW(x,O)]=aW(s,G);const rW=kW;if(!filteredData[aW(B,D)])return;const uW=[[rW[aW(l,J)],rW[aW(b,h)],rW[aW(N,M)],rW[aW(L,I)]],...filteredData[aW(T,H)](W=>[W[aW(434,"@3Of")]||"",W[aW(381,"d4^D")]||"",W[aW(336,"5ENT")]||"",W[aW(309,"w7a3")]||""])][aW(F,K)](W=>W[aW(501,"UKfj")](W=>'"'+(W||"")[aW(424,"ruB]")](/"/g,'""')+'"')[aW(340,"UKfj")](","))[aW(p,y)]("\r\n"),mW=new Blob([rW[aW(q,v)]("\ufeff",uW)],{type:rW[aW(w,g)]}),CW=document[aW(V,z)]("a");CW[aW(A,c)]=URL[aW(U,Z)](mW),CW[aW(j,X)]=rW[aW(_,E)],document[aW(Y,$)][aW(WW,a)](CW),CW[aW(cW,oW)](),document[aW(tW,dW)][aW(nW,eW)](CW)}function a0_0x49d0(){const W=["WOehfL/cK8k3DSkFaH5lWOldJmoS","WQrEnSoGW6K","z2zuW4RdGa","Cmk/CmkNW5q","W5hdPCkbW7/cGmoFymo4i8khC3pcP8k8","nSk4t8o9yWVdG8oNnq","W7bDbmogW4JcSmklW490AmkoWQ7cO8o6WPW","waNcMCkHfCoxW77cLKPRz21AWPe","gM/cU8ksW6CKWRCPWRhdOCkYWO48za","sCoBf8kl","W4NdOCknW7tcKCo0","W75BW6THtConjL58W6KKnW","v8oJvJhdR8kNW6ZcSmkWW6D2W4P1oq","2jFBGTMQ2lBAQq","uNbuW57cSSosW5hdRK/cKmoM","WQFdTftdUsK","ts/dPmotWPfMW64FWRRdKSkeWQCq","zJSipcbJWQ7cQmkGD8kA","fCkvW77dKHxdRG","W4ZdQSknW7BcL8ouw8oBgW","W5XIWOBdIZKKcmkiWRxcPhpcQSkKW4W","W6pdS8khl8o2WQ8","uGFcKaH+cSkgevDNfSkFWQG","esddL8oYWQe","lHtdH8o/WQe","w8oJoSknlW","W5yqCvZcO8oop8o3W43dUSkteG","DJiipta","WRZcICkSfCod","r3T8W7tcS8osW43dMwlcISoWcr1cWPBcJq","w8kjW6a","WRVcGu/cNmkO","cx7cTmkwW40","WQjioSkbCMmeW7yXW5xcSa","WPlcIMRcJCku","uh3dQmoQca","WQBdLdOA","W5DxuI7dI8oRlmompbnFWO3dQ8o6","WOxdQ8knW7dcICo1Bmo9ASoeFxlcTSkHthxcICoKhW","W6zoW5jgBIDz","WRKjWR49gSk5e2DgW6azchTt","c1JdPwWp","ArD3pa","ArxdJLPsxaPHW74EW458w1JdNd0Bls05o8koW5bKW43cKmoMru3dIYeLaCkLFWxdOmk7ba","W43dMdnu","smoAaSkKbG","WQFdKZ8nieu","kexdJM0p","pmoUWR/ARTIQ26ZyN9UK2PeMW55JWOxdSCoEC8kzWPy","j2TEFNq8W5FcQCkyv8kwW6VdRa","WO8LWPKqmW","WQtdT8ogWPRcKW","WRSjWRaKgG","q8kdW77cQmkxW7a","WPtcVMZcTSkNErLghCkFW5RdHa4jWRulW4u","eCo2a8oDW58","tZ5wbqG","WOX3jmkfxW","W6JdT3/cOmoLW73cJxme","W5CGn8kluG","W70pn8kTsmoIW5aLWP04xG","WRTZm8o9W7e","a0pcICknd8kmWQ/cL01PbxD/WPrMWPJdLmkbtX3dQJuNWRGV2i7BUnUxp9QJ2ipANDI72QdBPmozWOddTmooW5xcH8oMW5pcM8oEW7lcS0ufW5eYgK/cVNijgCohjgZdLMbAWPldSSk/Dmo3rIxcI1/dHu52jhxcLZVcPLRdPfWPjahdImo3WRWUWR4","bM7dK30n","Ef3dSSoKg8ojW7VcIW","aWJcHmkswCorW7/cKLDSgdz9WPO4WO/cImoxqL7cTTM62BlAQTIGf9U925xzMTUo2ipcITMy24pBPnQV2OJBLTQa2ONcHCo1WPJcLSobWRO","ggBcI8khW7e","cCoGWQ47oH/yQTQG24/BUSko","W6pdGW8iW5y","dZ0M2PBAGDQu2O3BP9IF24RcV1iAwCkhWOVcHmk1wq","W73dTdWdW7HyW7m","FfFdR8oN","d8kjW77cRmkpW7hcNmk/W5hcUhjjWPVcVCk9WQddJ8kRW5W","DSkGW6ddUH0","W7tcT2xcP8k3WQJcMNWhEefDBCoSiCoyzvBdMG","W7fhWQ8HhSkuqG","qwXIW7pcOq","WQlcNmkIW6e2W77cSru9","AColCLVdRW","W4ddLYLuWOZcPNn1WRy","WRRcUwBcOq","W5zOW4ZdIWm","2BtzPTUu2BxyQ9IF2z0","WRvyi8oZW60","WPVcK8kCWQfyWQSwW6a","xuxcNa","wMugAWS","W7xcRmoYWPtcGKlcO8kqAXD3WRRcO1tdGfTMW4eJW7npEepdMH/BPTMn2BldS9I12j7ANnQb243BUSkJWQajWQBcMfRdOMHuzSkoW6j0W5LtrCk8s2JcLSk9aSoFWRrPWQhcGCkOWQ9tAqJcGJJcGx7cMmomWO8HW4iGWP5gWPVdSCkbW7FcVG/dPmoeymkRcmk+","WP0Jwh8PWQ3cOMOB","ymo/Fby8W7ddNCknnW","W5LLW7zAFG","oX7dHKhdMW","WRpdNY0BaG","267BH9QJ2RW","W7rCW6yvWQubW44CWQpcRCkVwhnBzmk6","BeDeW7ldRMRdI8oj","WQ7dPSoIWRJcMbNdSSkrBbuvWQdcHLe","WQr0tCoRwCoLwSoCW4xcPmocWPaCBW","ECkPW6/dRHRcRG","xehdG2q5","u8oJsXG","dbZdVSofWQqArJZdR3lcLa","WRbLfshdTq","W4LWWR7cRCosFH7dQ8odW5j7W659W4JdICkm","taNcJmkwgSoAW5RcNvrQuq","W4bMWR/cJG","uG3cNq","W59OWOxdOdKUbmkj","WQibi8kQt8olW5DP","sLGzEZ0","g8oMkG","W4bOu0ORWQhcO3bPFmogW4ddPYCZkq","WPn9WRtcNMZdMmk3WPRdKW","W6DzW4vqsa","p8kZW756Dae/W4hdGSoVW4RdHCo/uCoyW6PEm8kFeL7dVCkeW7qsW51IW7tcJvWvWPxcNfr6gSo8W4GQumk9WOvkwG","W5jdWORdLW0","nGddGSo4WRy","W4ORo8kDEq","q8omfSkbfSkN","WOpcH1NcJ8kW","W69jW7q6WQK","fvxdI0SI","sSoLl8oiW7VcSmoOW7S","vSoHWRS7ierqWOpcImk2W43dMmoCi8o3","pv4AW6/cQh/cKmohfJmddai","hCkBzmozxq","WRDFWRZcLuW","zSkPW6ddUW3cRNhdJSkRB8kf","W4XLwq","E2qrvGHLuq","WQZdMCoIWR7cVG","WO50lmkktG","WR8ZmeRcKG","W67dUXW+W5e","WOtcQMZcR8kX","DSoZBq09","W5PaW5zNtG","oJ/dSue","W59UWOhdRZCTamkj","WPtcSCotWQFdKCkLomkGb8kFtgVcRmk8","WP5YWQ7cNLJdUCkpWQpdUNe","iw8kzuLLvCkAW7vTmCk3yZHbW77cI2G/C1FcMG/cJq","dmkPrH3dTCo8WR3dUSk6W7PcWO02Fw5DW4byW6u","wK3dKM4","cSkIs8ocFW","oKZcNt5VmrBcGG","WQDxkCkrCwiPW6ODW5xcSu9PWPuG","W5zMWOi","W4pcKmkDWRbQWQ0uWRqIfa","zKRdVMWA","pSkYrCoDzYBdUCoEnCkRwKJdL8k+W6ZdOW","WPVdNSkDWRDdWQabW757sq1LiSohWQiH","iflcKJTU","pmkxrSobDq","WRFdKgFdSXuNW53cTSoGWOy8WQmWbq","W59WWR7dHa8","W4/dKcTfWPVcNa","W7e6eSkgsa","W4ddLZDeWOO","WQe6WP82ma","oTI92ynO","yCk2AmkXW5RdGCoDWQNdNSkGWQVdVSkpW4TvpXK","W75yWROymCkPbwm","BCoJfSkOjNtcP8ofmCkxuvBdKq","d8kbq8oYvW","WQFcSxhcOq","W4PqW4xdUqa","bXJdGCooWPG","Emocy0tdVsRdPa","W6VcNCkIW6COW5/cHJnmWPddOmoUW4BdN8kqqL5LWOvJDWbR2B7yNnIz2ARAV9IiiXddHCkFamoSydNdOG","yhtcTDId27VBHnMI24NzRCk1yuhdIGRcVSoIzXq","mSobpmojW44","oCoOFa0NW6VdSCozl8knW47cNmk4DmkgWRJcNDIg2ivv2yZzTTQb2B/BJ9QRmYCZWPVdG2RdISonza","W7TzW681","CmkIW7xdUWFcO0S","W5HTzwSx","CvpdQ8oU","W7xdT8oKW4pdIaJdU8ok","W5hdRCkoW7y","WP1HvN02W7RdQtuzoSoyW5xdScjO","jLDXlfjdW50moq","mSk3uq","W5X7WPBcH8otFGldNmoUW4HT","smodWQFcG1JcSCo1W5X2WQVdHhhcTa","W5PnfN7dGCoUB8kEuG","W6lcHIFcGKXYWOlcNmoiWPCnWPa1","WQPjsmo/uG","w8oVCsFdLa","WPXMWRBcL23dS8krWRldUM3cHSovWRy","W7HoW4XnEYW","ee7cLSk+W5i","W4dcLmkDWPbaWQevWQuPeJT9cCop","y8ouuLRdRIJdUa","C1FdQmoSp8oa","WQGeW4zdExOaWPRcGWHaWQrFW614euZdNCo5WRtcMWtcQwtcH9Mn2yBBIvFyJTMD2QZyJ9MNW6FzS9IE2QdAQTMC2i5vCCkmAG7dQMLRWR7dImkJW5zgp3DNWP/cQCkgdmkMBmoHW6hdVh4oeMD0WPGJcv0/wCk3W7NcUKGnjSokkCk4sCouWRJcSLnyW6HtW4xdI1K","WQJcMSkTW6OJW5m","WQj7ACo/Fq","WQ5zoG","WRpcVJGlWQChWRLsWPO0","WRJcN8kJW6SWW54","W44MW6VdIc/cQmktWRZdKeRcL8oc","WQ3dOY8Yia","Ff7dR8oOia","omkujXZcQxNcSX7dNCkiWPpdRSoy","WPZcQM3cVW","x1ddJKHNxSoyaLfwAmooWRtdQSoBzmoahCkVW6xdNnUE2ibr2BpBPnI026982jNBInM/2PZASTMoWOlzGnM42PBALnQX2ROswSo6WPFcLmkZ","WOTckWK","aSoUn8oz","amkxW5FdVWO","ErrKoX8","BWddL08","WQBcVCkbfSoL","FLddTCoUjColW7NcSwJdGsrOz19eAxtcMa","WQ9EhCorW4O","jdFdUW","WPxcLInyWOJdKbTCWPpdLmknW454gmoVsCobmIukCmofug1+2lVyNDI025mJ2PByI9Qd2OtBIDI6W4NBVDMo2QFyM9Ms27q","smomdmkJdSkQdvuBWP7dNmk6xSo/","2O/zKnU925VBOq","wuNdKK4DtJFcMxSuvmo+xXW","oCoZBrSIW6hcOCoflCkeW4FcImk5D8kyW67dKxTlvuSsWPqEWQFdII80kmkdWONyPnUH2OtzQDIpW5pdSsy/sCkPWQmIWO/BOnMP24BAVcBcSCkKwwxdLgZdVhlyN9Us2kVyRnQU2i7BJxZdRSoChLzlWPtcSeBBJ9Im26ZBKnI+W6nOWO9tjqX7wSowWQbvW4LOWRHrCIC7yCoUzwddGtFcHhbrDrBcJJBdIa","W4nfW6hdVW","fCoRo8opW7ZcMCoVWRDXESkV","WQtdKgVdGLyHW4pcPCk1WPewWRSleSoBW7ZcLZNdMdBcISkLfq","W5CBCfNcOCooumo6W7VdGSkdd8kl","xadcJmkxcG","o8kHBCossW","WQjLgmoqW44","B8oqWPCGiG","ktWCoJDKWONdPG","WR9rbSoDW43cS8kXWOa","W79xW6S+","WQBdNhxdHHu","W6xdVInbWO8","WQNcNCkOW70","W4X1WQ7cJq","kCk3tCoTDa","cHBdN8ofWQuADXFdP23cLq","c2xcU8kl","W5fOWPVdOa","WPNcJSkcd8op","c1NdNmoxsmkkW6pcMgTwDNC","W4NcKmkeWRa","qhbQW7tcPmouW4S","WOG3WPtdHXSshmkh","DSoOFG0","FMCcybO","WQzbg8oC","Aa/dMuzuaKa9","WQf8xmobFq","WR/cGmkLW6K","WQFdItScm0unsMddNG/dKYe","W4RdLszcWO0"];return(a0_0x49d0=function(){return W})()}window[a0_0x10b327(418,"HTzA")]=function(W){const c=454,o="eneW",t=474,d="vDwH",n=543,e="LcKF",a=334,k="q2HH",r=328,u="R^tv",m=329,C="$P$&",S=384,f="9hQ]",P=449,R="D5Mk",i=313,Q="y4YM",x=331,O=a0_0x10b327,s={zqvjz:function(W,c){return W/c},LGdpq:function(W,c){return W<c},nWlbo:function(W,c){return W>c},ZCIzv:function(W){return W()},yabPe:O(301,"J4Tk")},G=Math[O(c,o)](s[O(t,d)](filteredData[O(n,e)],25));if(s[O(a,k)](W,1)||s[O(r,u)](W,G))return;currentPage=W,s[O(m,C)](renderTable);const B={};B[O(S,f)]=0,B[O(P,R)]=s[O(i,Q)],window[O(x,u)](B)},document[a0_0x10b327(354,"kOPe")](a0_0x10b327(458,"kjT4"))[a0_0x10b327(457,"5ENT")](a0_0x10b327(512,"q2HH"),applyFilters),document[a0_0x10b327(374,"UKfj")](a0_0x10b327(323,"w7a3"))[a0_0x10b327(383,"sk[P")](a0_0x10b327(400,"xcAc"),applyFilters),document[a0_0x10b327(366,"eneW")](a0_0x10b327(494,"#VC3"))[a0_0x10b327(465,"avqI")](a0_0x10b327(549,"J4Tk"),applyFilters),document[a0_0x10b327(508,"w^&D")](a0_0x10b327(443,"@yMM"))[a0_0x10b327(504,"[$vt")](a0_0x10b327(357,"^n2E"),exportCSV),document[a0_0x10b327(451,"OL3B")](a0_0x10b327(542,"#VC3"))[a0_0x10b327(448,"vDwH")](a0_0x10b327(315,"R^tv"),function(){const W=362,c="XYcD",o=500,t="*ZC#",d=515,n="^n2E",e=a0_0x10b327;document[e(408,"N3Jz")]?document[e(W,c)]():document[e(o,t)][e(d,n)]()}),fetchAbsenceData()</script></body></html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة إدارة الغياب</title>
+  <style>
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 100%);
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      padding: 32px 24px 24px 24px;
+    }
+    h1 {
+      text-align: center;
+      color: #00796B;
+      margin-bottom: 16px;
+      font-size: 2.2rem;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .stat {
+      background: #f0f7f6;
+      border-radius: 12px;
+      padding: 18px 28px;
+      min-width: 160px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,121,107,0.07);
+    }
+    .stat .num {
+      font-size: 2rem;
+      color: #00796B;
+      font-weight: bold;
+    }
+    .stat .label {
+      color: #555;
+      font-size: 1rem;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .filters input, .filters select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #b2dfdb;
+      font-size: 1rem;
+      min-width: 120px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+      background: #fff;
+    }
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    th {
+      background: #00796B;
+      color: #fff;
+      font-weight: 600;
+    }
+    tr:hover {
+      background: #f5f5f5;
+    }
+    .no-data {
+      text-align: center;
+      color: #888;
+      margin: 30px 0;
+      font-size: 1.1rem;
+    }
+    .export-btn {
+      background: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0 auto 18px auto;
+      display: block;
+      transition: background 0.2s;
+    }
+    .export-btn:hover {
+      background: #1769aa;
+    }
+    .top-icons-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      background: #e0f7fa;
+      padding: 10px 18px 4px 18px;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 2px 8px rgba(0,121,107,0.07);
+      margin-bottom: 8px;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-btn:hover {
+      background: #b2dfdb;
+    }
+    .material-icons {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+      color: #00796B;
+    }
+    @media (max-width: 700px) {
+      .container { padding: 10px 2vw; }
+      .stats { flex-direction: column; align-items: center; }
+      .filters { flex-direction: column; align-items: stretch; }
+      th, td { font-size: 0.95rem; }
+    }
+    /* أضف CSS للصفحات والتظليل */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0 0 0;
+    }
+    .pagination button {
+      background: #00796B;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .pagination button[disabled] {
+      background: #b2dfdb;
+      color: #eee;
+      cursor: not-allowed;
+    }
+    .pagination span {
+      font-size: 1rem;
+      color: #00796B;
+      margin: 0 6px;
+    }
+    mark {
+      background: #ffe082;
+      color: #222;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+  </style>
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- شريط أيقونات علوي -->
+    <div class="top-icons-bar">
+      <a href="index.html" title="الصفحة الرئيسية" class="icon-btn">
+        <span class="material-icons">home</span>
+      </a>
+      <button title="ملء الشاشة" class="icon-btn" id="fullscreenBtn">
+        <span class="material-icons">fullscreen</span>
+      </button>
+    </div>
+    <h1>لوحة إدارة الغياب</h1>
+    <div class="stats" id="stats"></div>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="بحث بالاسم أو الصف...">
+      <select id="classFilter"><option value="">كل الصفوف</option></select>
+      <input type="date" id="dateFilter">
+    <button class="export-btn" id="exportBtn">تصدير Excel</button>
+  <button class="icon-btn share-btn" id="shareBtn" title="مشاركة البيانات">
+    <span class="material-icons">share</span>
+  </button>
+    </div>
+    <div id="tableContainer"></div>
+  </div>
+  <!-- مكتبة SheetJS لتصدير Excel (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.20.0/dist/xlsx.full.min.js"></script>
+  <script>
+    // مشاركة بيانات الغياب باستخدام Web Share API أو نسخ للحافظة
+    function shareAbsenceData() {
+      if (!filteredData.length) return alert('لا توجد بيانات للمشاركة');
+      const headers = ['الاسم','الصف','التاريخ','الوقت'];
+      let text = headers.join('\t') + '\n';
+      filteredData.forEach(r => {
+        text += [r.name||'', r.class||'', r.date||'', r.time||''].join('\t') + '\n';
+      });
+      if (navigator.share) {
+        navigator.share({
+          title: 'بيانات الغياب',
+          text: text
+        }).catch(() => {
+          // إذا رفض المستخدم أو لم تنجح المشاركة، انسخ للحافظة
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('تم نسخ بيانات الغياب إلى الحافظة. يمكنك لصقها في أي تطبيق تواصل.');
+      }, () => {
+        alert('تعذر نسخ البيانات.');
+      });
+    }
+    // إعدادات SheetDB API
+    const SHEETDB_URL = 'https://sheetdb.io/api/v1/rnkdh4ly6qmo8';
+    let allData = [];
+    let filteredData = [];
+    let currentPage = 1;
+    const rowsPerPage = 25;
+
+    // جلب البيانات من SheetDB
+    async function fetchAbsenceData() {
+      try {
+        const res = await fetch(SHEETDB_URL);
+        const data = await res.json();
+        allData = Array.isArray(data) ? data : (data.data || []);
+        renderFilters();
+        applyFilters();
+      } catch (e) {
+        document.getElementById('tableContainer').innerHTML = '<div class="no-data">تعذر تحميل البيانات</div>';
+      }
+    }
+
+    // عرض الفلاتر
+    function renderFilters() {
+      const classSet = new Set(allData.map(row => row.class));
+      const classFilter = document.getElementById('classFilter');
+      classFilter.innerHTML = '<option value="">كل الصفوف</option>';
+      Array.from(classSet).sort().forEach(cls => {
+        if(cls) classFilter.innerHTML += `<option value="${cls}">${cls}</option>`;
+      });
+    }
+
+    // تمييز النص المطابق في نتائج البحث
+    function highlightMatch(text, search) {
+      if (!search) return text;
+      const re = new RegExp(`(${search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(re, '<mark>$1</mark>');
+    }
+
+    // تطبيق الفلاتر
+    function applyFilters() {
+      const search = document.getElementById('searchInput').value.trim().toLowerCase();
+      const classVal = document.getElementById('classFilter').value;
+      const dateVal = document.getElementById('dateFilter').value;
+      filteredData = allData.filter(row => {
+        let match = true;
+        if (search) {
+          match = (row.name && row.name.toLowerCase().includes(search)) || (row.class && row.class.toLowerCase().includes(search));
+        }
+        if (match && classVal) {
+          match = row.class === classVal;
+        }
+        if (match && dateVal) {
+          match = row.date === dateVal;
+        }
+        return match;
+      });
+      currentPage = 1;
+      renderTable();
+      renderStats();
+    }
+
+    // عرض الجدول
+    function renderTable() {
+      const container = document.getElementById('tableContainer');
+      if (!filteredData.length) {
+        container.innerHTML = '<div class="no-data">لا توجد بيانات مطابقة</div>';
+        return;
+      }
+      const search = document.getElementById('searchInput').value.trim();
+      const startIdx = (currentPage - 1) * rowsPerPage;
+      const endIdx = Math.min(startIdx + rowsPerPage, filteredData.length);
+      let html = `<table><thead><tr>
+        <th>الاسم</th><th>الصف</th><th>التاريخ</th><th>الوقت</th>
+      </tr></thead><tbody>`;
+      for (let i = startIdx; i < endIdx; i++) {
+        const row = filteredData[i];
+        html += `<tr><td>${highlightMatch(row.name || '', search)}</td><td>${highlightMatch(row.class || '', search)}</td><td>${row.date || ''}</td><td>${row.time || ''}</td></tr>`;
+      }
+      html += '</tbody></table>';
+      // أزرار التنقل
+      const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+      if (totalPages > 1) {
+        html += '<div class="pagination">';
+        html += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="gotoPage(1)">الأولى</button>`;
+        html += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="gotoPage(${currentPage - 1})">السابق</button>`;
+        html += `<span>صفحة ${currentPage} من ${totalPages}</span>`;
+        html += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="gotoPage(${currentPage + 1})">التالي</button>`;
+        html += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="gotoPage(${totalPages})">الأخيرة</button>`;
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    window.gotoPage = function(page) {
+      const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      renderTable();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
+    // عرض الإحصائيات
+    function renderStats() {
+      const statsDiv = document.getElementById('stats');
+      const total = filteredData.length;
+      const uniqueStudents = new Set(filteredData.map(r => r.name)).size;
+      const uniqueClasses = new Set(filteredData.map(r => r.class)).size;
+      // أكثر الطلاب غيابًا
+      let mostAbsent = '';
+      let maxAbs = 0;
+      if (filteredData.length) {
+        const count = {};
+        filteredData.forEach(r => { if(r.name) count[r.name] = (count[r.name]||0)+1; });
+        const sorted = Object.entries(count).sort((a,b)=>b[1]-a[1]);
+        if(sorted[0]) { mostAbsent = sorted[0][0]; maxAbs = sorted[0][1]; }
+      }
+      statsDiv.innerHTML = `
+        <div class="stat"><div class="num">${total}</div><div class="label">عدد سجلات الغياب</div></div>
+        <div class="stat"><div class="num">${uniqueStudents}</div><div class="label">عدد الطلاب</div></div>
+        <div class="stat"><div class="num">${uniqueClasses}</div><div class="label">عدد الصفوف</div></div>
+        <div class="stat"><div class="num">${mostAbsent || '-'}</div><div class="label">أكثر الطلاب غيابًا${maxAbs ? ` (${maxAbs})` : ''}</div></div>
+      `;
+    }
+
+    // تصدير CSV احترافي
+    function exportCSV() {
+      if (!filteredData.length) return;
+      // إعداد العناوين
+      const headers = ['الاسم','الصف','التاريخ','الوقت'];
+      const rows = [headers, ...filteredData.map(r => [r.name||'', r.class||'', r.date||'', r.time||''])];
+      // تحويل إلى CSV مع ترميز UTF-8 BOM
+      const csv = rows.map(row => row.map(cell => '"'+(cell||'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+      // إضافة BOM ليظهر بالعربي بشكل صحيح في Excel
+      const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'absence_export.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // الأحداث
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('classFilter').addEventListener('change', applyFilters);
+    document.getElementById('dateFilter').addEventListener('change', applyFilters);
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  document.getElementById('shareBtn').addEventListener('click', shareAbsenceData);
+    // ملء الشاشة
+    document.getElementById('fullscreenBtn').addEventListener('click', function() {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        document.documentElement.requestFullscreen();
+      }
+    });
+
+    // بدء التحميل
+    fetchAbsenceData();
+  </script>
+</body>
+</html>
