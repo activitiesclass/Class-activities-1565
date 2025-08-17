@@ -1,1 +1,1978 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/><meta content="#00796B" name="theme-color"/><meta content="نظام إدارة الطلاب" name="description"/><meta content="إدارة, طلاب, مدرسة, عُمان, تعليم" name="keywords"/><meta content="" name="author"/><title>نظام إدارة الطلاب</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="assets/media/images/school-logo.png" rel="icon" type="image/png"/><link href="assets/css/responsive.css" rel="stylesheet"/><style>:root{--primary-color:#00796B;--primary-light:#4DB6AC;--primary-dark:#004D40;--secondary-color:#FF5722;--accent-color:#FFD700;--success-color:#4CAF50;--warning-color:#FF9800;--error-color:#F44336;--info-color:#2196F3;--text-primary:#212121;--text-secondary:#757575;--background-light:#FAFAFA;--surface-color:#FFFFFF;--shadow-light:rgba(0, 0, 0, 0.1);--shadow-medium:rgba(0, 0, 0, 0.2);--shadow-dark:rgba(0, 0, 0, 0.3);--border-radius:16px;--border-radius-small:8px;--spacing-xs:4px;--spacing-sm:8px;--spacing-md:16px;--spacing-lg:24px;--spacing-xl:32px;--transition-fast:0.2s ease-out;--transition-normal:0.3s ease-out;--transition-slow:0.5s ease-out}*{box-sizing:border-box;margin:0;padding:0}body{font-family:Cairo,sans-serif;background:linear-gradient(135deg,#e0f7fa 0,#b2dfdb 25%,#80cbc4 50%,#4db6ac 75%,#26a69a 100%);background-attachment:fixed;color:var(--text-primary);min-height:100vh;position:relative;overflow-x:hidden}body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 20%,rgba(255,215,0,.1) 0,transparent 50%),radial-gradient(circle at 80% 80%,rgba(0,121,107,.1) 0,transparent 50%),radial-gradient(circle at 40% 60%,rgba(255,87,34,.1) 0,transparent 50%);animation:backgroundShift 20s ease-in-out infinite;z-index:-1}@keyframes backgroundShift{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-20px,20px) rotate(1deg)}50%{transform:translate(20px,-20px) rotate(-1deg)}75%{transform:translate(-10px,-10px) rotate(.5deg)}}.control-buttons{position:fixed;top:var(--spacing-md);display:flex;gap:var(--spacing-sm);z-index:1000}.control-buttons.left{left:var(--spacing-md)}.control-buttons.right{right:var(--spacing-md)}.control-btn{width:50px;height:50px;border-radius:50%;border:none;background:rgba(255,255,255,.9);color:var(--primary-color);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px var(--shadow-medium);transition:all var(--transition-normal);backdrop-filter:blur(10px)}.control-btn:hover{transform:translateY(-3px) scale(1.05);background:var(--primary-color);color:#fff;box-shadow:0 8px 20px var(--shadow-dark)}.control-btn:active{transform:translateY(0) scale(.95)}.main-container{max-width:1400px;margin:0 auto;padding:var(--spacing-xl) var(--spacing-lg);position:relative;z-index:10}.header{text-align:center;margin-bottom:var(--spacing-xl);animation:slideDown .8s ease-out}.header-card{background:rgba(255,255,255,.95);border-radius:var(--border-radius);padding:var(--spacing-xl);box-shadow:0 8px 32px var(--shadow-medium);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.2);position:relative;overflow:hidden}.header-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color),var(--accent-color))}.header-title{font-size:clamp(1.8rem, 4vw, 2.2rem);font-weight:700;margin-bottom:var(--spacing-sm);color:var(--primary-color);display:flex;align-items:center;justify-content:center;gap:var(--spacing-sm)}.header-subtitle{font-size:clamp(1rem, 3vw, 1.1rem);color:var(--text-secondary);font-weight:400;line-height:1.5}.toolbar{background:rgba(255,255,255,.9);border-radius:var(--border-radius);padding:var(--spacing-lg);margin-bottom:var(--spacing-xl);box-shadow:0 4px 20px var(--shadow-light);backdrop-filter:blur(10px);animation:fadeInUp .8s ease-out .2s both}.toolbar-row{display:flex;flex-wrap:wrap;gap:var(--spacing-md);align-items:center;justify-content:space-between}.search-container{flex:1;min-width:300px;position:relative}.search-input{width:100%;padding:var(--spacing-md) var(--spacing-lg);border:2px solid rgba(0,121,107,.2);border-radius:var(--border-radius-small);font-size:1rem;background:rgba(255,255,255,.9);transition:all var(--transition-normal);padding-right:50px}.search-input:focus{outline:0;border-color:var(--primary-color);box-shadow:0 0 0 3px rgba(0,121,107,.1)}.search-icon{position:absolute;right:var(--spacing-md);top:50%;transform:translateY(-50%);color:var(--text-secondary);font-size:1.2rem}.filters-container{display:flex;gap:var(--spacing-md);flex-wrap:wrap}.filter-select{padding:var(--spacing-sm) var(--spacing-md);border:2px solid rgba(0,121,107,.2);border-radius:var(--border-radius-small);background:rgba(255,255,255,.9);font-size:.9rem;cursor:pointer;transition:all var(--transition-normal)}.filter-select:focus{outline:0;border-color:var(--primary-color)}.action-buttons{display:flex;gap:var(--spacing-sm)}.btn{padding:var(--spacing-sm) var(--spacing-md);border:none;border-radius:var(--border-radius-small);font-size:.9rem;font-weight:600;cursor:pointer;transition:all var(--transition-normal);display:flex;align-items:center;gap:var(--spacing-xs)}.btn-primary{background:var(--primary-color);color:#fff}.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}.btn-secondary{background:var(--secondary-color);color:#fff}.btn-secondary:hover{background:#e64a19;transform:translateY(-2px)}.btn-info{background:var(--info-color);color:#fff}.btn-info:hover{background:#1976d2;transform:translateY(-2px)}.stats-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--spacing-lg);margin-bottom:var(--spacing-xl);animation:fadeInUp .8s ease-out .4s both}.stat-card{background:rgba(255,255,255,.9);border-radius:var(--border-radius);padding:var(--spacing-lg);text-align:center;box-shadow:0 4px 20px var(--shadow-light);backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:all var(--transition-normal)}.stat-card:hover{transform:translateY(-5px);box-shadow:0 8px 30px var(--shadow-medium)}.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}.stat-card.total::before{background:var(--primary-color)}.stat-card.grades::before{background:var(--info-color)}.stat-card.classes::before{background:var(--secondary-color)}.stat-card.selected::before{background:var(--accent-color)}.stat-number{font-size:2.5rem;font-weight:700;margin-bottom:var(--spacing-xs);display:block}.stat-card.total .stat-number{color:var(--primary-color)}.stat-card.grades .stat-number{color:var(--info-color)}.stat-card.classes .stat-number{color:var(--secondary-color)}.stat-card.selected .stat-number{color:var(--accent-color)}.stat-label{font-size:1rem;color:var(--text-secondary);font-weight:500}.students-container{background:rgba(255,255,255,.95);border-radius:var(--border-radius);box-shadow:0 8px 32px var(--shadow-medium);backdrop-filter:blur(15px);overflow:hidden;animation:fadeInUp .8s ease-out .6s both}.students-header{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:#fff;padding:var(--spacing-lg);display:flex;justify-content:space-between;align-items:center}.students-title{font-size:1.3rem;font-weight:600;display:flex;align-items:center;gap:var(--spacing-sm)}.students-count{background:rgba(255,255,255,.2);padding:var(--spacing-xs) var(--spacing-sm);border-radius:var(--border-radius-small);font-size:.9rem}.students-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:#f0f0f0}.student-card{background:#fff;padding:var(--spacing-md);transition:all var(--transition-normal);cursor:pointer;position:relative;border-radius:4px}.student-card:hover{background:rgba(0,121,107,.05);transform:translateX(5px)}.student-card.selected{background:rgba(0,121,107,.1);border-right:4px solid var(--primary-color)}.student-name{font-size:1rem;font-weight:500;color:var(--text-primary);margin-bottom:var(--spacing-xs);line-height:1.3}.student-class{font-size:.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:var(--spacing-xs)}.student-checkbox{position:absolute;top:var(--spacing-sm);left:var(--spacing-sm);width:20px;height:20px;cursor:pointer}.empty-state{text-align:center;padding:var(--spacing-xl);color:var(--text-secondary)}.empty-icon{font-size:4rem;margin-bottom:var(--spacing-md);opacity:.5}.empty-message{font-size:1.1rem;margin-bottom:var(--spacing-sm)}.empty-submessage{font-size:.9rem;opacity:.7}@keyframes slideDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media (max-width:768px){.main-container{padding:var(--spacing-lg) var(--spacing-md)}.toolbar-row{flex-direction:column;align-items:stretch}.search-container{min-width:unset}.filters-container{justify-content:center}.action-buttons{justify-content:center}.stats-container{grid-template-columns:repeat(2,1fr)}.students-grid{grid-template-columns:1fr}.students-header{flex-direction:column;gap:var(--spacing-sm)}}@media (max-width:480px){.stats-container{grid-template-columns:1fr}.control-btn{width:45px;height:45px;font-size:18px}}.btn:focus,.filter-select:focus,.search-input:focus,.student-card:focus{outline:3px solid rgba(0,121,107,.3);outline-offset:2px}.fade-in{animation:fadeInUp .5s ease-out}.pulse{animation:pulse 2s infinite}@keyframes pulse{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}.main-container{max-width:100vw!important;overflow-x:hidden}.stats-grid,.students-grid{margin:0 auto;max-width:100%}@media (max-width:768px){.control-buttons{top:10px;gap:6px}.control-buttons.left{left:10px}.control-buttons.right{right:10px}.control-btn{width:45px;height:45px;font-size:18px}.main-container{padding:20px 15px;max-width:100%!important}.page-header{padding:20px 15px;margin-bottom:20px}.page-title{font-size:clamp(1.8rem, 4.5vw, 2.2rem);margin-bottom:8px}.page-subtitle{font-size:clamp(.9rem, 2.5vw, 1rem)}.stats-grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}.stat-card{padding:15px 12px}.stat-number{font-size:1.8rem}.stat-label{font-size:.8rem}.search-controls{flex-direction:column;gap:12px;padding:15px}.filter-controls,.search-box{width:100%}.filter-controls{flex-direction:column;gap:8px}.filter-select,.search-input{width:100%;padding:10px;font-size:16px}.students-grid{grid-template-columns:1fr;gap:12px}.student-card{padding:16px 12px;margin:0 4px}.student-avatar{width:50px;height:50px;font-size:1.2rem}.student-info h3{font-size:1.1rem;margin-bottom:4px}.student-details{font-size:.8rem;gap:8px}.student-actions{flex-direction:column;gap:6px;width:100%}.action-btn{width:100%;padding:8px 12px;font-size:.8rem}.modal-content{margin:5% auto;width:95%;max-width:500px;padding:20px 15px}.form-grid{grid-template-columns:1fr;gap:12px}.form-group input,.form-group select{padding:10px;font-size:16px}}@media (max-width:480px){.control-buttons{top:8px;gap:4px}.control-buttons.left{left:8px}.control-buttons.right{right:8px}.control-btn{width:40px;height:40px;font-size:16px}.main-container{padding:15px 8px}.page-header{padding:15px 10px;margin-bottom:15px;text-align:center}.page-title{font-size:clamp(1.5rem, 4vw, 1.8rem);margin-bottom:6px}.page-subtitle{font-size:clamp(.85rem, 2.2vw, .95rem)}.stats-grid{grid-template-columns:1fr;gap:10px;margin-bottom:15px}.stat-card{padding:12px 10px;text-align:center}.stat-number{font-size:1.5rem;margin-bottom:4px}.stat-label{font-size:.75rem}.search-controls{padding:12px 8px;gap:10px}.search-input{padding:8px 12px;font-size:16px}.filter-select{padding:8px 10px;font-size:14px}.students-grid{gap:8px}.student-card{padding:12px 8px;margin:0 2px;border-radius:10px}.student-avatar{width:45px;height:45px;font-size:1.1rem}.student-info{flex:1;min-width:0}.student-info h3{font-size:1rem;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.student-details{font-size:.75rem;gap:6px;flex-wrap:wrap}.student-actions{flex-direction:column;gap:4px;width:80px}.action-btn{width:100%;padding:6px 8px;font-size:.7rem;border-radius:4px}.modal-content{margin:2% auto;width:98%;max-width:380px;padding:15px 10px;border-radius:10px}.modal-header h2{font-size:1.2rem;margin-bottom:10px}.form-group{margin-bottom:12px}.form-group label{font-size:.9rem;margin-bottom:4px}.form-group input,.form-group select{padding:8px 10px;font-size:16px;border-radius:6px}.modal-actions{gap:8px;flex-direction:column}.btn{width:100%;padding:10px;font-size:.9rem}}@media (max-width:360px){.main-container{padding:12px 6px}.page-header{padding:12px 8px;margin-bottom:12px}.page-title{font-size:clamp(1.3rem, 3.5vw, 1.6rem);margin-bottom:4px}.page-subtitle{font-size:clamp(.8rem, 2vw, .9rem)}.stats-grid{gap:8px;margin-bottom:12px}.stat-card{padding:10px 8px}.stat-number{font-size:1.3rem}.stat-label{font-size:.7rem}.search-controls{padding:10px 6px;gap:8px}.students-grid{gap:6px}.student-card{padding:10px 6px;margin:0 1px}.student-avatar{width:40px;height:40px;font-size:1rem}.student-info h3{font-size:.9rem}.student-details{font-size:.7rem}.student-actions{width:70px}.action-btn{padding:4px 6px;font-size:.65rem}.modal-content{width:99%;max-width:320px;padding:12px 8px}}@media (max-height:500px) and (orientation:landscape){.main-container{padding:10px 15px}.page-header{padding:10px 15px;margin-bottom:8px}.page-title{font-size:clamp(1.2rem, 3vw, 1.5rem);margin-bottom:4px}.page-subtitle{font-size:clamp(.8rem, 2vw, .9rem)}.stats-grid{grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}.stat-card{padding:8px 6px}.stat-number{font-size:1.2rem;margin-bottom:2px}.stat-label{font-size:.65rem}.search-controls{padding:8px 12px;flex-direction:row;gap:10px}.students-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px}.student-card{padding:8px 10px}.student-avatar{width:35px;height:35px;font-size:.9rem}.student-info h3{font-size:.9rem;margin-bottom:2px}.student-details{font-size:.7rem}.student-actions{flex-direction:row;gap:4px;width:auto}.action-btn{padding:4px 8px;font-size:.7rem}.modal-content{margin:2% auto;max-height:90vh;overflow-y:auto}}@media (hover:none) and (pointer:coarse){.action-btn,.btn,.control-btn,.student-card{min-height:44px;min-width:44px}.action-btn:hover,.btn:hover,.control-btn:hover,.student-card:hover{transform:none}.action-btn:active,.btn:active,.control-btn:active{transform:scale(.95);transition:transform .1s ease}.student-card:active{transform:scale(.98);transition:transform .1s ease}.filter-select,.form-group input,.form-group select,.search-input{font-size:16px!important}}@media (min-width:1200px){.stats-grid{grid-template-columns:repeat(4,1fr);max-width:1000px;margin:0 auto}.students-grid{grid-template-columns:repeat(auto-fit,minmax(400px,1fr));max-width:1400px;margin:0 auto}.student-card{padding:24px 20px}.student-avatar{width:60px;height:60px;font-size:1.4rem}.student-info h3{font-size:1.3rem;margin-bottom:8px}.student-details{font-size:.95rem;gap:12px}.action-btn{padding:10px 16px;font-size:.9rem}}</style></head><body><div class="control-buttons right"><button aria-label="العودة للصفحة الرئيسية" class="control-btn" id="homeBtn" title="العودة للصفحة الرئيسية">🏠</button> <button aria-label="الأنشطة" class="control-btn" id="activitiesBtn" title="الأنشطة">📚</button></div><div class="control-buttons left"><button aria-label="ملء الشاشة" class="control-btn" id="fullscreenBtn" title="ملء الشاشة">⛶</button></div><div class="main-container container-responsive"><header class="header"><div class="header-card card-responsive"><h1 class="header-title title-responsive"><span>👥</span> <span>نظام إدارة الطلاب</span></h1><p class="header-subtitle text-responsive">إدارة شاملة لبيانات الطلاب مع إمكانيات البحث والتصفية المتقدمة</p></div></header><div class="toolbar"><div class="toolbar-row"><div class="search-container"><input autocomplete="off" class="search-input input-responsive" id="searchInput" placeholder="ابحث عن طالب بالاسم..."/> <span class="search-icon">🔍</span></div><div class="filters-container"><select class="filter-select input-responsive" id="gradeFilter"><option value="">جميع الصفوف</option><option value="خامس">الصف الخامس</option><option value="سادس">الصف السادس</option><option value="سابع">الصف السابع</option><option value="ثامن">الصف الثامن</option><option value="تاسع">الصف التاسع</option></select> <select class="filter-select" id="classFilter"><option value="">جميع الشُعب</option></select></div><div class="action-buttons"><button class="btn btn-primary btn-responsive" id="selectAllBtn"><span>✓</span> <span class="hide-mobile">تحديد الكل</span></button> <button class="btn btn-secondary btn-responsive" id="clearSelectionBtn"><span>✗</span> <span class="hide-mobile">إلغاء التحديد</span></button> <button class="btn btn-info btn-responsive" id="exportBtn"><span>💾</span> <span class="hide-mobile">تصدير</span></button> <button class="btn btn-warning btn-responsive" id="absentBtn"><span>🚫</span> <span class="hide-mobile">تسجيل الغياب</span></button></div></div></div><div class="stats-container"><div class="stat-card card-responsive total"><span class="stat-number heading-responsive" id="totalStudents">0</span> <span class="stat-label text-responsive">إجمالي الطلاب</span></div><div class="stat-card card-responsive grades"><span class="stat-number heading-responsive" id="totalGrades">5</span> <span class="stat-label text-responsive">الصفوف الدراسية</span></div><div class="stat-card card-responsive classes"><span class="stat-number heading-responsive" id="totalClasses">0</span> <span class="stat-label text-responsive">الشُعب</span></div><div class="stat-card card-responsive selected"><span class="stat-number heading-responsive" id="selectedCount">0</span> <span class="stat-label text-responsive">المحددون</span></div></div><div class="students-container"><div class="students-header"><div class="students-title heading-responsive"><span>👨‍🎓</span> <span>قائمة الطلاب</span></div><div class="students-count text-responsive" id="studentsCount">عرض 0 من 0 طالب</div></div><div class="students-grid grid-responsive" id="studentsGrid"></div><div class="empty-state" id="emptyState" style="display:none"><div class="empty-icon">🔍</div><div class="empty-message heading-responsive">لا توجد نتائج</div><div class="empty-submessage text-responsive">جرب تغيير معايير البحث أو التصفية</div></div></div></div><audio aria-hidden="true" id="clickSound" preload="auto" src="assets/media/sounds/Click.mp3"></audio><audio aria-hidden="true" id="selectSound" preload="auto" src="assets/media/sounds/select.mp3"></audio><script>const a0_0x218ad4=a0_0x3549;(function(){const W=425,t="M]KZ",o=560,d="ZItm",c=418,e="o0Eg",n=610,k="9u3v",a=195,m="PkC6",u=143,r="b14*",S=416,s="DkI(",C=225,l="AByo",i=507,R="cMm]",f=464,P="b14*",O=590,x="fjR*",Q=589,G="G]zr",I=203,D="AByo",M=a0_0x3549,B=a0_0xf445();for(;;)try{if(399547===parseInt(M(W,t))/1*(parseInt(M(o,d))/2)+-parseInt(M(c,e))/3+-parseInt(M(n,k))/4*(parseInt(M(a,m))/5)+-parseInt(M(u,r))/6*(-parseInt(M(S,s))/7)+-parseInt(M(C,l))/8*(parseInt(M(i,R))/9)+parseInt(M(f,P))/10*(-parseInt(M(O,x))/11)+parseInt(M(Q,G))/12*(parseInt(M(I,D))/13))break;B.push(B.shift())}catch(W){B.push(B.shift())}})(),console[a0_0x218ad4(641,"ZD2M")](a0_0x218ad4(643,"I#IK"));let studentsData={},filteredStudents=[],selectedStudents=new Set;const a0_0x5d74d2={};a0_0x5d74d2[a0_0x218ad4(628,"!SG[")]="",a0_0x5d74d2[a0_0x218ad4(369,"fRfY")]="",a0_0x5d74d2[a0_0x218ad4(256,"$jr6")]="";let currentFilters=a0_0x5d74d2,isAdmin=!1;localStorage[a0_0x218ad4(492,"r6T4")](a0_0x218ad4(514,"tVhK"))===a0_0x218ad4(372,"@5jo")&&(isAdmin=!0);const elements={searchInput:document[a0_0x218ad4(554,"M]KZ")](a0_0x218ad4(541,"%dIf")),gradeFilter:document[a0_0x218ad4(273,"bU7#")](a0_0x218ad4(355,"AByo")),classFilter:document[a0_0x218ad4(394,"I#IK")](a0_0x218ad4(176,"C7Bt")),studentsGrid:document[a0_0x218ad4(554,"M]KZ")](a0_0x218ad4(473,"G]zr")),emptyState:document[a0_0x218ad4(368,"tVhK")](a0_0x218ad4(652,"G]zr")),totalStudents:document[a0_0x218ad4(443,"G]zr")](a0_0x218ad4(442,"DkI(")),totalClasses:document[a0_0x218ad4(204,"fjR*")](a0_0x218ad4(172,"M]KZ")),selectedCount:document[a0_0x218ad4(402,"%E]@")](a0_0x218ad4(467,"%dIf")),studentsCount:document[a0_0x218ad4(259,"9u3v")](a0_0x218ad4(150,"mB%S")),selectAllBtn:document[a0_0x218ad4(547,"!v5f")](a0_0x218ad4(392,"iXRr")),clearSelectionBtn:document[a0_0x218ad4(204,"fjR*")](a0_0x218ad4(635,"%o9T")),exportBtn:document[a0_0x218ad4(452,"o2%M")](a0_0x218ad4(395,"GA4B")),homeBtn:document[a0_0x218ad4(515,"DkI(")](a0_0x218ad4(367,"C7Bt")),activitiesBtn:document[a0_0x218ad4(216,"DxCq")](a0_0x218ad4(198,"FR&l")),fullscreenBtn:document[a0_0x218ad4(497,"4gZa")](a0_0x218ad4(535,"ZD2M")),clickSound:document[a0_0x218ad4(556,"fRfY")](a0_0x218ad4(159,"iXRr")),selectSound:document[a0_0x218ad4(478,"C7Bt")](a0_0x218ad4(381,"GA[M")),absentBtn:document[a0_0x218ad4(264,"GA[M")](a0_0x218ad4(260,"%o9T"))};function playSound(W){const t=288,o="fjR*",d=282,c="%dIf",e=199,n="tVhK",k=431,a="iXRr",m=350,u="$jr6",r=462,S="C7Bt",s=519,C="#3)e",l=180,i="AByo",R=218,f="bU7#",P=537,O="1sYD",x=417,Q="nr1Q",G=314,I="0]SC",D=268,M="%dIf",B=156,T="AByo",h=619,y="fRfY",q=a0_0x218ad4,K={};K[q(533,"n#JT")]=q(t,o),K[q(d,c)]=function(W,t){return W>=t},K[q(e,n)]=function(W,t){return W!==t},K[q(k,a)]=q(m,u);const J=K;try{if(W&&J[q(r,S)](W[q(s,C)],2)){W[q(l,i)]=0;const t=W[q(R,f)]();J[q(P,O)](t,void 0)&&t[q(x,Q)](()=>{const W=q;console[W(B,T)](J[W(h,y)])})}}catch(W){console[q(G,I)](J[q(D,M)],W)}}async function loadStudentsData(){const W=304,t="fjR*",o=583,d="b14*",c=214,e="iXRr",n=352,k="nr1Q",a=320,m="2w0h",u=627,r="%E]@",S=396,s="]o30",C=570,l="!SG[",i=415,R="]o30",f=146,P=")Ifi",O=325,x="mZpH",Q=466,G="9u3v",I=601,D="$jr6",M=531,B="r6T4",T=240,h="FR&l",y=301,q="G]zr",K=432,J="kmG!",p=494,F="%lF$",A=293,j="kmG!",H=310,z="%dIf",L=457,N="C7Bt",Z=a0_0x218ad4,V={nFJiO:Z(276,"DkI("),JSPwL:function(W,t){return W(t)},aUtMm:Z(W,t),qxjDW:Z(o,d),zLpCc:Z(c,e),skSiB:function(W){return W()},TEuhW:Z(n,k),BhcAq:function(W,t){return W(t)},edoxw:Z(a,m)};try{console[Z(u,r)](V[Z(S,s)]);const W=await V[Z(C,l)](fetch,V[Z(i,R)]);studentsData=await W[Z(f,P)](),console[Z(O,x)](V[Z(Q,G)]),console[Z(I,D)](V[Z(M,B)],Object[Z(T,h)](studentsData)[Z(y,q)],"صف"),V[Z(K,J)](initializeApp)}catch(W){console[Z(p,F)](V[Z(A,j)],W),V[Z(H,z)](showError,V[Z(L,N)])}}function initializeApp(){const W=149,t="ZItm",o=335,d="[b^S",c=521,e="k1(P",n=169,k="PkC6",a=191,m="DkI(",u=447,r=448,S="AByo",s=451,C="1sYD",l=572,i="%E]@",R=475,f=162,P="M]KZ",O=271,x="%dIf",Q=a0_0x218ad4,G={dvlHD:Q(252,"0]SC"),KWXnX:function(W){return W()},LGRNf:Q(W,t),EuVzB:Q(o,d)},I=G[Q(c,e)][Q(n,k)]("|");let D=0;for(;;){switch(I[D++]){case"0":G[Q(a,m)](updateClassFilter);continue;case"1":console[Q(u,t)](G[Q(r,S)]);continue;case"2":G[Q(s,C)](updateStats);continue;case"3":G[Q(l,i)](setupEventListeners);continue;case"4":G[Q(R,d)](filterStudents);continue;case"5":console[Q(f,P)](G[Q(O,x)]);continue}break}}function updateClassFilter(){const W=444,t="0]SC",o=194,d="bnA3",c=637,e="1sYD",n=232,k="2w0h",a=210,m="79#[",u=559,r="mZpH",S=211,s="!v5f",C=248,l="0]SC",i=469,R="C7Bt",f=332,P="$jr6",O=436,x="AByo",Q=164,G="DkI(",I=474,D="fjR*",M=135,B="]o30",T=274,h="iXRr",y=145,q="]o30",K=421,J="$jr6",p=168,F="mZpH",A=618,j="DkI(",H=177,z="tVhK",L=322,N="%o9T",Z=605,V="C7Bt",b=648,v="GA4B",U=a0_0x218ad4,w={};w[U(341,"bU7#")]=U(W,t),w[U(o,d)]=U(c,e);const g=w,E=elements[U(n,k)][U(a,m)],X=elements[U(u,r)];X[U(S,s)]=g[U(C,l)],E?Object[U(i,R)](studentsData)[U(f,P)](W=>W[U(347,"o0Eg")](E))[U(O,x)](W=>{const t=U,o=document[t(A,j)](g[t(H,z)]);o[t(L,N)]=W,o[t(Z,V)]=W,X[t(b,v)](o)}):Object[U(Q,G)](studentsData)[U(I,D)](W=>{const t=U,o=document[t(M,B)](g[t(T,h)]);o[t(y,q)]=W,o[t(K,J)]=W,X[t(p,F)](o)})}function updateStats(){const W=463,t="DxCq",o=289,d="79#[",c=603,e="bnA3",n=441,k="mZpH",a=429,m="bnA3",u=362,r="ZD2M",S=324,s="iXRr",C=257,l="G]zr",i=231,R="FR&l",f=545,P="n#JT",O=a0_0x218ad4,x={XEjYy:function(W,t,o,d,c){return W(t,o,d,c)}},Q=Object[O(591,"ZItm")](studentsData)[O(W,t)]((W,t)=>W+t[O(523,"o0Eg")],0),G=Object[O(o,d)](studentsData)[O(c,e)];x[O(n,k)](animateNumber,elements[O(a,m)],0,Q,1500),x[O(u,r)](animateNumber,elements[O(S,s)],0,G,1200),elements[O(C,l)][O(i,R)]=selectedStudents[O(f,P)]}function animateNumber(W,t,o,d){const c=209,e="mB%S",n=598,k="kmG!",a=371,m="]o30",u=616,r=499,S="n#JT",s=179,C="kmG!",l=611,i="k1(P",R=623,f="FR&l",P=622,O="#3)e",x=133,Q="bnA3",G=423,I="GA[M",D=a0_0x218ad4,M={vxkqD:function(W,t){return W-t},CTTnm:function(W,t){return W/t},jPYRE:function(W,t){return W+t},WkHKk:function(W,t){return W*t},tQDdt:function(W,t){return W<t},FjSMz:function(W,t){return W(t)}},B=performance[D(608,"M]KZ")]();M[D(c,e)](requestAnimationFrame,function c(e){const T=D,h=M[T(n,k)](e,B),y=Math[T(a,m)](M[T(u,k)](h,d),1),q=Math[T(r,S)](M[T(s,C)](t,M[T(l,i)](M[T(R,f)](o,t),y)));W[T(P,O)]=q,M[T(x,Q)](y,1)&&M[T(G,I)](requestAnimationFrame,c)})}function filterStudents(){const W=236,t="jaiF",o=470,d="DkI(",c=516,e="AByo",n=131,k="nr1Q",a=383,m="@5jo",u=281,r="9u3v",S=251,s="r6T4",C=631,l="79#[",i=539,R="4gZa",f=437,P="DkI(",O=524,x="GA[M",Q=399,G="%lF$",I=165,D="DxCq",M=313,B="o0Eg",T=a0_0x218ad4,h={fKpeO:function(W,t){return W!==t},CUoja:function(W){return W()}};filteredStudents=[],Object[T(247,"tVhK")](studentsData)[T(W,t)](([W,t])=>{const o=278,d="@5jo",c=449,e="AByo",y=534,q="2w0h",K=T;if(currentFilters[K(n,k)]&&!W[K(a,m)](currentFilters[K(u,r)]))return;if(currentFilters[K(S,s)]&&h[K(C,l)](W,currentFilters[K(i,R)]))return;const J=currentFilters[K(f,P)][K(O,x)]()[K(Q,G)]();(J?t[K(I,D)](W=>W[K(433,"o0Eg")]()[K(363,"o2%M")](J)):t)[K(M,B)](t=>{const n=K,k={};k[n(o,d)]=t,k[n(c,e)]=W,k.id=W+"-"+t,filteredStudents[n(y,q)](k)})}),h[T(o,d)](renderStudents),h[T(c,e)](updateDisplayCount)}function renderStudents(){const W=188,t="9u3v",o=428,d="4gZa",c=212,e="ZItm",n=655,k="!v5f",a=404,m="G]zr",u=263,r="GA[M",S=208,s="%o9T",C=555,l="b14*",i=586,R="#3)e",f=481,P="bnA3",O=374,x="%E]@",Q=134,G="fjR*",I=321,D="M]KZ",M=522,B="kmG!",T=568,h=244,y="$jr6",q=258,K="k1(P",J=254,p=491,F="b14*",A=638,j="mB%S",H=548,z="[b^S",L=573,N="!SG[",Z=163,V="79#[",b=651,v="fjR*",U=592,w=207,g="GA[M",E=476,X="I4#W",_=376,Y="bnA3",$=639,WW="AByo",tW=632,oW="@5jo",dW=a0_0x218ad4,cW={lAont:dW(456,"79#["),fHgGW:dW(W,t),hqwHD:function(W,t){return W===t},mPkPs:dW(o,d),rxEWO:dW(c,e),aEGrF:dW(n,k),lmVNL:dW(a,m),YLZlj:function(W,t,o){return W(t,o)}},eW=elements[dW(u,r)],nW=elements[dW(S,s)];if(cW[dW(C,l)](filteredStudents[dW(i,R)],0))return eW[dW(f,P)]="",void(nW[dW(O,x)][dW(Q,G)]=cW[dW(I,D)]);nW[dW(M,B)][dW(T,m)]=cW[dW(h,y)],eW[dW(q,K)]=filteredStudents[dW(J,K)](W=>dW(265,"9u3v")+(selectedStudents[dW(496,"!v5f")](W.id)?dW(398,"jaiF"):"")+dW(300,"79#[")+W.id+dW(366,"M]KZ")+W[dW(606,"kmG!")]+dW(607,"2w0h")+(selectedStudents[dW(571,"fjR*")](W.id)?dW(501,"nr1Q"):"")+dW(250,"#3)e")+W[dW(166,"GA[M")]+dW(171,"GA[M")+W[dW(644,"%lF$")]+dW(361,"tVhK"))[dW(p,F)](""),eW[dW(A,j)](cW[dW(H,z)])[dW(L,N)](W=>{const t=dW;W[t(E,X)](cW[t(_,Y)],handleStudentClick),W[t($,WW)](cW[t(tW,oW)],handleStudentKeydown)}),eW[dW(Z,V)][dW(b,v)](cW[dW(U,k)]),cW[dW(w,g)](setTimeout,()=>eW[dW(569,"tVhK")][dW(239,"PkC6")](dW(426,"!v5f")),500)}function handleStudentClick(W){const t=558,o="$jr6",d=520,c="I4#W",e=653,n="[b^S",k=636,a="cMm]",m=419,u="nr1Q",r=340,S="r6T4",s=353,C="fjR*",l=215,i="n#JT",R=471,f="cMm]",P=a0_0x218ad4,O={jpSrc:P(646,"9u3v"),mkRDr:function(W,t){return W===t},IJBWR:function(W,t,o,d){return W(t,o,d)},mvUlT:function(W,t){return W(t)}},x=W[P(t,o)],Q=x[P(d,c)].id,G=x[P(e,n)](O[P(k,a)]);O[P(m,u)](W[P(r,S)],G)||(O[P(s,C)](toggleStudentSelection,Q,x,G),O[P(l,i)](playSound,elements[P(R,f)]))}function handleStudentKeydown(W){const t=596,o="M]KZ",d=575,c="fRfY",e=593,n="mZpH",k=615,a="DkI(",m=183,u="k1(P",r=174,S="1sYD",s=192,C="n#JT",l=a0_0x218ad4,i={kYXyK:function(W,t){return W===t},WCSYH:l(400,"M]KZ"),qkOwb:function(W,t){return W(t)}};(i[l(t,o)](W[l(d,c)],i[l(e,n)])||i[l(k,a)](W[l(m,u)]," "))&&(W[l(r,S)](),i[l(s,C)](handleStudentClick,W))}function toggleStudentSelection(W,t,o){const d=496,c="!v5f",e=272,n="tVhK",k=588,a="%dIf",m=270,u="fjR*",r=600,S="n#JT",s=549,C="FR&l",l=327,i="0]SC",R=189,f="fjR*",P=157,O="G]zr",x=280,Q="%E]@",G=511,I="cMm]",D=597,M=a0_0x218ad4,B={zOHbB:M(295,"[b^S"),VUTsq:function(W){return W()}};selectedStudents[M(d,c)](W)?(selectedStudents[M(e,n)](W),t[M(k,a)][M(m,u)](B[M(r,S)]),o[M(s,C)]=!1):(selectedStudents[M(l,i)](W),t[M(R,f)][M(P,O)](B[M(x,Q)]),o[M(G,I)]=!0),B[M(D,n)](updateSelectedCount)}function updateSelectedCount(){const W=546,t="cMm]",o=622,d="#3)e",c=625,e="k1(P",n=411,k="GA[M",a=141,m="o0Eg",u=269,r="tVhK",S=468,s="#3)e",C=424,l="FR&l",i=a0_0x218ad4,R={JhJXL:i(543,"bU7#"),FFfEd:function(W,t,o){return W(t,o)}};elements[i(W,t)][i(o,d)]=selectedStudents[i(c,e)],elements[i(n,k)][i(a,m)][i(u,r)](R[i(S,s)]),R[i(C,l)](setTimeout,()=>elements[i(617,"fRfY")][i(613,"$jr6")][i(633,"GA4B")](i(140,"ZItm")),1e3)}function updateDisplayCount(){const W=413,t="nr1Q",o=482,d="PkC6",c=246,e="mZpH",n=196,k="b14*",a=160,m="[b^S",u=483,r="ZD2M",S=446,s="bnA3",C=a0_0x218ad4,l=Object[C(530,"4gZa")](studentsData)[C(W,t)]((W,t)=>W+t[C(621,"ZItm")],0);elements[C(o,d)][C(c,e)]=C(n,k)+filteredStudents[C(a,m)]+C(u,r)+l+C(S,s)}function selectAll(){const W=488,t="]o30",o=461,d="r6T4",c=487,e="ZD2M",n=205,k="n#JT",a=410,m="79#[",u=a0_0x218ad4,r={DMzGc:function(W){return W()},sHuRz:function(W,t){return W(t)}};filteredStudents[u(436,"AByo")](W=>{selectedStudents[u(a,m)](W.id)}),r[u(W,t)](renderStudents),r[u(o,d)](updateSelectedCount),r[u(c,e)](playSound,elements[u(n,k)])}function clearSelection(){const W=292,t="kmG!",o=553,d="M]KZ",c=152,e="ZItm",n=434,k="cMm]",a=a0_0x218ad4,m={KDiSl:function(W){return W()},SdWPe:function(W,t){return W(t)}};selectedStudents[a(178,"nr1Q")](),m[a(W,t)](renderStudents),m[a(o,d)](updateSelectedCount),m[a(c,e)](playSound,elements[a(n,k)])}function exportData(){const W=202,t="%lF$",o=430,d="mB%S",c=261,e="I#IK",n=294,k="4gZa",a=525,m="ZItm",u=228,r="%o9T",S=508,s="C7Bt",C=153,l="bnA3",i=551,R="b14*",f=338,P="b14*",O=526,x="1sYD",Q=317,G="r6T4",I=336,D=513,M="nr1Q",B=624,T=217,h="9u3v",y=343,q="fjR*",K=186,J="o2%M",p=576,F=")Ifi",A=518,j="mZpH",H=144,z="PkC6",L=193,N=408,Z="79#[",V=387,b="fRfY",v=358,U="fRfY",w=345,g="FR&l",E=654,X="DkI(",_=175,Y="I#IK",$=493,WW="AByo",tW=312,oW="2w0h",dW=403,cW=509,eW="@5jo",nW=498,kW=599,aW="ZD2M",mW=220,uW="%E]@",rW=187,SW=440,sW="1sYD",CW=542,lW="kmG!",iW=389,RW=458,fW="fjR*",PW=241,OW="I4#W",xW=584,QW="DkI(",GW=334,IW=346,DW="$jr6",MW=a0_0x218ad4,BW={XDvUc:function(W,t){return W===t},YrstH:function(W,t){return W(t)},eMzsp:MW(351,"GA4B"),LpGaI:MW(W,t),JIpOD:MW(o,d),RuOcE:function(W,t){return W+t},NNOpM:MW(c,e),xmuOi:MW(n,k),pqKXX:MW(a,m),ZCJDQ:MW(u,r),hIHcT:MW(S,s),UPwUS:MW(C,l)},TW=filteredStudents[MW(i,R)](W=>selectedStudents[MW(170,"I#IK")](W.id));if(BW[MW(f,P)](TW[MW(O,x)],0))return void BW[MW(Q,G)](alert,BW[MW(I,G)]);const hW=[[BW[MW(D,M)],BW[MW(B,l)]],...TW[MW(T,h)](W=>[W[MW(290,"b14*")],W[MW(386,"ZD2M")]])][MW(y,q)](W=>W[MW(200,"iXRr")](","))[MW(K,J)]("\n"),yW=new Blob([BW[MW(p,F)]("\ufeff",hW)],{type:BW[MW(A,j)]}),qW=document[MW(H,z)]("a"),KW=URL[MW(L,F)](yW);qW[MW(N,Z)](BW[MW(V,b)],KW),qW[MW(v,U)](BW[MW(w,g)],MW(E,X)+(new Date)[MW(_,Y)]()[MW($,WW)]("T")[0]+MW(tW,oW)),qW[MW(dW,s)][MW(cW,eW)]=BW[MW(nW,Z)],document[MW(kW,aW)][MW(mW,uW)](qW),qW[MW(rW,s)](),document[MW(SW,sW)][MW(CW,lW)](qW),BW[MW(iW,J)](playSound,elements[MW(RW,fW)]),console[MW(PW,OW)](BW[MW(xW,QW)],TW[MW(GW,g)],BW[MW(IW,DW)])}function sendAbsenceToGoogleSheets(){const W=348,t="o0Eg",o=465,d="b14*",c=612,e="GA4B",n=303,k="0]SC",a=297,m="#3)e",u=485,r="I4#W",S=254,s="k1(P",C=414,l="%E]@",i=283,R=379,f="fRfY",P=316,O=")Ifi",x=435,Q="k1(P",G=185,I=147,D="%lF$",M=319,B="n#JT",T=406,h="1sYD",y=382,q="]o30",K=284,J="tVhK",p=184,F="jaiF",A=517,j="[b^S",H=649,z="r6T4",L=486,N="@5jo",Z=373,V="I4#W",b=354,v="bU7#",U=137,w="AByo",g=390,E="1sYD",X=579,_="b14*",Y=155,$="4gZa",WW=388,tW=")Ifi",oW=227,dW="DkI(",cW=a0_0x218ad4,eW={XLcWS:function(W,t){return W(t)},lcLnj:cW(318,"C7Bt"),iMnfD:function(W){return W()},xTZtT:function(W,t){return W+t},NrxHU:cW(W,t),xkmhw:function(W,t){return W===t},kCiJq:cW(o,d),KlBXO:cW(c,e),GAPOY:function(W,t,o){return W(t,o)},LArfB:cW(n,k),csHVK:cW(a,m)},nW=Array[cW(u,r)](selectedStudents)[cW(S,s)](W=>{const t=cW,[o,...d]=W[t(X,_)]("-");return{name:d[t(Y,$)]("-"),class:o,date:(new Date)[t(WW,tW)]()[t(oW,dW)]("T")[0]}});if(eW[cW(C,l)](nW[cW(i,e)],0))return void eW[cW(R,f)](alert,eW[cW(P,O)]);const kW=eW[cW(x,Q)],aW={};aW[cW(G,r)]=nW,eW[cW(I,D)](fetch,kW,{method:eW[cW(M,B)],headers:{"Content-Type":eW[cW(T,h)]},body:JSON[cW(y,q)](aW)})[cW(K,J)](W=>W[cW(640,"0]SC")]())[cW(p,F)](W=>{const t=cW;eW[t(b,v)](showUpdateMessage,eW[t(U,w)]),eW[t(g,E)](clearSelection)})[cW(A,j)](W=>{const t=cW;eW[t(H,z)](showError,eW[t(L,N)](eW[t(Z,V)],W))})}function setupEventListeners(){const W=650,t="cMm]",o=302,d="GA4B",c=594,e="AByo",n=582,k="%o9T",a=422,m="%o9T",u=564,r=479,S="9u3v",s=540,C="o2%M",l=356,i="79#[",R=566,f="b14*",P=629,O="I4#W",x=645,Q="bU7#",G=401,I="M]KZ",D=385,M="GA[M",B=229,T="!v5f",h=139,y="]o30",q=510,K="o0Eg",J=309,p="!SG[",F=226,A="tVhK",j=158,H="$jr6",z=328,L="o2%M",N=286,Z="%lF$",V=393,b="%lF$",v=506,U=578,w="2w0h",g=577,E="!v5f",X=459,_="%lF$",Y=333,$="k1(P",WW=142,tW="I#IK",oW=151,dW="@5jo",cW="!v5f",eW=349,nW="nr1Q",kW=275,aW=266,mW=181,uW="G]zr",rW=377,SW="79#[",sW=238,CW=233,lW="r6T4",iW=642,RW="[b^S",fW=234,PW="r6T4",OW=550,xW=528,QW="1sYD",GW=445,IW="%dIf",DW=370,MW="n#JT",BW=173,TW="fjR*",hW=242,yW="DkI(",qW=587,KW="%E]@",JW=161,pW="jaiF",FW=409,AW="G]zr",jW=243,HW="[b^S",zW=595,LW="mB%S",NW=237,ZW="@5jo",VW=291,bW="I#IK",vW=364,UW="AByo",wW=182,gW="4gZa",EW=262,XW="o0Eg",_W=455,YW="fjR*",$W=434,Wt="cMm]",tt=595,ot="mB%S",dt=148,ct="[b^S",et=438,nt="DkI(",kt=503,at="o2%M",mt=439,ut="mZpH",rt=477,St="1sYD",st=132,Ct="AByo",lt=604,it="%dIf",Rt=380,ft="bU7#",Pt=245,Ot="M]KZ",xt=253,Qt="!SG[",Gt=357,It="mB%S",Dt=167,Mt="cMm]",Bt=527,Tt="ZD2M",ht=360,yt="M]KZ",qt=384,Kt="b14*",Jt=453,pt="1sYD",Ft=223,At="kmG!",jt=489,Ht="tVhK",zt=298,Lt="ZItm",Nt=502,Zt="FR&l",Vt=190,bt="%dIf",vt=299,Ut="M]KZ",wt=538,gt="GA[M",Et=344,Xt="%E]@",_t=561,Yt="o0Eg",$t=574,Wo="mB%S",to=235,oo="DxCq",co=136,eo="M]KZ",no=407,ko="#3)e",ao=391,mo="k1(P",uo=581,ro="FR&l",So=224,so="@5jo",Co=397,lo="GA[M",io=405,Ro="2w0h",fo=626,Po="DxCq",Oo=219,xo="1sYD",Qo=a0_0x218ad4,Go={aGtcy:function(W){return W()},ruFwf:Qo(308,"iXRr"),JOtKs:function(W){return W()},Yksyb:function(W){return W()},qQdzr:function(W,t){return W(t)},OEaCz:Qo(W,t),qoONr:function(W,t){return W===t},cpCPj:Qo(o,d),TVmaK:Qo(c,e),OzglI:function(W,t){return W(t)},Ctaml:Qo(n,k),CNaWJ:Qo(a,m),krPTO:function(W){return W()},kxcie:function(W,t){return W===t},TYClI:Qo(u,t),GGHPe:Qo(r,S),ueEMb:function(W){return W()},Xuhso:Qo(s,C),ZXFNg:Qo(l,i),lTukH:Qo(R,f),zhiyf:Qo(P,O)};elements[Qo(x,Q)][Qo(G,I)](Go[Qo(D,M)],W=>{const t=Qo;currentFilters[t(Co,lo)]=W[t(io,Ro)][t(fo,Po)],Go[t(Oo,xo)](filterStudents)}),elements[Qo(B,T)][Qo(h,y)](Go[Qo(q,K)],W=>{const t=Qo,o=Go[t(wt,gt)][t(Et,Xt)]("|");let d=0;for(;;){switch(o[d++]){case"0":elements[t(_t,Yt)][t($t,Wo)]="";continue;case"1":currentFilters[t(to,oo)]="";continue;case"2":currentFilters[t(co,eo)]=W[t(no,ko)][t(ao,mo)];continue;case"3":Go[t(uo,ro)](filterStudents);continue;case"4":Go[t(So,so)](updateClassFilter);continue}break}}),elements[Qo(J,p)][Qo(F,A)](Go[Qo(j,H)],W=>{const t=Qo;currentFilters[t(zt,Lt)]=W[t(Nt,Zt)][t(Vt,bt)],Go[t(vt,Ut)](filterStudents)}),elements[Qo(z,L)][Qo(N,Z)](Go[Qo(V,b)],selectAll),elements[Qo(v,i)][Qo(U,w)](Go[Qo(g,E)],clearSelection),elements[Qo(X,_)][Qo(Y,$)](Go[Qo(V,b)],exportData),elements[Qo(WW,tW)][Qo(oW,dW)](Go[Qo(g,cW)],function(){const W=Qo,t=Go[W(Gt,It)](prompt,Go[W(Dt,Mt)]);Go[W(Bt,Tt)](t,null)||(Go[W(ht,yt)](t,Go[W(qt,Kt)])?Go[W(Jt,pt)](sendAbsenceToGoogleSheets):Go[W(Ft,At)](showError,Go[W(jt,Ht)]))}),elements[Qo(eW,nW)][Qo(kW,S)](Go[Qo(aW,A)],()=>{const W=Qo;Go[W(st,Ct)](playSound,elements[W(lt,it)]),window[W(Rt,ft)][W(Pt,Ot)]=Go[W(xt,Qt)]}),elements[Qo(mW,uW)][Qo(rW,SW)](Go[Qo(sW,nW)],()=>{const W=Qo;Go[W(dt,ct)](playSound,elements[W(et,nt)]),window[W(kt,at)][W(mt,ut)]=Go[W(rt,St)]}),elements[Qo(CW,lW)][Qo(iW,RW)](Go[Qo(fW,PW)],()=>{const W=Qo;Go[W(_W,YW)](playSound,elements[W($W,Wt)]),Go[W(tt,ot)](toggleFullScreen)}),document[Qo(OW,p)](Go[Qo(xW,QW)],W=>{const t=Qo;W[t(GW,IW)]&&Go[t(DW,MW)](W[t(BW,TW)],"a")?(W[t(hW,yW)](),Go[t(qW,KW)](selectAll)):Go[t(JW,pW)](W[t(FW,AW)],Go[t(jW,HW)])?Go[t(zW,LW)](clearSelection):Go[t(NW,ZW)](W[t(VW,bW)],Go[t(vW,UW)])&&(W[t(wW,gW)](),Go[t(EW,XW)](toggleFullScreen))})}function a0_0x3549(W,t){const o=a0_0xf445();return a0_0x3549=function(t,d){let c=o[t-=131];if(void 0===a0_0x3549.tZhKoH){const t=function(W,t){let o,d,c=[],e=0,n="";for(W=function(W){let t="",o="";for(let o,d,c=0,e=0;d=W.charAt(e++);~d&&(o=c%4?64*o+d:d,c++%4)?t+=String.fromCharCode(255&o>>(-2*c&6)):0)d="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(d);for(let W=0,d=t.length;W<d;W++)o+="%"+("00"+t.charCodeAt(W).toString(16)).slice(-2);return decodeURIComponent(o)}(W),d=0;d<256;d++)c[d]=d;for(d=0;d<256;d++)e=(e+c[d]+t.charCodeAt(d%t.length))%256,o=c[d],c[d]=c[e],c[e]=o;d=0,e=0;for(let t=0;t<W.length;t++)d=(d+1)%256,e=(e+c[d])%256,o=c[d],c[d]=c[e],c[e]=o,n+=String.fromCharCode(W.charCodeAt(t)^c[(c[d]+c[e])%256]);return n};a0_0x3549.CmDHLd=t,W=arguments,a0_0x3549.tZhKoH=!0}const e=t+o[0],n=W[e];return n?c=n:(void 0===a0_0x3549.FIDhIT&&(a0_0x3549.FIDhIT=!0),c=a0_0x3549.CmDHLd(c,d),W[e]=c),c},a0_0x3549(W,t)}async function toggleFullScreen(){const W=365,t="o0Eg",o=326,d="!SG[",c=249,e="]o30",n=197,k="n#JT",a=512,m="%lF$",u=306,r="!v5f",S=454,s="tVhK",C=a0_0x218ad4,l={};l[C(201,"1sYD")]=C(W,t);const i=l;try{document[C(o,d)]?await document[C(a,m)]():await document[C(c,e)][C(n,k)]()}catch(W){console[C(u,r)](i[C(S,s)],W)}}function a0_0xf445(){const W=["W4/cQ8kLcmoODG","Ee92yq","zmkSkG","Fmk2W7yFWPTzWQfPWR7dOmkqzNlcIq","oIxcOdOt","WRjHnWbR","FbVdOLO","nSkJWOtdGgHEumkTxXPj","umksDmkrWR9gcW","WRKdiY7cKq","vJugWOFcMmkbkINcUqZcP0NdISoayq","WQpdMWuhFchdTtm3W4BcIaGOW5KyECk/W6jjEhldV8oCtWxdOcRcGNJcLq5fW4JdT2NcLaiB","tKuyg8kP","W6ejsWVdLqGeW49epCk2","W69bwIOQ","W6tcO2G","2jFBTZ7AU9Ul2jRAJDU/WQxzLDQp2ylzLDQr2RH/2iVyPDMF24hATTMFWPBBInIa2OlBUDMNhsFzInIn2jxASYJAL9UO2jVBQnQft9Mm27/yJTM82RZcMDMt2RtARDIX2ityTmkf2PtBTDM726NcGDIX2lhzPDMV2BBBKTQe27VAI8oS","WQn1eYrx","W69/yYLyoSoaxmkeWOyWW6ZdMa","W6dcRhBcLXH2sYFdUa","W4nlWPNcJmkKASktcXWisXtcISoI","WQa9WRbUimkZfCkjjG","hM4BWO7dTmoTW5vqW6S0W5RcV8kKd8kSAv7dGhFcOCoIW7mj","W6GUWOBcSmkj","i8kDcSkaWPJcHmkwWOtdO8oLbSo0","n8kmc8kHWPhcJ8kpWPldISoJlCoPlaC","WQ4oW43dQCoOl8oEtLjaBqtcTCkMhtKWW4dcPmo8WOayWRf8WOVdP8kJkCoYxmoyWOnrW5G","wCkODCkiWP4","cW7cKtKO","W5Puwd92","vmkyza","t8oxC8o+WPbq","W5rvzt1C","uCkzBmkgWQjg","r8kOWRRcNSoqW7JcS1xdQe4rW6FdNHm","nmkrqrai","W4vkWONcJmk+ASkqgJ4vEHNcPSoOgYC","8jYqHCkZ2ypBK9MY2P/zQCo72Q7AU9I02zJBMTQ/W73BITQL2BBzUDMR24yZsue","BY7dN8kgdG","WRlcLwyq","W6GLWQVcNmkfD8o9WQq1AGpcMeFcOCoTyJGh","W5mfySk3W7e","W4nCWOZcRCkT","W7DvuH5w","W4ZdHmkMAmoaDG","qCkuzCkn","W6jusIT7","Fr3dVCkehf1yW4pdGeHjDCkxxfVdUW","xSoRW4njW73dJLpdMeNdVSkoW545W7q3eG","8jcgTt7AU9UF2ixBTSo02Q/zIDU/2k/zL8kw2RxyM9Iz2kNzGG","dCkVWRKJ","uCoUW4PP","aw4A","E07cKmoaWP4","ze/cJmo7WQu","W5BdJ3XF","hrNcJZm5WQNcSei","EmkHW6SDWR1yWRTzWR7dQmkf","W7ZcOvvlnwlcTgD+WONdHGD+W44Eyq","kWpcJv7dVW","tqldTev9","rmoQW4PWWQldRx3cRCo3krldHSoHs8omFdVdTSktcCkWW4S5o3e","W7b/ysTpjG","W6tdHmkLymkflmolDq","WOa6kcm","wCotASoWW4LgWRpcOCoHgmkRevFdL8oMpGilg8oQW78","wmoaBmo+WPq","iCokwmoY","W67dJt5mwmkuW4JdUSk/WPq","ACkGhcvFW6nWxmkn","W49zwJq1sGLWWP7dNaO","W5niuazV","mCkng8kHWOVcJ8kmWOpdQmo+hmoKaa3dKSof","W5j2WRpcRW","W7SKWRhcUmkkCmo5","WRWAha","lN8MW4RcT2zR","WR55W6vLWOe","DfSkhmks","2OlBVuRAMTQ426ZzR9Isx9Qg27NzQnM827ByJIlBVDM127lBSDIdW5RBPTQt2zWEkNaeWQSqdCk4s8oNWOFdLGmFvnU32iBAI0BcISoZqSoBw8k2WOe","hriZc8og","2R3yODQeW7NAGTUpW7VzI9Qe2ylyODUdpDQp2kdzS9UY26hyGSkx24pzLnMb2PVzG9Mb","EtNdRgXS","WRC+WQ9+kW","rg/cGCoNWRhdPmkHxwRdRmk2","l8kZwtGdW5WOqConlSomlW","lSkPWPS","W4PavYS1BXj5WO/dLZ1lWP3dRutcMMa","WRerhW","W68LhbtdOSk9W4zCm8opgZ0","W5RdLg8","WOxcMui5W61VWOBcJmkhCKFdGCkp","W6RcQ8k+WR9E","WQzWhInbW5C","W6JcPNZcTXXBCr7dUmkHW491bCkZWPJdSa","F09HDu8z","8ksVTCod2BZyN8o927/zODIL2RJAMI/AHDIy2BFBKTUr2j/dKTQO2O/AJDQ/2P0Y","sgqdg8kQ","WO3cOcTFW6NcPtGawq","z8olW5fzW6G","WPhcJIJdLmohWPSCja","wuGld8k/pW","t8kaWQlcKSoB","hKNcPXW/xcy2Ebryo8otqSoxbHrMANVcPt0aWR1+WOZdJ8oVW7H8e8oyWRxcNmkyWP4ay8opimoqpYX4W5JdMuH8xSoEoCoAW6b7WRRdOmooAqTaWQlcIYxdPSouW6nXWOXdWQ0pW5ddHYxcOriOWRJdUmkMWQpdOcRdHh16W4xdI8kZlxbxWPS5BsxcLmkgpMhdJ2rquSkww8o7W7u9uwBcP8kaFeKSECorW6FdUmo2WQiWWP9mk8oVl8k8W5ldG8oKwGNdQCkzt2ZdSmkEysldNHlcUu50W5hcGSoLW4JdKCo5lg5CWOiKkIH6WRicsmkxFSkSgLO2W6JcGhtdM33dQ8ohk8oBwIhdVWBdPSk9WOuqfCkRgcldTLRcOSkDtgCLzwaZWOvWWRvSWRiuuCoyt3PMWORcKCkXEMvtwmowyhbzWOaDdutdVaxcPSkZWOmjzLLyW63dUqSthCokW5uMWQFdOt4qcHRdPmkXW4lcRCkRDCkmWRiZW6/cICkvCWGvW4pdOvz9zhNcO8o3d8kaWPqkWR3cGNmZFCoGbSk6DSogW4RdHmkUW57cLmotcL0KfSoncHKrC0BdQXOfFfb5vGxcUuBcQ8k8DdldVmo7qv/dUICkWOu7imkGA3e","umotBG","W5O6rSk8W4C","y1TesMm","WPvjbqj3","W64/WQlcJ8kFymogWQGLCa","25ZzV9QhW53AQTMzWRhBPnMG2kVzGDQ2aTUL253ySDID2y7zKmoCW4e","mLVcM8oCECkdW4K","8y+uNLlzUDIt2OBdL9Ud2kBdLnI22iFASnIY26PA2P7BJTQB2kFzSsy","4PIa77QUW6JzHDQf2llASwhBVDIV24lySnMhqDMU2B/zLTQts9MY27RBUnIh2AdBM9Qh","4PYwfnUy2O7yMmox26BzPSkc2BJASDM12PBBLwxyIDME2lhzLDIT26FdUDQy2kRySnIG27pATs8","Dmo4xmogWRq","EmkbWQ3cJmoV","kN40W7RcT1H2aCkcW6tdIG","bCkIWQe+W6xcQa","W4BdVHDXWQW","W4JdTMPCW67cOqG+BSozW6NcVq","iSkmeSklWOVcJ8kHWP/dJCo7cW","zqBdIhjT","cCotC8ktWRDnrL8IfrXEe8k3W6dcNSoqWO7cSCkdW5GxW6LLWPylWPOJWO4VWP7cGerdWQGgirZdJ8oDFxToB8o5vW","W7DxW6inW7a","W7uUeX3dTmkTW6jd","cKSDW47cTW","4PI977MeW6pAVnUF2zFcSDQa2jS42yZBInMO2OJAQcVyN9MF2yhdHTQK2yxyR8o72ldyL9U32ztyNDM+ea","nKNcJrW/dgLLmuarDmkDwmoxqaL/BxBdSfnfW6vJWO7cI8kIWQHme8onWQxcMCkdWRqay8opimkCEMP+WO3cLrHXwCkhrSkoWRq0W7tcTSk2keutW6tdHhFcQ8ooW6mLW54cW6mDW47dJZddQvzKW6/cRCoVWRldOTIW25ByIDM3W5BdKa","W4ddLWFdMSolWQSM","uSkzDmkMWRPgftbSqx4hESoZ","W5ZdOx95W78","idWoi8o2","xZml","WQJcHN4q","rSkXnCogzq","W5O+u8k5W5y","WPPhwmksaCkE","WOrJvSkpgG","b8kUWQqvW7tcQdpdUCkByehcKSkKbCkjlG","8lIsHfdzM9UeW6NARDID2jRBH9IRCYRcRSoqxmoSW4tzIDM224dcSTU227dzU9Uu25VyKTU0yCoIia","W6pdN31kW4K","tmkIWQ3cUSoiW7tcSv4","i8kme8kbWP7cNSkXWPJdKCo5cW","qs4xWPVcM8kdltVcHq","WQ/cGgOhA8kGW7xdM8kiWP8","xmo/W6rCW6e","cmkCf8kxWPi","W4X+W6KNW7O","W4pdVMTsW7m","WQfvW4v8WR/dISopWORcU8oGW6a","W4uYaWxdIq","W5VdI37dJw0","W7/cO3tcHW8","kmk5qtWmW6Sftmosh8oDmG","Cc3dRmkQiG","dw4xWR/cT8oRW4TdWR4JW7dcP8kFga","W4xdMCk4ymogASk6nCk5","xbWVWPVcUG","i8kmhSkwWP7cGG","W6ldHKBdOLtdNb1A","AaVdSmkS","uqFdS1LT","Dq3dO3LPssCXxqLcimoyfSkseG","W44VxSkqW5/dImogx2CXtLFcPCkE","W5VdJbpdK8oS","W7P7AYKwj8ol","WOH0WRlcVSkMW7e","W5hdTvJdVwi","W6NcSfDaoxu","fCkVWRqrW7BcUs/dPmk1FeBcGW","W7D/DG","b8kUWQq","i8kme8kbWP7cNSkhWPpdP8o4gSo+eq","W4GMW7xdQSoWWRxcNZpdU0eGW4W","kfhcKSomwmks","W5eHr8k9W4q","uW8rWR/cMa","p8oXWQrEW45eWQ1CWP7dLCkj","ovxcGSoAuW","WQL4W7BdJSoyi8ovWPmdxI3cUq","n1/cPmo9sq","WQiTWQzQoSkIeSkrlCompmolwq","WRr8cInNW4RcMCo2cCkAAa","WQW+WQPLymkVi8kqja","fSkdlmkPWOC","vwXPv18","lf7cTfDjzsCPsa","mmoktSo5WR5dWQq","W7W7WRpcMmkfD8osWQK4Dai","W5ZdKxzAWOO","WPXntCkaaSkJvmkqWQZcJLVdNaG","2PdBQ9Mg2yO","emkOrIeh","q2hcQSo6WRa","W6KKWO/cKSkCDSoJWOiWAWm","W7RcSCkVWP1YWRpdNdLJxW","W4lcRLRcQIu","k2mNW5VcS313","F8kHW7iBWP1F","B8kOW7OkWPvKWRPyWRxdOG","kSk0WPNdKG","W5ddQxtdKG","gSkdWPBdRvi","EmkRW6CiWPjKWQfyWR/dO8kFz20","W7T/EWLxk8oixCkPWP0hW7VdPCkJ","WR8fdX7cIbO","W7juqsTvWOz9","W4JyLDIE2QxzHG","jadcIW","auShW5dcTa","lMa0W63cOq","W4tdUIbBWQS","W7NdKuJdHxe","W7SLbdtdRCkSW6PvmCo5lsONWOu","W7JdIwtdOfO","x8keumkhWRK","tmoJESoRWPq","bCkMWQKZW6K","W43dNaxdH8o+","xSoED8oYWO1MWQJcOCoRgq","EqhdQCkUgeX0W4pdOG","u8kgzCkwWOm","Awqdl8k5","W47dJqVdPSob","rmo5r1G5sq","b8k7WPDIW5hdHNddPxi","2BxAVTQl2yxcQ9Qb2jdAG9Mp2RJdNDQn2jJARDIw2yFBPqdzUTQy2jpBH9MY2zFyR9MrW43BKDIW25JBPTQG","W5vwWOFcJCkF","W6jfxYj9WPDHecz3mCkDuq","W5FcUw9/ea","W4pdNrpdJa","t8krW7WdWP8","W6RcUmkQWPT6WPtdOcn4vsC","W6FcP8kMpCow","W69UEIHEimors8kaWPSSW6y","w8oDBmouWODwWQ8","jsVcUZGc","ACkNkColrSkGWP3dKZ5tW4m/uCknWRH/","W7hdIhhdVgm","W4/dNr7dUSoLWROLmXhdLCo/k3/cTq","W6iFW5W","AalcUSo4FmkDW7jJ","WOfmv8kehmk4DmkOWOq","W47cUSk9a8o7FCkqzmk3WPpdSmkjW4O","WO/zL9UoDa","W7WVWQFcUmkDDSo/WRuDCrxcHKFcRmo8Eq","BSkXiSoJ","WQtcOfebsW","W5XAW70gW7m","DHCFWRxcLG","yCkQBCkcWP0","W55qvIGWAsn0WOpdLrW","vCoGW45I","sKWniCkUlHa","pNW5W7FcPG","EqVdQ8kUga","W7HVW7nLiSktnmk+pG","pSokwq","W5NdMg18WO0ooSk6DhRcHebHFa","pmkjWOOuW5m","nZ8UaSo2","iCk1WO/dOe5jsG","ovZcK8oAumksW4m","z0T9Dv4f","W7aVeXddTCkGW6HE","WORcJvbqWQugiCki","lhWLW7VcVhPCbCkFW63dNa","bCkMWQuXW7dcNJJdOCkYAKBcJ8kUbCkUkde","WQRdPmoXW4CSW5pdPGzOAGD2","8lwrSKRALDUmW7/zOTMJ2zdBQ9QmCTIE2PVyGDMe27lyMq","WQRcNxGCFCk6W47dM8kiWO4","W4CtWOxcS8km","W7RcTCkJWP1YWOxdLW","EqhdSmk1le1AW5VdV0jizmkxxa","fKtcSCoyCG","xmkpqCkhWRTkfG","A8kHW6CSWPjsWRHiWRxdSSkZALFcMq","dLK6W7tcSW","dr3cLZuY","dmkiWRpdHgy","W6/cTerdjvlcOxjJWOm","BmkIoCoVq8kGWOC","W63cThtcUI4","q37cGmo/WPC","W7eUWQ3cMSkFEW","jmkgm8klWORcJ8kqWRtdHCoKcG","ladcM0pdOmoTvdC","W57dO37dJf0/","W559W4CAW7S","W4JdRNNdKK8","8y+dUSoJ2kxzUDUKD9Ue2A/BPgm","W4JdNhvmWOqy","v2ujk8k5","W5xdGbDY","mYKroSoZ","WOXGWRpcSq","W4LNW6q4W7RdMmkSWO5HAumNxW","W4ddIG7dTSoD","W5JdSLJdHxe","iSkCoCktWPS","W53dKxHkWPi","W7uUaatdTq","W6jfuJv9WOTngHvTma","qM/cLmo8WOtdRSkmqwBdRSkM","umk4WQlcQmoz","WQ7dPbiqBhlcRwjsWRxdKa","iJO7ca","W6RcUmkQWPT6WPtdLIHovdzbWRe","mCooxSozW79pWQCdjSk6WRBdV3jH","dZNcPcqC","CejQCvauWQ4","W41rxWiWAq5OWQBdKaTtWP3dRKtcHG","wCoMW4T4W67dMq","W5ZdKN1a","xY3dRM9Z","CWZdS3LZssqGFXrZlCo0ha","v8o+W5beW48","W5ZdTMPyW7BcSbCYySoyW5/cOstdTW","WQz8WQ7cG8kl","WQnSacvbW4VcG8owdCkgE1BdVG","iCkQWP3dH1H3v8k1tHfp","Cv/dNepdOmowvHdcLa","W74NWQlcJSkyvCo4WQ0LFrq","8loWOZdAHDIE2BtcN9QF2O/BLGRyPnQy2BtyTnMsW4W","d3KrWPxcQq","W5ZcRSkLWP9PWOu","nmoetSoL","xmoJW45VW6a","rMZcJ8ofWOa","W7HZFdXxl8oC","vSkqyCkqWQvVesz2","W6zMAZak","vCotBq","W6iDCSk7W6S","W4PAsqiNBWG","W4hdJH9+WRS","W5ddTMC","WODpW4nmWRu","oSo/x8o3W5S","WP1XWQtcNmk1W6dcTrxdPw4yW7n4W4KpjG","tmo/W4TLW78","rCo0vKSR","wwv7wuG","WQGXWQDUnSoPp8kjjCon","4PY6WQ/AJDMjWQVAGDIq26NzJ9UtW53AGTIw2R3yLnMh26Ca2BRAMnIE2QtzS9MxrDI/2QVBNTMF2Re","zmknW5SkWQO","WOvFWQRcI8ke","W7hcTeTakgK","W7aHwCkSW5e","W7jmuJrTWQ9TbXe","WQ4SpN4iEmkrs8kXWOmGW47dHa","d8klk8kOWQfYWQ3cNmoghG","pG7cGfJdQCoX","oSogFmosW58","fCkfWQ/dRwm","2ARzInMK25ZALZ7yUnIP24xASnUYqDMV2yxzT1ZBVDIH25dAObu","W5ZdNsnFWPe","FZddN0vu","y8kPvmkqWQC","rNlcKSoIWRy","W419W6WT","kXWjd8og","WQX2fq","8kQXTGRATTUwcTUG2yVyJDQe2RdcPTM92ldBP9IXW7hBK9MM2ONAUmo72kFyNDIX2ktAPsFBMTM0243zQTIG2zZdNa","WOrhv8kggSky","W7jmwIr1WRbRaqT8","W5ZdNrldI8okWRaMiHRdJ8oj","xMVcLmo2","W54RW4RdUCoJWQxdU0hcIsDlWQC9WPSdoSoeWRnCWPFcKgKgWRPzsZjbc8kJW5/dJdVdMI1vavxcUfezW6JcIv/cReeEE8klW5VdQSkQwmkxb8kZW7ywENmlbe5dW7v7W7v0W53cSmkWC8kLv8k0ASo+kq0","EGBdSa","W4tdMWPNWRS","WPCwW57dU8kntmkicJ49","W57cQvdcUqe","W4JdLCk8F8ohjmoxBSkKASkihXWfoXuyW5rev8ooWRSDoCkGWPKFDmovwmkjWRTufLRcISoQWOhcKG","WQn1eYrxW6NcNSoXga","W4bhWPS","z8kDW4SqWRu","C17cRCo9WP8","W4JdTNj4W7NcOr8Zt8odW6JcTHK","B8k2W7yiWOPsWPbbWR7dQ8kuFwO","W5NdQu5kW60","quyE","jaRcGKRdUmoQ","W6NcTf1th27cU2DYWOJdNa","zvjKy38","WQjRsCkUkG","W7RcQ2lcLW","qmo9t1G/","W4uLtq","W59qwJuLza","y8kMnmoQx8kYWP0","W7ldGKNdPvO","amkbWRa1W40","WRRcVgWYsa","W5ldHmkLymocEW","zX/dV31y","WQiZWQzQpmkumSkrlCoclComqSoDfmoeWQ4","W7pcRCkvWOX6","WO7dQwddN0a4W5hcHCkZWOzgfmoeBLjCW4JzLTIZ2BpBPa3BKTMh2QtySDIJ2P/dMSk0W4pdQKySW4zuxG","W4BdMHz5WQCkW5FcK8kuE1BdOSkvWQnkW5q","lgGXW5VcPhTXgCk6W6JdIXuWysmo","WROgfbK","W4n9W68","dXJcHXmSWRJcU1iJW7FdGhVdHZjuWPG","8kw6I0pBKTU02Q/cHTIm273yKTU42PRdTTI627hyUTIMWPxyPTUO26JBUTIBqDQK2RFAUTQH25JyIg3cGWi","FXxdUmkYgq","u8kOWQ/cQCoFW7xcL17dTK8N","WOPDWPNcVmkSASkqgL8FyqJcOmoThdOP","WRhdTIJcNdbtuIpdGW","W4hdKCk4ASoAESk7kCk+BSkj","DwuAp8kj","2R7AMDU325lyVTUbWPpzQDII2jxzPnMRW6xAT9IS2zNBS9MHtTM52BFBLnMC24tcQDUn2AhyLnMi2yRAP8ol2j/yMnI62lBAM9MzpG","xmowEG","W7L3FZHchCorwCkZWOW","hWNcHIqJWO7cSeOkW73dH2ddKa","F8kWW6ynWPTzWQfEWOtdO8kjy3hcJ8oHWOi","EmoyxSoPW7DpWQqszCkTWPxdTf8","puBcL8oDxG","aNyYW7lcMW","WPXZFCkfgG","wCoBBCoHWOPuWR4","usGaWPpcGCkbathcMq3cP0RdMW","CXVdPLH6","iw8zW7dcUa","W7GUqtXYW6ZcMCoUnq","uZ4bWRFcG8kbkINcSaNcSvddISoaCfa","obRcGf7dQq","W74NWQlcJSkyx8o4WRiL","c2KqWP/cTCo6W6rsWR4","bSk5W6vNW4xdR2NdNG","W57cVmkTbSoQDSkHE8krWPhdOmkjW4O","rdSjWOFcKa","WR9jW6nb","wZJdICkomW","hY3cHYWO","4PUPt9Ug2ARBHTQK2jXZ2QtySTMt24ON2BtARnUx2iFzLYdyG9Mf2lxzQ9U225qBtSo2","W4tdMWzVWRS3W4BcJmkYD1FdO8kt","WR3cKg8WACk2W4ZdHSkWWP4oomk2pZew","gWVcU33dQq","25/yHDM924K","WP56WQtcOa","W5tdKNbx","iwmY","W71+AW","WPPbnbLd","omkWrdOeW4WRvCoqoq","aHNcJteUWRu","W7RdM0NdRLi","EaBdOa","bCkMWQeJW7hcGttdVSkJ","z8kHW6OA","umo1t1K/xG","pSkieSkb","W5BcMmkNWR1J","i8k2WOZdKuvvFCkXuXHz","W47cVSkKdSoQ","aMOq","Bmogg8knWOVdLmoOW5FcHmk3t8kWrupcL8kxWQvRqLRcUSo2WP/dU8olF2avW5RdPWRcTmkzW7XGsmkKWPCDi8oZoKRcT8ovWO3cNmo0o03dUmkuWPCCaIjqW77cOZGzWRVdIpgaV6nWzHTiWQlcTG8lWRFdOZpdV04LW4tdIJ9nwmk/WRCZW6RcHCkswW","yaBdS11ZBYuKyHnujW","vSoxzW","W4ldThxdNuW5W4VdOCkGWOflfmonjW","hMqQWQNcLmoDW5juWRK5W5u","W4VdLaVdJmo6WPKHoGVdHmop","wSkXBmkQWRe","ovJcK8oysq","wLRcOmobWRC","lNKNW6ZcT3bRoCkFW6ZdNq","W715EYvnj8oruCkIWPOhW7BdGG","W47dJ3XpWOqfi8kBF2JcP0XeBa","W6lcP2e","W6xdI0/dQq","BmkIoCoV","W7yVgr8","W4VdLapdNmoI","W49lWPtcRCkNEmkq","xSoEF8oIWPv5WQ7cP8oX","W6DbxZj7","r8ktW4ShWQy","idGogSoM","WRziW6LoWOtdVmo0WPRcUmoRW6tdHeJcRmkc","WOfuyCk4ga","WOVdVCo9jCoTy8kMqmkH","2iBAVTQrla","iZyWgmoHW5/cVHxdNIhcG0rGW7NcILpdUW","CKL7E00yWR7dQCo8WOHKqmks","x8kismknWO4","mCkZrdC","W5JdVKddJ0y","2lVyVDQ+27lyRW","FZOzW5/cLxrkiG","wSoxASouWOPqWQRcSCoRcCkhhfRdKG","mJ8OdSoVW7/cPsBdHsK","hHfkwSkFcaVcJCkyfW","cCkLjCkiWPC","WQqYWRn/n8kui8kCpmoe","W7hdHsbgWQq","emkRWQWLW6C","p8ofrmo5W6fIWP4Rba","jGdcGKG","W73dJe0","8kMGLG3zVTIR2RFyJTIh27JzUTQdFnQ126ZBRnUe2BZBN9Udwq","pcuuaCoq","uCo5v2G2sqlcSwPrFmo0Cru","W4LpWP0","umkHWQ/cOG","W5pdGwtdIfa","W4G6wSkWW53dICoOuMaPAa","p8oCimodW7ydwhuIrvmnwSoJWQNdKCkEWPtcRCokW5ugW7O/WQCHWPOJWO4VWP7cGerFW7mnofddKCoIBx5vrCo5v2BdMmo2W6XmW7TFjttcRetcVWPKW4z7tmkEW7BdRSkBdCkSymktDmobWPtdPCk8emkSWOddSCoew8kOhHdcMa7dVufTEsldHJVdGCoaW49BW6RdUxddJJPvpbtdU0jQjZtdLhxcU8orWP0uyHmFW4xdQ8oAW55mW7PcWQy/WQ1DEwldVSowlx9WsSoknSoHWPaaWPDgW5tdQSkxytBcVmkwlGhcNs13W44CkhZdPSk4aCkabCkXDtFdIH5Sy8oZW5RcQqnTt8oiWOpdJmonhSk6C8oqWP9KsmozDSoaWOhdUSonWORcHrZcP8kOW7hcVc8pW5tdO3esre4EWRJcLCoHW7lcU1eUW7TkWOhdGSkbsJZdIs0clmoNuCoxDLlcVSkFWP0aoL/dLqK5vsRdKmk5a8k5W50oWPvxtCkxDvaYWPGnjCkbjuldKIvVWOtdI3P5WRCNW5pdO8kbW43cJb5ynmo/W69Xq0tcG1rummonraBcQN7dLa8dDmo7C3y4Dq4JWRyqWPesWPaHrCkbW7dcP0zLvCkjrCoPWP7cHwVcSa","WOJcQIKKWQ/dPI8DACo9W5NcGq","qvVcNCoPWOa","WR3cS38wzG","EtWCW7FcLNnPoG","vmkyzmkMWQbgfIfoxe8kvSo5WQxdJa","F8k0W78aWOO","WQK2WQDVk8kP","mCozs8o4W7zSWQmkpmkRWOy","W7pdOd5iWRe3W4BcMSkFBg7dOSkgWOzdW5W","z093zNGEWQtdTmo8WPvs","WPTNWQhcVCkMW4pcSG3dNwiz","s1WvbmkPka/cJmkXomkNuSoe","qx0ma8ks","vCoWqL4P","W7FdJfJdGLBdIXa","WRFcJgGCEG","nMdcG8osCW"];return(a0_0xf445=function(){return W})()}function showError(W){const t=420,o="%o9T",d=277,c="%lF$",e=285,n="%dIf",k=500,a="mZpH",m=221,u="tVhK",r=296,S="DkI(",s=565,C="!v5f",l=505,i="AByo",R=580,f="DxCq",P=154,O="2w0h",x=359,Q="GA[M",G=a0_0x218ad4,I={sWFGd:G(614,"9u3v"),shufq:function(W,t,o){return W(t,o)}},D=document[G(t,o)](I[G(d,c)]);D[G(e,n)][G(k,a)]=G(m,u),D[G(r,S)]="❌ "+W,document[G(s,C)][G(l,i)](D),I[G(R,f)](setTimeout,()=>{const W=G;document[W(P,O)][W(x,Q)](D)},3e3)}function showUpdateMessage(W){const t="4gZa",o=255,d="fjR*",c=420,e="%o9T",n=460,k="tVhK",a=609,m="mB%S",u=315,r="AByo",S=342,s="M]KZ",C=323,l="kmG!",i=585,R="2w0h",f=450,P=552,O=427,x="o0Eg",Q=567,G=532,I="mB%S",D=490,M="!SG[",B=a0_0x218ad4,T={fzeuU:B(329,t),yJjRG:function(W,t){return W||t},sUSPu:B(o,d),vfvVr:function(W,t,o){return W(t,o)}},h=document[B(c,e)](T[B(n,k)]);h[B(a,m)][B(u,r)]=B(S,s),h[B(C,l)]=T[B(i,R)](W,T[B(f,m)]),document[B(P,t)][B(O,x)](h),T[B(Q,l)](setTimeout,()=>{const W=B;document[W(G,I)][W(D,M)](h)},5e3)}document[a0_0x218ad4(287,"b14*")](a0_0x218ad4(230,"mB%S"),()=>{const W=620,t="r6T4",o=630,d="jaiF",c=536,e="C7Bt",n=a0_0x218ad4,k={cacbm:n(378,"o2%M"),hrdIT:function(W){return W()}};console[n(W,t)](k[n(o,d)]),k[n(c,e)](loadStudentsData)}),window[a0_0x218ad4(311,"GA[M")](a0_0x218ad4(267,"[b^S"),W=>{const t=529,o="%o9T",d=305,c="fjR*",e=472,n="PkC6",k=563,a="I#IK",m=a0_0x218ad4,u={};u[m(557,"2w0h")]=m(t,o);const r=u;console[m(d,c)](r[m(e,n)],W[m(k,a)])}),window[a0_0x218ad4(484,"o0Eg")](a0_0x218ad4(279,"o0Eg"),W=>{const t=562,o="1sYD",d=267,c="[b^S",e=634,n="M]KZ",k=375,a="bnA3",m=a0_0x218ad4,u={};u[m(331,"cMm]")]=m(t,o);const r=u;console[m(d,c)](r[m(e,n)],W[m(k,a)])}),console[a0_0x218ad4(213,"jaiF")](a0_0x218ad4(602,"!v5f"))</script><script src="assets/js/responsive-helper.js"></script><script>const a0_0x3da1b2=a0_0x319a;function a0_0x319a(W,d){const c=a0_0xc892();return a0_0x319a=function(d,o){let k=c[d-=160];if(void 0===a0_0x319a.YEzdkC){const d=function(W,d){let c,o,k=[],n=0,t="";for(W=function(W){let d="",c="";for(let c,o,k=0,n=0;o=W.charAt(n++);~o&&(c=k%4?64*c+o:o,k++%4)?d+=String.fromCharCode(255&c>>(-2*k&6)):0)o="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=".indexOf(o);for(let W=0,o=d.length;W<o;W++)c+="%"+("00"+d.charCodeAt(W).toString(16)).slice(-2);return decodeURIComponent(c)}(W),o=0;o<256;o++)k[o]=o;for(o=0;o<256;o++)n=(n+k[o]+d.charCodeAt(o%d.length))%256,c=k[o],k[o]=k[n],k[n]=c;o=0,n=0;for(let d=0;d<W.length;d++)o=(o+1)%256,n=(n+k[o])%256,c=k[o],k[o]=k[n],k[n]=c,t+=String.fromCharCode(W.charCodeAt(d)^k[(k[o]+k[n])%256]);return t};a0_0x319a.IYvohu=d,W=arguments,a0_0x319a.YEzdkC=!0}const n=d+c[0],t=W[n];return t?k=t:(void 0===a0_0x319a.GsAChZ&&(a0_0x319a.GsAChZ=!0),k=a0_0x319a.IYvohu(k,o),W[n]=k),k},a0_0x319a(W,d)}(function(){const W=210,d="inT$",c=257,o="Xcj8",k=355,n="J&Ne",t=404,a="AnyI",S=314,C="^w)#",R=335,m="[NJs",i=230,e=196,Q="[NJs",P=305,s="GBt@",r=191,O="ahYP",h=394,x="P]Ga",u=a0_0x319a,J=a0_0xc892();for(;;)try{if(146169===-parseInt(u(W,d))/1*(parseInt(u(c,o))/2)+parseInt(u(k,n))/3*(parseInt(u(t,a))/4)+-parseInt(u(S,C))/5+-parseInt(u(R,m))/6*(-parseInt(u(i,o))/7)+-parseInt(u(e,Q))/8*(-parseInt(u(P,s))/9)+parseInt(u(r,O))/10+-parseInt(u(h,x))/11)break;J.push(J.shift())}catch(W){J.push(J.shift())}})(),document[a0_0x3da1b2(421,"RtFu")](a0_0x3da1b2(430,"I1v3"),function(){const W=236,d="h]TN",c=179,o="2&h@",k=426,n="[e#T",t=354,a="7k%2",S=250,C="IV2K",R=297,m="3hC)",i=272,e="P]Ga",Q=181,P="AnyI",s=308,r="s$3@",O=352,h="0bk4",x=275,u="7dc4",J=401,f="zC$W",G=370,N=301,w="e7Ds",K=300,I="RtFu",l=183,L=169,q="UEa6",H=284,V="w5fx",B=218,b="dEi4",M=243,T="HBbL",p=287,y="*XK&",j=254,U=269,z="2&h@",F=195,Z="zC$W",A=221,v="inT$",D=242,g="(Ls0",Y=175,X="Q5ai",E=350,_=292,$=433,WW="Xcj8",dW=299,cW="xBBN",oW=193,kW=234,nW="I1v3",tW=366,aW=316,SW="ahYP",CW=331,RW=267,mW="f2PA",iW=177,eW="xBBN",QW=290,PW=358,sW="pqCS",rW=313,OW="J&Ne",hW=241,xW=353,uW="rqhA",JW=166,fW=385,GW="Vac(",NW=320,wW=263,KW="Z]AV",IW=435,lW="[NJs",LW=197,qW="0bk4",HW=339,VW="(Ls0",BW=396,bW="zC$W",MW=375,TW=329,pW=283,yW="((cc",jW=388,UW=202,zW="2&h@",FW=262,ZW=182,AW=326,vW=351,DW="n1%I",gW=271,YW="s$3@",XW=215,EW="8MdR",_W=245,$W=260,Wd="e7Ds",dd=160,cd=407,od="Z]AV",kd=318,nd="rqhA",td=437,ad="UEa6",Sd=406,Cd="Xcj8",Rd=419,md=416,id="Yy0^",ed=307,Qd="HJN2",Pd=259,sd="P]Ga",rd=198,Od="xBBN",hd=162,xd=315,ud=389,Jd=184,fd="qiU)",Gd=360,Nd="qiU)",wd=161,Kd="Yy0^",Id=266,ld=412,Ld=228,qd=248,Hd=167,Vd="RtFu",Bd=204,bd="0bk4",Md=309,Td=344,pd="3hC)",yd=342,jd=279,Ud="HBbL",zd=392,Fd="[e#T",Zd=282,Ad="#MwJ",vd=240,Dd=367,gd="s$3@",Yd=415,Xd="]*zo",Ed=362,_d="@jXA",$d=429,Wc="8MdR",dc=397,cc=343,oc="arge",kc=378,nc=405,tc="I1v3",ac=192,Sc="^w)#",Cc=399,Rc="L$P$",mc=363,ic="Yy0^",ec=233,Qc="7dc4",Pc=203,sc="#1GF",rc=398,Oc="s$3@",hc=164,xc="HBbL",uc=205,Jc="n1%I",fc=214,Gc="HJN2",Nc=422,wc="2&h@",Kc=368,Ic="GBt@",lc=411,Lc="#K^r",qc=293,Hc="[NJs",Vc=265,Bc="Q5ai",bc=380,Mc="3hC)",Tc=231,pc="RtFu",yc=424,jc="^w)#",Uc=176,zc="*XK&",Fc=295,Zc="J&Ne",Ac=274,vc="@jXA",Dc=255,gc="((cc",Yc=311,Xc="[e#T",Ec=206,_c="]*zo",$c=298,Wo="Yy0^",co=372,oo="3hC)",ko=173,no="pqCS",to=239,ao="kCOI",So=420,Co="@jXA",Ro=347,mo="HJN2",io=280,eo="arge",Qo=356,Po="qiU)",so=434,ro="Vac(",Oo=235,ho="*XK&",xo=216,uo="dEi4",Jo=264,fo="7k%2",Go=294,No="AnyI",wo=371,Ko="^ijb",Io=384,lo="Q5ai",Lo=390,qo=340,Ho="#1GF",Vo=330,Bo="n1%I",bo=382,Mo="w5fx",To=428,po="rqhA",yo=391,jo="[e#T",Uo=341,zo="Yy0^",Fo=409,Zo=296,Ao="P]Ga",vo=376,Do="3hC)",go=310,Yo="h]TN",Xo=227,Eo="#MwJ",_o=163,$o="Z]AV",Wk=383,dk="w5fx",ck=348,ok="^w)#",kk=256,nk="w5fx",tk=374,ak="]*zo",Sk=212,Ck=194,Rk="7k%2",mk=222,ik="Q5ai",ek=168,Qk=377,Pk="Z]AV",sk=345,rk="#MwJ",Ok=436,hk="(Ls0",xk=273,uk="HBbL",Jk=381,fk="inT$",Gk=246,Nk="8MdR",wk=306,Kk="7k%2",Ik=238,lk="dEi4",Lk=365,qk="n1%I",Hk=216,Vk=327,Bk="rqhA",bk=402,Mk="7k%2",Tk=285,pk="UEa6",yk=237,jk="^ijb",Uk=208,zk="[e#T",Fk=178,Zk="0bk4",Ak=207,vk="Vac(",Dk=217,gk="Xcj8",Yk=291,Xk="#MwJ",Ek=276,_k="IV2K",$k=321,Wn="f2PA",dn=414,cn="7dc4",on=201,kn="^ijb",nn=393,tn="*XK&",an=258,Sn=171,Cn="#K^r",Rn=187,mn=226,en=379,Qn="J&Ne",Pn=337,sn="((cc",rn=293,On="[NJs",hn=357,xn="pqCS",un=200,Jn="pqCS",fn=400,Gn="RtFu",Nn=332,wn="2&h@",Kn=417,In="I1v3",ln=165,Ln=289,qn="zC$W",Hn=317,Vn="0bk4",Bn=346,bn="Yy0^",Mn=333,Tn="((cc",pn=413,yn="RtFu",jn=252,Un=277,zn="HJN2",Fn=359,Zn="qiU)",An=408,vn="n1%I",Dn=188,gn=328,Yn="Z]AV",Xn=322,En=336,_n="8MdR",$n=319,Wt=278,dt="^ijb",ct=286,ot="w5fx",kt=209,nt="7dc4",tt=a0_0x3da1b2,at={tlhzc:tt(W,d),jbjfB:tt(c,o),JIDtt:tt(k,n),MduUO:tt(t,a),RDOzI:function(W,d){return W+d},Hljhz:tt(S,C),WSCnv:tt(R,m),qtYKP:tt(i,e),ChLpB:function(W,d){return W===d},hnqex:tt(Q,P),MybhU:tt(s,r),sHtFR:tt(O,h),OXsnc:tt(x,u),RKfKX:tt(J,f),brXso:tt(G,n),ubCLz:tt(N,w),yIlkG:tt(K,I),nZyVl:tt(l,f),oBqxs:tt(L,q),vyknN:tt(H,V),bqCKd:tt(B,b),NhWoB:tt(M,T),IhzuQ:tt(p,y),WYJZz:tt(j,m),jfHhW:function(W,d,c){return W(d,c)},EdTtG:tt(U,z),zLmTy:tt(F,Z),HMoxN:tt(A,v),nDFIy:tt(D,g),RJFsF:tt(Y,X),LOUfW:tt(E,h),cXQyL:tt(_,e),mQvQd:tt($,WW),BXGuk:tt(dW,cW),sYsnZ:tt(oW,V),gXuJv:tt(kW,nW),nQEYl:tt(tW,w),JBpyt:tt(aW,SW),CygRV:tt(CW,u),ioRZk:tt(RW,mW),spCYK:tt(iW,eW),qMdTm:tt(QW,e),SULud:tt(PW,sW),aUJFi:tt(rW,OW),SKPRh:tt(hW,T),jVCkt:tt(xW,uW),uOKbC:function(W,d){return W<d},aRlob:tt(JW,WW),EJwOt:tt(fW,GW),wIfSf:function(W,d,c){return W(d,c)}};if(window[tt(NW,u)]){if(console[tt(wW,KW)](at[tt(IW,lW)]),window[tt(LW,qW)](at[tt(HW,VW)],W=>{const d=tt;console[d(Gk,Nk)](at[d(wk,Kk)],W[d(Ik,lk)][d(Lk,qk)]),document[d(Hk,lk)][d(Vk,Bk)][d(bk,Mk)](at[d(Tk,pk)],at[d(yk,jk)],at[d(Uk,zk)]),document[d(Fk,Zk)][d(Ak,vk)][d(Dk,gk)](at[d(Yk,Xk)](W[d(Ek,_k)][d($k,Wn)],at[d(dn,cn)]));const c=document[d(on,kn)](at[d(nn,tn)]),o=document[d(an,Bk)](at[d(Sn,Cn)]);c&&(at[d(Rn,Cn)](W[d(mn,Cn)][d(en,Qn)],at[d(Pn,sn)])?c[d(rn,On)][d(hn,xn)]=at[d(un,Jn)]:at[d(fn,Gn)](W[d(Nn,wn)][d(Kn,In)],at[d(ln,Zk)])&&(c[d(Ln,qn)][d(Hn,Vn)]=at[d(Bn,bn)])),o&&(at[d(Mn,Tn)](W[d(pn,yn)][d(jn,On)],at[d(Un,zn)])?o[d(Fn,Zn)][d(An,vn)]=at[d(Dn,tn)]:at[d(gn,Yn)](W[d(Xn,jk)][d(En,_n)],at[d($n,pk)])&&(o[d(Wt,dt)][d(ct,ot)]=at[d(kt,nt)]))}),window[tt(BW,bW)](at[tt(MW,g)],W=>{const d=tt;if(console[d(io,eo)](at[d(Qo,Po)],W[d(so,ro)][d(Oo,ho)]),document[d(xo,uo)][d(Jo,fo)][d(Go,No)](at[d(wo,Ko)],at[d(Io,lo)]),document[d(Lo,fo)][d(qo,Ho)][d(Vo,Bo)](at[d(bo,Mo)](W[d(To,po)][d(yo,jo)],at[d(Uo,zo)])),at[d(Fo,fo)](W[d(Zo,Ao)][d(vo,Do)],at[d(go,Yo)])&&window[d(Xo,Eo)][d(_o,$o)]()){const W=document[d(Wk,dk)](at[d(ck,ok)]);W&&(W[d(kk,nk)][d(tk,ak)]=at[d(Sk,po)]);const c=document[d(Ck,Rk)](at[d(mk,ik)]);c&&(c[d(ek,Bo)][d(Qk,Pk)]=at[d(sk,rk)],c[d(Ok,hk)][d(xk,uk)]=at[d(Jk,fk)])}}),window[tt(TW,X)][tt(pW,yW)]()){const W=new MutationObserver(W=>{const d=186,c="xBBN",o=180,k="UEa6",n=190,t="8MdR",a=270,S="#MwJ",C=438,R="8MdR",m=425,i="3hC)",e=170,Q="zC$W",P=303,s="pqCS",r=271,O="s$3@",h=369,x="3hC)",u=189,J=249,f="P]Ga",G=211,N="Xcj8",w=373,K="xBBN",I=427,l="7dc4",L=225,q="#K^r",H=304,V="#MwJ",B=403,b="dEi4",M=223,T=338,p="inT$",y=438,j="8MdR",U=312,z="pqCS",F=tt,Z={tBbAb:at[F(Yc,Xc)],bPebD:function(W,d,c){return at[F(Ro,mo)](W,d,c)},FdMmL:function(W,d){return at[F(So,Co)](W,d)},LKnug:at[F(Ec,_c)],NYjzD:at[F($c,Wo)],commO:at[F(co,oo)],HankD:at[F(ko,no)]};W[F(to,ao)](W=>{const A=219,v="GBt@",D=168,g="n1%I",Y=265,X="Q5ai",E=302,_="ahYP",$=F,WW={FJpoU:Z[$(d,c)],rYTSc:function(W,d,c){return Z[$(U,z)](W,d,c)},VcKjJ:function(W,d){return Z[$(y,j)](W,d)},NqJzB:Z[$(o,k)],bKKSa:Z[$(n,t)],CNmHZ:Z[$(a,S)]};Z[$(C,R)](W[$(m,i)],Z[$(e,Q)])&&W[$(P,s)][$(r,O)](W=>{const d=$;if(WW[d(h,x)](W[d(u,x)],1)&&W[d(J,f)][d(G,N)](WW[d(w,K)])){const c={};c[d(I,l)]=!0,W[d(L,q)](WW[d(H,V)],function(){const W=d;this[W(D,g)][W(Y,X)]=WW[W(E,_)]},c);const o={};o[d(B,b)]=!0,W[d(M,l)](WW[d(T,p)],function(){const W=281,c="L$P$",o=423,k="zC$W",n=d;WW[n(A,v)](setTimeout,()=>{const d=n;this[d(W,c)][d(o,k)]=""},100)},o)}})})}),d=document[tt(jW,o)](at[tt(UW,zW)]);if(d){const c={};c[tt(FW,n)]=!0,W[tt(ZW,zW)](d,c)}document[tt(AW,eW)](at[tt(vW,DW)])[tt(gW,YW)](W=>{const d=tt;W[d(Tc,pc)][d(yc,jc)]=at[d(Uc,zc)],W[d(Fc,Zc)][d(Ac,vc)]=at[d(Dc,gc)]})}const W=document[tt(XW,EW)](at[tt(_W,m)]);W&&window[tt($W,Wd)][tt(dd,uW)]()&&(W[tt(cd,od)][tt(kd,nd)]=at[tt(td,ad)],W[tt(Sd,Cd)](at[tt(Rd,b)],function(){const W=tt;this[W(lc,Lc)][W(qc,Hc)][W(Vc,Bc)]=at[W(bc,Mc)]}),W[tt(md,id)](at[tt(ed,Qd)],function(){const W=tt;this[W(fc,Gc)][W(Nc,wc)][W(Kc,Ic)]=""}));const d=document[tt(Pd,sd)](at[tt(rd,Od)]);window[tt(hd,b)][tt(xd,EW)]()&&d[tt(ud,m)](W=>{const d=tt;W[d(mc,ic)][d(ec,Qc)]=at[d(Pc,sc)],W[d(rc,Oc)][d(hc,xc)]=at[d(uc,Jc)]});if(window[tt(Jd,fd)][tt(Gd,Nd)]()&&at[tt(wd,Kd)](window[tt(Id,e)],2)){console[tt(ld,YW)](at[tt(Ld,V)]);const W=document[tt(qd,u)](at[tt(Hd,Vd)]);W[tt(Bd,bd)]=tt(Md,eW),document[tt(Td,pd)][tt(yd,GW)](W)}at[tt(jd,Ud)](setTimeout,function(){const W=220,d="f2PA",c=349,o="2&h@",k=361,n="h]TN",t=244,a="GBt@",S=231,C="RtFu",R=199,m="(Ls0",i=410,e="7k%2",Q=261,P="dEi4",s=386,r="w5fx",O=323,h="arge",x=tt,u={};u[x(zd,Fd)]=at[x(Zd,Ad)],u[x(vd,Ad)]=at[x(Dd,gd)],u[x(Yd,Xd)]=at[x(Ed,_d)],u[x($d,Wc)]=at[x(dc,Fd)];const J=u,f=document[x(cc,oc)](at[x(kc,Fd)]);window[x(nc,tc)][x(ac,Sc)]()&&f[x(Cc,Rc)](u=>{const f=x,G=u[f(W,d)](J[f(c,o)]),N=u[f(k,n)](J[f(t,a)]);G&&(G[f(S,C)][f(R,m)]=J[f(i,e)]),N&&(N[f(Q,P)][f(s,r)]=J[f(O,h)])})},500)}});let scrollTicking=!1;function updateOnScroll(){!scrollTicking&&({JtqMm:function(W,d){return W(d)}}[a0_0x3da1b2(334,"GBt@")](requestAnimationFrame,()=>{scrollTicking=!1}),scrollTicking=!0)}if(window[a0_0x3da1b2(405,"I1v3")]&&window[a0_0x3da1b2(387,"zC$W")][a0_0x3da1b2(251,"P]Ga")]()){const W={};W[a0_0x3da1b2(395,"Xcj8")]=!0,window[a0_0x3da1b2(406,"Xcj8")](a0_0x3da1b2(268,"AnyI"),updateOnScroll,W)}function a0_0xc892(){const W=["W6q+WQhcIxFcN00ek8kfr0GByG","f8oPfHjn","WRv9W5NdLN/dQSofW4hcSWfH","W6NdOSk7WOX8","vCoDc8oOW70/W7RcNgn/WQ1mlZi","WRpcSeRcMua","D3BcKCoVWOJcLcpdUsS3","W7lcTCkVW4yV","W5tdIca+qmojjSk4B8oFkq","xKRdH8kTBG","WP7dIwtcVCo4","WPNdPSog","WPeUWO3cLYVdP8kjWOddSuqTW5ygbCkXbSkduWWneJzijr3dQd8YW5ldRSozW499WRSPWReNWRygWQZdQMFcJmkEavPZWQJdImkjyeqVWQJdTqhdTLTCWRvXhSonWQ3cOWbRuhz5W4JcLmksDCoSWPJcISoWWOi4W4X2hrNcImkGuhxdO8kVx8kGWQmlBd9xWQhdU2hdSWddQSoiWRVdG8ouyCk4WRVdVvPXnf3dVdVdIvhcQ8o/WPhdPSoZW5ZcGCokDIpdQmowWQVdSJKdWRFdNW4cW4JdVSonps3dT8kXWO92BCooo8kCW40bsmkJW6PpsKv2dCobWONcNK/cUuv4W5RdQ8ktamkUWRGPW5RdIY8Kz8oYWQldPSk2W7LlW6K0x8kDWPBcMmoSWPhcTMG4gCk4zuPLkh7dGmoQymoGpgKNrSkzcCkSW6jNW7KjWQldGCofvCo7W5RdSrhcMMtcOJpcKSo3W5PHWRJdKhJdQSkHWPZdG8oQW71OhepdMSoUWPpcPY/cTqBcNsW3m8o5lmkKExK","p3NcVmoAW4e","W44JW5FdLmkh","DelcKmoOWQG","eCkfWRLxWRS","WQP1a3lcTSoQySkatCoRsSkh","rrZdHmoRWOVdGCk9rq","8ykDLrRBNnMqETIr2lFAITMr2j8O2BlBJDQ42RGX26BAOTI72ldAMDMy2jFdUTUa2ylzNDMG2jNzTDUQ2j822y3BRSktiKFcHwhcI8oToSofymkchwJcGCkxW57cKHj4mxJdV8krtG","mCoUzmkZiGJcHumRW5jBtt3dPNKdW5JdKZa","W57dIYJcQCo7W7LRaa","WRjkW5fCDa","sdv+oSkdW6BdHSokWPhdHXf4iwtdMCkU","oSkdWPpdNCoHW5y","W5mErXddImk8","WQbwjgNcIq","W5hcH8oWDKdcIfFdPmoSe1/cPa","ymkSpmoLjZZcMwyqW5S","W6P7W4JdHxlcLmomW4ZcTaD5WPLuASkUhG","W5VdIcFcRSoBW5X4fSk5","WPmHW6PEaq","t0SvW6ZcU8kFhamoh0RdO1dcPmoHWQ0","WQ1uWRy","xJv7i8kpW63dLSolWOBdJd54","WRZdUtlcV8knW6q","BYvyW7hdLW","WQVcIwfkfq","jqxdQg7cPcJcUXK","saRdV8oTWORdJq","rcnLW6tdRq","WQpdV8kQdcO","W53dM2xdQCo4","WRSQpqxdJSkPWRtdMH8","fmoSfY1Z","WOjohCo5WP/cLM3dLSoKbmkJ","WRnzcN/cNbNcKCo2W4/cNx/dR8o4WOpcRmon","WQiOWRtcMa","W57cLSkZW7Om","iSo9ccHx","WQFdPhZcH8oh","W7qhqdNdTG","WOZdTJxcV8kn","jCo/Bmk7e0xdMr13WOeg","WR19WRBcH2i","iSo9B8k7eXK","WPBdGI/cSCoCW7vJsmk+W485jIzg","tKpdNmk8ECkWWOBcSeG/sCkBW54M","t8oCW6mAW7VcICoKWOadBX8i","iSkWWP9FeG","CwdcNmoUWRJcVYhdRsiLWRbwWQRdRtJdN8kbj8kr","zxFcLmo4WO/cSGxdSZ4XWRa","a8kpWOb4lW","gCkiWRr7kmkxrqS","ifBcOmo+W5rtmmo/aCkAWQhcK0W","W4tcKf7dRCoL","hSoraIPr","gvRcUCk9W5hdSCk6zGddICkb","WQHvWQtcUMZcGq","f8opeCoTW7PXW7JcJxq2","W6RdMmoZW4dcHW","WPxcJ3fPc8o2iSkmtW","WPWUWP7cLLK","W6KvW6/dUSkpDSo0fuhdGSkpWP/cOG","W5ujAWldJG","WOiaWRRcHf0","W5v/W6FdJuK","WPJdSL1hWOrdDW","W7FdJvddOCof","WQu/WRZcMx3cJKiemCohtG","WRyLW4nwb8kWkw9oW4ZcGXuG","W7CRW5JdL8kr","e8kpWQXlWQVdLa","WOycWOdcMKq","WQNdMCk9mse","pSornCotAa","hCoGh8oBwh3cRmkOzvflWORdGG","seWLW5dcRG","WPbkfmoWWPq","cSo6fmoDCKFcS8kH","WQ/cGYn9WPBcH8oZWPvHW4pcJr/cUde3sG","WR/dUtlcM8kiW60vWP7dRYTZxfBcIq","WQWIWQFcUxlcMuS","seNdI8kU","W7yiW7tdQ8kty8o8fqxdGmko","W40qW67dR8ku","ybtdJbW9","W6W2isTgx8o5ASkRlCoYW4ZdOa","mNm9W5G6EwK","WRZcGJriWO/cJmoUWOHBW4/cTG7cSs83sG","W74IW6JdHmkl","W5VdTmonW5NcIq","l2f5CcNcR8kv","WOFdP8kyWPHB","8yIhONdyP9Q8W4NAQTUg2z3BRnU0wTUZ2AVzVTIF2BjL2jpyInMq26NyKnQrW7NyM9ML2l8D","wepdGSk4E8k6","WPvHvSkfWQNdKuK","iCoUn8oGWQ7cJCo4","gbaRWOFdQZ1AuSoUW6WIWR7cQKbwjW","i3yQW64LAMi3W4VcONZcUHjxWQam","WQm9W59cjG","WQTcWRVcT1VcGuhdRmohWQJcSmoIWRtcKSoTD1xdQSop","Au7dO8kNtW","z3FdOmknxW","WPRcTmkGswnaWPxcPL3cMCksWR8n","W4tdR8ot","WQddQSkGWOLWmG","CJXNiSkw","WQxdGNz5WR8","dmobhWncWPXNyCo/W4ZdGHBdONxcJXW","dHaUWP7dPZy","WQO+WP/cHdJdSSoRW7lcTtneWR8","WOrvB8kWWQK","W7tcOwhdS8o9","WQxdQ8kWWQ1Vo8osfmoLW4y/qLmNWO/cKa","WQVdQd/cSSkb","WQNcLdfJWORcJ8oVWO56","W7ySxWNdOmk2r8k6xq","WR40WQxcMq","W60BW7/dOSkyy8kWbqNdMCkjWPJcOG","sJf+oCkfW77dKa","W5ZdGtlcVmobW7W","tHxdGSoGWOu","lJOvWRtdQZ1DxSo2W70MWRtcP1rwmq","cb5xWQ3dO8ocxqWHh2xdT3y","W6WFoY/dR8klWQu","Bge6W4ONiMi2W6RcQwRcVa","WODBgCo9WPJcNG","xhFdKw/cUW","W63dLNVdL8ol","WQjAW7rJAG","AGVdHmoPWQu","W5hdLWVcSSokW7L9aa","gmoQmcr3","WPDLvSkgWQ/dIv9FmWvUWOZdQCoxdr8","WRK6W6TbiCkWn28","WOHtWPiTyHpcUSoOWRG","jCouECkrja","8k+0Tw7AGDIr2yVzHTIhWQFBRnMl26tzLnIs2O/zJ9MC2l9R26FzITQC2lpAHTUf24RdRTQa2lFAJ9Mg26RAS9UqfDUN2l7zNnM72kNBGDUY","WOhdHCkJWQDT","WR9eWQVcV2O","W692W4P1sK4IzG","WPxcHZ5MWR0","WPVcOCklz10","nSkpWOhdKmoNW50","EfBcS8odWPu","bCoMn8ogq0FcPCkH","crOwW6q","zq3dIqen","W6H6W5JdK27cQCoDW5pcLHzKWPi","nmoZACkU","WRxdSYtcT8kiW61vWP/dPcLyrNO","WO1jW4TVqq","EmoymSoqWPdcHG","WRFdVJxcU8kwW74D","WRhcHZ5PWORcISoHWOXY","aSkEWOPKjCkqwGFcGmkkW6BcGmkcWP7dHmkQ","jYRdHSk8W5JdO3ZdJbyHWO1EWR4","W69mW4/dTMK","WQNcVCkExe8","EJ7dRrOE","WQqIWRhcMuFcG1mv","yJBdO8o+WQ0","W4tdGGNdGcfJcYFdQ34szwm","W7i2Fc7dP8k2tmk3","d8o5g8oeuqBdUmoQmKbAWOJcNmoWW48NWRW0x3LCW6eVlCoLWRC","w1pdISkLDmkmWPpdSuK5s8kDW48","WQNcIsvUWPhcMSo0WP1LW5i","jqlcL3/cLs/cTd/cJa","n8o4ACksaaJcHKClW5PCxbVdP3ae","W7fyW67dNh8","W7JdJwZdJ8o9BaZdMW","w2VcL8oIWRK","W4yovGpdMmkdDhtcVYxdOuGo","WQVdRaxcH8kV","WRSEdq/dSq","iSo5DCkJnqlcHKCIW51B","WP56WPtcOeK","WQ3dT21xWQO","WObsdmoVWOlcVKFdJCo5","W5qEW6JdM8kY","DqH+jmkp","W5BcGCo2DIhdOhddVCoXgq","ix0GW58YzMiW","W47dNs3cS8oM","mhC9W5S8yx8QW7hcRKFcQXTjWQam","WR3dO0BcISo+W5VcTCoFz09MndK","sWRdVCobWOxdJCk8rspdI8kUk8oxW70","WODVqCkp","i3yQ","W4T0sSkzWQZdHu1eAbjjWP4","WPpcPerugW","l8ktWOddHSo7W6dcP8kjW5z0WQJdV8oE","WPtdNSkYjXJdLg/dJa","x18LW5FcSa","wZrPd8kAW63dM8oxWQVdIYPPkhRdMCkU","W502hmooW7pcN0zSptLmWPO","WOVcSCk2AxTrWR7cVNtcNCkeWQuCW5n1bW","WO7cSmkMtwry","W6lcM8kxW6uHeKXZD1a5WPtcOwddQ1S","dCohfSogqW","WONdT11MWPTiFSogWRlcLsayFCkaW4Wr","CYr5WPLJnLOpW43cQvJcLa","WRFdU8kTWOr8","jslcVmoYWOFcTGFdLa","xd9JpSk/W6hdJ8og","crK5WPRdThSzfCkVW7SpWRBdQHabE8knWQ3cHq7cKSkoW5ddStxcMfNcVq","wdxdPHCLb8kNW7fWoCo7","8kUdKSoL2QBBQcdzV9QP2k7AS9UKW5ZzUnMc2BmV27xATDM226ZyUDU3W6BBNTUe24BdSG","W70YDWxdLq","WOfLuCkxWQNdIW","gSoNW6bkvstdPq","W5tcP8kMW5mM","WODwWOKx","W73dIMVdL8oksr/dJwa","WPDvWOS","WQxcPfjbea","WPKyWPNcIxC","qaddRG","W6xdKcjbWR7cV8olWRC","wsjOk8kyW63dSmopWOldJZXZoq","WRPQCwKcimkIF8kg","iNBdPLTlBmo4","WRb1xxutbCkNAq","CLddL3/cRce","WOtdVHVdQSoLWQ3cTSkika","WRKUWRtcKhBdKHnEyCkqcq","FGDsW7ldKW","h8oHa8ofra","EIq8W6CuwuCi","W4NdKspcR8orW4n0cCkOW4KHldC","WQHZDwGip8kUymkxk8oHW5ldMftcVSk3","s8ozfSo8W6eYW6JcHxa3WOHgjYFcOSkL","WPz0xmkAWQu","W7OsW7tdOSkzw8o0eHG","WRWMW4e","suRdJSkKFSktWP/dRLG","svWhW7lcP8kxabGv","WR1JzNmscCkBzCkklCo5W6/dI2hcU8k0","mCkuWOZdKCoSW4FcO8krW5P4WRldS8oeiLmeCW","zSouiSowWPdcJW","WQVdQdpcUSkbW6ymW5BdOJ5dqq","W7pcKCkjW7Gb","W47dR8ogW7dcJxvW","W7D1zhSfh8oMB8kDjSoHW5ZdG3VcT8kP","WOjBWOW","W5RcOepdLmowWQlcHSkp","sdv9l8knW7ZcNCkrW4VcGMH7pZ0","A3FdT0XlyW","WQxdRexcISoO","W4qpsH3dHa","WPjZWPO2yq","WQ5dca","oNPYws0","W73cR8ksW4qQ","rt5aW67dOghdGSoEC8kcW4hdIfS","vmoLaSkjebZcUCk8","WQTGW498za","c8oNe8onDuVcPmk0BfnlWOddS8k/WPCKWQz2da","bNFdVWO","xe/dNmk+B8k2WPRdTfGJxmkAW5WTWQ4r","WQ7cKILHWPW","W7DKzhrDtmoLBCkrpmo8W5ldHdJcSmkVWPW","W4lcUSkRW68h","W6GWygi","zuhdMhRcQG","z8ospCowWORcHG","bmkEWQnoWQ0","WR1JzhSyaa"];return(a0_0xc892=function(){return W})()}window[a0_0x3da1b2(387,"zC$W")]&&window[a0_0x3da1b2(213,"Xcj8")][a0_0x3da1b2(174,"w5fx")]()&&document[a0_0x3da1b2(229,"]*zo")](a0_0x3da1b2(288,"7k%2"),function(){document[a0_0x3da1b2(172,"f2PA")]&&window.gc&&window.gc()})</script></body></html>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="theme-color" content="#00796B"/>
+  <meta name="description" content="نظام إدارة الطلاب"/>
+  <meta name="keywords" content="إدارة, طلاب, مدرسة, عُمان, تعليم"/>
+  <meta name="author" content=""/>
+
+  <title>نظام إدارة الطلاب</title>
+
+  <!-- الخطوط والأيقونات -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- فافيكون -->
+  <link rel="icon" type="image/png" href="assets/media/images/school-logo.png">
+
+  <!-- ===== ملفات التصميم المتجاوب ===== -->
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <style>
+    :root {
+      /* نظام ألوان عُماني متطور */
+      --primary-color: #00796B;
+      --primary-light: #4DB6AC;
+      --primary-dark: #004D40;
+      --secondary-color: #FF5722;
+      --accent-color: #FFD700;
+      --success-color: #4CAF50;
+      --warning-color: #FF9800;
+      --error-color: #F44336;
+      --info-color: #2196F3;
+      --text-primary: #212121;
+      --text-secondary: #757575;
+      --background-light: #FAFAFA;
+      --surface-color: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-medium: rgba(0, 0, 0, 0.2);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+
+      /* متغيرات التخطيط */
+      --border-radius: 16px;
+      --border-radius-small: 8px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+
+      /* الانتقالات */
+      --transition-fast: 0.2s ease-out;
+      --transition-normal: 0.3s ease-out;
+      --transition-slow: 0.5s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg,
+        #e0f7fa 0%,
+        #b2dfdb 25%,
+        #80cbc4 50%,
+        #4db6ac 75%,
+        #26a69a 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* خلفية متحركة */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 121, 107, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(255, 87, 34, 0.1) 0%, transparent 50%);
+      animation: backgroundShift 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(-20px, 20px) rotate(1deg); }
+      50% { transform: translate(20px, -20px) rotate(-1deg); }
+      75% { transform: translate(-10px, -10px) rotate(0.5deg); }
+    }
+
+    /* أزرار التحكم */
+    .control-buttons {
+      position: fixed;
+      top: var(--spacing-md);
+      display: flex;
+      gap: var(--spacing-sm);
+      z-index: 1000;
+    }
+
+    .control-buttons.left {
+      left: var(--spacing-md);
+    }
+
+    .control-buttons.right {
+      right: var(--spacing-md);
+    }
+
+    .control-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-color);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px var(--shadow-medium);
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 8px 20px var(--shadow-dark);
+    }
+
+    .control-btn:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    /* الحاوي الرئيسي */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-lg);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* رأس الصفحة */
+    .header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+      animation: slideDown 0.8s ease-out;
+    }
+
+    .header-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-xl);
+      box-shadow: 0 8px 32px var(--shadow-medium);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    }
+
+    .header-title {
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+
+    .header-subtitle {
+      font-size: clamp(1rem, 3vw, 1.1rem);
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* شريط الأدوات */
+    .toolbar {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: 0 4px 20px var(--shadow-light);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-container {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: 2px solid rgba(0, 121, 107, 0.2);
+      border-radius: var(--border-radius-small);
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all var(--transition-normal);
+      padding-right: 50px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+    }
+
+    .filters-container {
+      display: flex;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: 2px solid rgba(0, 121, 107, 0.2);
+      border-radius: var(--border-radius-small);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .btn {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: none;
+      border-radius: var(--border-radius-small);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #E64A19;
+      transform: translateY(-2px);
+    }
+
+    .btn-info {
+      background: var(--info-color);
+      color: white;
+    }
+
+    .btn-info:hover {
+      background: #1976D2;
+      transform: translateY(-2px);
+    }
+
+    /* إحصائيات */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      text-align: center;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-normal);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px var(--shadow-medium);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .stat-card.total::before { background: var(--primary-color); }
+    .stat-card.grades::before { background: var(--info-color); }
+    .stat-card.classes::before { background: var(--secondary-color); }
+    .stat-card.selected::before { background: var(--accent-color); }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-xs);
+      display: block;
+    }
+
+    .stat-card.total .stat-number { color: var(--primary-color); }
+    .stat-card.grades .stat-number { color: var(--info-color); }
+    .stat-card.classes .stat-number { color: var(--secondary-color); }
+    .stat-card.selected .stat-number { color: var(--accent-color); }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* قائمة الطلاب */
+    .students-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px var(--shadow-medium);
+      backdrop-filter: blur(15px);
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+    .students-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      padding: var(--spacing-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .students-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .students-count {
+      background: rgba(255, 255, 255, 0.2);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius-small);
+      font-size: 0.9rem;
+    }
+
+    .students-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: #f0f0f0;
+    }
+
+    .student-card {
+      background: white;
+      padding: var(--spacing-md);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+      position: relative;
+      border-radius: 4px;
+    }
+
+    .student-card:hover {
+      background: rgba(0, 121, 107, 0.05);
+      transform: translateX(5px);
+    }
+
+    .student-card.selected {
+      background: rgba(0, 121, 107, 0.1);
+      border-right: 4px solid var(--primary-color);
+    }
+
+    .student-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.3;
+    }
+
+    .student-class {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .student-checkbox {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* رسائل فارغة */
+    .empty-state {
+      text-align: center;
+      padding: var(--spacing-xl);
+      color: var(--text-secondary);
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: var(--spacing-md);
+      opacity: 0.5;
+    }
+
+    .empty-message {
+      font-size: 1.1rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .empty-submessage {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* تأثيرات الحركة */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* التجاوب مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: var(--spacing-lg) var(--spacing-md);
+      }
+
+      .toolbar-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-container {
+        min-width: unset;
+      }
+
+      .filters-container {
+        justify-content: center;
+      }
+
+      .action-buttons {
+        justify-content: center;
+      }
+
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .students-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .students-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+
+    /* تأثيرات التركيز للوصولية */
+    .btn:focus,
+    .search-input:focus,
+    .filter-select:focus,
+    .student-card:focus {
+      outline: 3px solid rgba(0, 121, 107, 0.3);
+      outline-offset: 2px;
+    }
+
+    /* تحسينات إضافية */
+    .fade-in {
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    /* ===== تحسينات التصميم المتجاوب المخصصة ===== */
+    
+    /* تحسينات عامة للتجاوب */
+    .main-container {
+      max-width: 100vw !important;
+      overflow-x: hidden;
+    }
+
+    .students-grid,
+    .stats-grid {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    /* للأجهزة اللوحية والهواتف الكبيرة */
+    @media (max-width: 768px) {
+      .control-buttons {
+        top: 10px;
+        gap: 6px;
+      }
+
+      .control-buttons.left {
+        left: 10px;
+      }
+
+      .control-buttons.right {
+        right: 10px;
+      }
+
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+
+      .main-container {
+        padding: 20px 15px;
+        max-width: 100% !important;
+      }
+
+      /* رأس الصفحة */
+      .page-header {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-size: clamp(1.8rem, 4.5vw, 2.2rem);
+        margin-bottom: 8px;
+      }
+
+      .page-subtitle {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+      }
+
+      /* شبكة الإحصائيات */
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .stat-card {
+        padding: 15px 12px;
+      }
+
+      .stat-number {
+        font-size: 1.8rem;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+      }
+
+      /* أدوات البحث والفلترة */
+      .search-controls {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+      }
+
+      .search-box,
+      .filter-controls {
+        width: 100%;
+      }
+
+      .filter-controls {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .filter-select,
+      .search-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px; /* منع التكبير في iOS */
+      }
+
+      /* شبكة الطلاب */
+      .students-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .student-card {
+        padding: 16px 12px;
+        margin: 0 4px;
+      }
+
+      .student-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .student-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+
+      .student-details {
+        font-size: 0.8rem;
+        gap: 8px;
+      }
+
+      .student-actions {
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+      }
+
+      .action-btn {
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+
+      /* النوافذ المنبثقة */
+      .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        max-width: 500px;
+        padding: 20px 15px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 10px;
+        font-size: 16px; /* منع التكبير في iOS */
+      }
+    }
+
+    /* للهواتف المحمولة */
+    @media (max-width: 480px) {
+      .control-buttons {
+        top: 8px;
+        gap: 4px;
+      }
+
+      .control-buttons.left {
+        left: 8px;
+      }
+
+      .control-buttons.right {
+        right: 8px;
+      }
+
+      .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .main-container {
+        padding: 15px 8px;
+      }
+
+      .page-header {
+        padding: 15px 10px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .page-title {
+        font-size: clamp(1.5rem, 4vw, 1.8rem);
+        margin-bottom: 6px;
+      }
+
+      .page-subtitle {
+        font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+      }
+
+      /* الإحصائيات */
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .stat-card {
+        padding: 12px 10px;
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+      }
+
+      /* أدوات البحث */
+      .search-controls {
+        padding: 12px 8px;
+        gap: 10px;
+      }
+
+      .search-input {
+        padding: 8px 12px;
+        font-size: 16px;
+      }
+
+      .filter-select {
+        padding: 8px 10px;
+        font-size: 14px;
+      }
+
+      /* بطاقات الطلاب */
+      .students-grid {
+        gap: 8px;
+      }
+
+      .student-card {
+        padding: 12px 8px;
+        margin: 0 2px;
+        border-radius: 10px;
+      }
+
+      .student-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+
+      .student-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .student-info h3 {
+        font-size: 1rem;
+        margin-bottom: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .student-details {
+        font-size: 0.75rem;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .student-actions {
+        flex-direction: column;
+        gap: 4px;
+        width: 80px;
+      }
+
+      .action-btn {
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 0.7rem;
+        border-radius: 4px;
+      }
+
+      /* النوافذ المنبثقة */
+      .modal-content {
+        margin: 2% auto;
+        width: 98%;
+        max-width: 380px;
+        padding: 15px 10px;
+        border-radius: 10px;
+      }
+
+      .modal-header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 8px 10px;
+        font-size: 16px;
+        border-radius: 6px;
+      }
+
+      .modal-actions {
+        gap: 8px;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* للهواتف الصغيرة جداً */
+    @media (max-width: 360px) {
+      .main-container {
+        padding: 12px 6px;
+      }
+
+      .page-header {
+        padding: 12px 8px;
+        margin-bottom: 12px;
+      }
+
+      .page-title {
+        font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+        margin-bottom: 4px;
+      }
+
+      .page-subtitle {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+      }
+
+      .stats-grid {
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .stat-card {
+        padding: 10px 8px;
+      }
+
+      .stat-number {
+        font-size: 1.3rem;
+      }
+
+      .stat-label {
+        font-size: 0.7rem;
+      }
+
+      .search-controls {
+        padding: 10px 6px;
+        gap: 8px;
+      }
+
+      .students-grid {
+        gap: 6px;
+      }
+
+      .student-card {
+        padding: 10px 6px;
+        margin: 0 1px;
+      }
+
+      .student-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .student-info h3 {
+        font-size: 0.9rem;
+      }
+
+      .student-details {
+        font-size: 0.7rem;
+      }
+
+      .student-actions {
+        width: 70px;
+      }
+
+      .action-btn {
+        padding: 4px 6px;
+        font-size: 0.65rem;
+      }
+
+      .modal-content {
+        width: 99%;
+        max-width: 320px;
+        padding: 12px 8px;
+      }
+    }
+
+    /* للوضع الأفقي على الهواتف */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .main-container {
+        padding: 10px 15px;
+      }
+
+      .page-header {
+        padding: 10px 15px;
+        margin-bottom: 8px;
+      }
+
+      .page-title {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 4px;
+      }
+
+      .page-subtitle {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .stat-card {
+        padding: 8px 6px;
+      }
+
+      .stat-number {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
+      }
+
+      .stat-label {
+        font-size: 0.65rem;
+      }
+
+      .search-controls {
+        padding: 8px 12px;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .students-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 8px;
+      }
+
+      .student-card {
+        padding: 8px 10px;
+      }
+
+      .student-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+
+      .student-info h3 {
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+      }
+
+      .student-details {
+        font-size: 0.7rem;
+      }
+
+      .student-actions {
+        flex-direction: row;
+        gap: 4px;
+        width: auto;
+      }
+
+      .action-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+
+      .modal-content {
+        margin: 2% auto;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    }
+
+    /* تحسينات إضافية للمس */
+    @media (hover: none) and (pointer: coarse) {
+      .control-btn,
+      .action-btn,
+      .btn,
+      .student-card {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      .control-btn:hover,
+      .action-btn:hover,
+      .btn:hover,
+      .student-card:hover {
+        transform: none;
+      }
+
+      .control-btn:active,
+      .action-btn:active,
+      .btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+      }
+
+      .student-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+      }
+
+      /* تحسين النصوص للمس */
+      .search-input,
+      .filter-select,
+      .form-group input,
+      .form-group select {
+        font-size: 16px !important; /* منع التكبير في iOS */
+      }
+    }
+
+    /* تحسينات للشاشات الكبيرة */
+    @media (min-width: 1200px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .students-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .student-card {
+        padding: 24px 20px;
+      }
+
+      .student-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+      }
+
+      .student-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+      }
+
+      .student-details {
+        font-size: 0.95rem;
+        gap: 12px;
+      }
+
+      .action-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- أزرار التحكم -->
+  <div class="control-buttons right">
+    <button class="control-btn" id="homeBtn" title="العودة للصفحة الرئيسية" aria-label="العودة للصفحة الرئيسية">
+      🏠
+    </button>
+    <button class="control-btn" id="activitiesBtn" title="الأنشطة" aria-label="الأنشطة">
+      📚
+    </button>
+  </div>
+
+  <div class="control-buttons left">
+    <button class="control-btn" id="fullscreenBtn" title="ملء الشاشة" aria-label="ملء الشاشة">
+      ⛶
+    </button>
+  </div>
+
+  <!-- المحتوى الرئيسي -->
+  <div class="main-container container-responsive">
+    <!-- رأس الصفحة -->
+    <header class="header">
+      <div class="header-card card-responsive">
+        <h1 class="header-title title-responsive">
+          <span>👥</span>
+          <span>نظام إدارة الطلاب</span>
+        </h1>
+        <p class="header-subtitle text-responsive">
+          إدارة شاملة لبيانات الطلاب مع إمكانيات البحث والتصفية المتقدمة
+        </p>
+      </div>
+    </header>
+
+    <!-- شريط الأدوات -->
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <div class="search-container">
+          <input type="text" class="search-input input-responsive" id="searchInput" placeholder="ابحث عن طالب بالاسم..." autocomplete="off">
+          <span class="search-icon">🔍</span>
+        </div>
+        
+        <div class="filters-container">
+          <select class="filter-select input-responsive" id="gradeFilter">
+            <option value="">جميع الصفوف</option>
+            <option value="خامس">الصف الخامس</option>
+            <option value="سادس">الصف السادس</option>
+            <option value="سابع">الصف السابع</option>
+            <option value="ثامن">الصف الثامن</option>
+            <option value="تاسع">الصف التاسع</option>
+          </select>
+          
+          <select class="filter-select" id="classFilter">
+            <option value="">جميع الشُعب</option>
+          </select>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary btn-responsive" id="selectAllBtn">
+            <span>✓</span>
+            <span class="hide-mobile">تحديد الكل</span>
+          </button>
+          <button class="btn btn-secondary btn-responsive" id="clearSelectionBtn">
+            <span>✗</span>
+            <span class="hide-mobile">إلغاء التحديد</span>
+          </button>
+          <button class="btn btn-info btn-responsive" id="exportBtn">
+            <span>💾</span>
+            <span class="hide-mobile">تصدير</span>
+          </button>
+          <button class="btn btn-warning btn-responsive" id="absentBtn">
+            <span>🚫</span>
+            <span class="hide-mobile">تسجيل الغياب</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- إحصائيات -->
+    <div class="stats-container">
+      <div class="stat-card card-responsive total">
+        <span class="stat-number heading-responsive" id="totalStudents">0</span>
+        <span class="stat-label text-responsive">إجمالي الطلاب</span>
+      </div>
+      <div class="stat-card card-responsive grades">
+        <span class="stat-number heading-responsive" id="totalGrades">5</span>
+        <span class="stat-label text-responsive">الصفوف الدراسية</span>
+      </div>
+      <div class="stat-card card-responsive classes">
+        <span class="stat-number heading-responsive" id="totalClasses">0</span>
+        <span class="stat-label text-responsive">الشُعب</span>
+      </div>
+      <div class="stat-card card-responsive selected">
+        <span class="stat-number heading-responsive" id="selectedCount">0</span>
+        <span class="stat-label text-responsive">المحددون</span>
+      </div>
+    </div>
+
+    <!-- قائمة الطلاب -->
+    <div class="students-container">
+      <div class="students-header">
+        <div class="students-title heading-responsive">
+          <span>👨‍🎓</span>
+          <span>قائمة الطلاب</span>
+        </div>
+        <div class="students-count text-responsive" id="studentsCount">
+          عرض 0 من 0 طالب
+        </div>
+      </div>
+      
+      <div class="students-grid grid-responsive" id="studentsGrid">
+        <!-- سيتم ملء الطلاب هنا ديناميكياً -->
+      </div>
+      
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-message heading-responsive">لا توجد نتائج</div>
+        <div class="empty-submessage text-responsive">جرب تغيير معايير البحث أو التصفية</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- الأصوات -->
+  <audio id="clickSound" src="assets/media/sounds/Click.mp3" preload="auto" aria-hidden="true"></audio>
+  <audio id="selectSound" src="assets/media/sounds/select.mp3" preload="auto" aria-hidden="true"></audio>
+
+
+
+  <script>
+    console.log('🚀 بدء تحميل نظام إدارة الطلاب...');
+
+    // المتغيرات العامة
+    let studentsData = {};
+    let filteredStudents = [];
+    let selectedStudents = new Set();
+    let currentFilters = {
+      search: '',
+      grade: '',
+      class: ''
+    };
+    // تحقق من حالة المدير من localStorage
+    let isAdmin = false;
+    if (localStorage.getItem('isAdmin') === 'true') {
+      isAdmin = true;
+    }
+
+    // عناصر DOM
+    const elements = {
+      searchInput: document.getElementById('searchInput'),
+      gradeFilter: document.getElementById('gradeFilter'),
+      classFilter: document.getElementById('classFilter'),
+      studentsGrid: document.getElementById('studentsGrid'),
+      emptyState: document.getElementById('emptyState'),
+      totalStudents: document.getElementById('totalStudents'),
+      totalClasses: document.getElementById('totalClasses'),
+      selectedCount: document.getElementById('selectedCount'),
+      studentsCount: document.getElementById('studentsCount'),
+      selectAllBtn: document.getElementById('selectAllBtn'),
+      clearSelectionBtn: document.getElementById('clearSelectionBtn'),
+      exportBtn: document.getElementById('exportBtn'),
+      homeBtn: document.getElementById('homeBtn'),
+      activitiesBtn: document.getElementById('activitiesBtn'),
+      fullscreenBtn: document.getElementById('fullscreenBtn'),
+      clickSound: document.getElementById('clickSound'),
+      selectSound: document.getElementById('selectSound'),
+  absentBtn: document.getElementById('absentBtn'),
+  // adminLoginBtn: document.getElementById('adminLoginBtn')
+    };
+
+    // تشغيل الصوت
+    function playSound(soundElement) {
+      try {
+        if (soundElement && soundElement.readyState >= 2) {
+          soundElement.currentTime = 0;
+          const playPromise = soundElement.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              console.log('🔇 تعذر تشغيل الصوت');
+            });
+          }
+        }
+      } catch (error) {
+        console.log('🔇 خطأ في تشغيل الصوت:', error);
+      }
+    }
+
+    // تحميل بيانات الطلاب
+    async function loadStudentsData() {
+      try {
+        console.log('📁 تحميل بيانات الطلاب...');
+        const response = await fetch('data/studentData.json');
+        studentsData = await response.json();
+        
+        console.log('✅ تم تحميل بيانات الطلاب بنجاح');
+        console.log('📊 البيانات المحملة:', Object.keys(studentsData).length, 'صف');
+        
+        initializeApp();
+      } catch (error) {
+        console.error('❌ خطأ في تحميل بيانات الطلاب:', error);
+        showError('فشل في تحميل بيانات الطلاب');
+      }
+    }
+
+    // تهيئة التطبيق
+    function initializeApp() {
+      console.log('⚡ تهيئة نظام إدارة الطلاب...');
+      
+      updateClassFilter();
+      updateStats();
+      filterStudents();
+      setupEventListeners();
+      
+      console.log('🎉 تم تهيئة النظام بنجاح!');
+    }
+
+    // تحديث مرشح الشُعب
+    function updateClassFilter() {
+      const gradeValue = elements.gradeFilter.value;
+      const classFilter = elements.classFilter;
+      
+      // مسح الخيارات الحالية
+      classFilter.innerHTML = '<option value="">جميع الشُعب</option>';
+      
+      if (gradeValue) {
+        // إضافة شُعب الصف المختار
+        Object.keys(studentsData)
+          .filter(className => className.startsWith(gradeValue))
+          .forEach(className => {
+            const option = document.createElement('option');
+            option.value = className;
+            option.textContent = className;
+            classFilter.appendChild(option);
+          });
+      } else {
+        // إضافة جميع الشُعب
+        Object.keys(studentsData).forEach(className => {
+          const option = document.createElement('option');
+          option.value = className;
+          option.textContent = className;
+          classFilter.appendChild(option);
+        });
+      }
+    }
+
+    // تحديث الإحصائيات
+    function updateStats() {
+      const totalStudents = Object.values(studentsData).reduce((sum, students) => sum + students.length, 0);
+      const totalClasses = Object.keys(studentsData).length;
+      
+      animateNumber(elements.totalStudents, 0, totalStudents, 1500);
+      animateNumber(elements.totalClasses, 0, totalClasses, 1200);
+      
+      elements.selectedCount.textContent = selectedStudents.size;
+    }
+
+    // تأثير العد المتحرك
+    function animateNumber(element, start, end, duration) {
+      const startTime = performance.now();
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(start + (end - start) * progress);
+        element.textContent = current;
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // تصفية الطلاب
+    function filterStudents() {
+      filteredStudents = [];
+      
+      Object.entries(studentsData).forEach(([className, students]) => {
+        // تطبيق فلتر الصف
+        if (currentFilters.grade && !className.startsWith(currentFilters.grade)) {
+          return;
+        }
+        
+        // تطبيق فلتر الشُعبة
+        if (currentFilters.class && className !== currentFilters.class) {
+          return;
+        }
+        
+        // تطبيق فلتر البحث
+        const searchTerm = currentFilters.search.toLowerCase().trim();
+        const filteredClassStudents = searchTerm 
+          ? students.filter(student => student.toLowerCase().includes(searchTerm))
+          : students;
+        
+        // إضافة الطلاب المفلترين
+        filteredClassStudents.forEach(student => {
+          filteredStudents.push({
+            name: student,
+            class: className,
+            id: `${className}-${student}`
+          });
+        });
+      });
+      
+      renderStudents();
+      updateDisplayCount();
+    }
+
+    // عرض الطلاب
+    function renderStudents() {
+      const grid = elements.studentsGrid;
+      const emptyState = elements.emptyState;
+      
+      if (filteredStudents.length === 0) {
+        grid.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+      
+      emptyState.style.display = 'none';
+      
+      grid.innerHTML = filteredStudents.map(student => `
+        <div class="student-card ${selectedStudents.has(student.id) ? 'selected' : ''}" 
+             data-id="${student.id}" 
+             tabindex="0" 
+             role="button"
+             aria-label="طالب: ${student.name}">
+          <input type="checkbox" class="student-checkbox" 
+                 ${selectedStudents.has(student.id) ? 'checked' : ''}>
+          <div class="student-name">${student.name}</div>
+          <div class="student-class">
+            <span>🏫</span>
+            <span>${student.class}</span>
+          </div>
+        </div>
+      `).join('');
+      
+      // إضافة مستمعي الأحداث للطلاب
+      grid.querySelectorAll('.student-card').forEach(card => {
+        card.addEventListener('click', handleStudentClick);
+        card.addEventListener('keydown', handleStudentKeydown);
+      });
+      
+      // تأثير التلاشي
+      grid.classList.add('fade-in');
+      setTimeout(() => grid.classList.remove('fade-in'), 500);
+    }
+
+    // معالجة النقر على الطالب
+    function handleStudentClick(event) {
+      const card = event.currentTarget;
+      const studentId = card.dataset.id;
+      const checkbox = card.querySelector('.student-checkbox');
+      
+      // تجنب النقر المزدوج على الـ checkbox
+      if (event.target === checkbox) return;
+      
+      toggleStudentSelection(studentId, card, checkbox);
+      playSound(elements.selectSound);
+    }
+
+    // معالجة لوحة المفاتيح للطالب
+    function handleStudentKeydown(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleStudentClick(event);
+      }
+    }
+
+    // تبديل تحديد الطالب
+    function toggleStudentSelection(studentId, card, checkbox) {
+      if (selectedStudents.has(studentId)) {
+        selectedStudents.delete(studentId);
+        card.classList.remove('selected');
+        checkbox.checked = false;
+      } else {
+        selectedStudents.add(studentId);
+        card.classList.add('selected');
+        checkbox.checked = true;
+      }
+      
+      updateSelectedCount();
+    }
+
+    // تحديث عداد المحددين
+    function updateSelectedCount() {
+      elements.selectedCount.textContent = selectedStudents.size;
+      elements.selectedCount.classList.add('pulse');
+      setTimeout(() => elements.selectedCount.classList.remove('pulse'), 1000);
+    }
+
+    // تحديث عداد العرض
+    function updateDisplayCount() {
+      const total = Object.values(studentsData).reduce((sum, students) => sum + students.length, 0);
+      elements.studentsCount.textContent = `عرض ${filteredStudents.length} من ${total} طالب`;
+    }
+
+    // تحديد الكل
+    function selectAll() {
+      filteredStudents.forEach(student => {
+        selectedStudents.add(student.id);
+      });
+      renderStudents();
+      updateSelectedCount();
+      playSound(elements.clickSound);
+    }
+
+    // إلغاء تحديد الكل
+    function clearSelection() {
+      selectedStudents.clear();
+      renderStudents();
+      updateSelectedCount();
+      playSound(elements.clickSound);
+    }
+
+    // تصدير البيانات
+    function exportData() {
+      const selectedData = filteredStudents.filter(student => 
+        selectedStudents.has(student.id)
+      );
+      
+      if (selectedData.length === 0) {
+        alert('⚠️ يرجى تحديد طلاب للتصدير');
+        return;
+      }
+      
+      const csvContent = [
+        ['الاسم', 'الصف'],
+        ...selectedData.map(student => [student.name, student.class])
+      ].map(row => row.join(',')).join('\n');
+      
+      const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      
+      link.setAttribute('href', url);
+      link.setAttribute('download', `students_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      playSound(elements.clickSound);
+      console.log('📊 تم تصدير بيانات', selectedData.length, 'طالب');
+    }
+
+    // دالة إرسال الغياب إلى Google Sheets عبر Webhook
+function sendAbsenceToGoogleSheets() {
+  const absentStudents = Array.from(selectedStudents).map(id => {
+    const [className, ...nameParts] = id.split('-');
+    return {
+      name: nameParts.join('-'),
+      class: className,
+      date: new Date().toISOString().split('T')[0]
+    };
+  });
+  if (absentStudents.length === 0) {
+    alert('يرجى تحديد الطلاب الغائبين أولاً');
+    return;
+  }
+  // رابط SheetDB API
+  const sheetdbUrl = 'https://sheetdb.io/api/v1/njazp2y4wmgej';
+  fetch(sheetdbUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ data: absentStudents })
+  })
+  .then(response => response.json())
+  .then(data => {
+    showUpdateMessage('تم إرسال الغياب بنجاح إلى Google Sheets عبر SheetDB');
+    clearSelection();
+  })
+  .catch(error => {
+    showError('فشل في إرسال الغياب: ' + error);
+  });
+}
+
+
+
+
+    // إعداد مستمعي الأحداث
+    function setupEventListeners() {
+      // البحث
+      elements.searchInput.addEventListener('input', (e) => {
+        currentFilters.search = e.target.value;
+        filterStudents();
+      });
+      
+      // فلتر الصف
+      elements.gradeFilter.addEventListener('change', (e) => {
+        currentFilters.grade = e.target.value;
+        currentFilters.class = ''; // إعادة تعيين فلتر الشُعبة
+        elements.classFilter.value = '';
+        updateClassFilter();
+        filterStudents();
+      });
+      
+      // فلتر الشُعبة
+      elements.classFilter.addEventListener('change', (e) => {
+        currentFilters.class = e.target.value;
+        filterStudents();
+      });
+      
+      // أزرار الأعمال
+      elements.selectAllBtn.addEventListener('click', selectAll);
+      elements.clearSelectionBtn.addEventListener('click', clearSelection);
+      elements.exportBtn.addEventListener('click', exportData);
+
+
+      // زر الغياب: يطلب الرقم السري عند كل ضغطة
+      elements.absentBtn.addEventListener('click', function() {
+        const pass = prompt('الرجاء إدخال الرقم السري لتسجيل الغياب:');
+        if (pass === null) return; // إلغاء
+        if (pass === 'Demo1234') {
+          sendAbsenceToGoogleSheets();
+        } else {
+          showError('الرقم السري غير صحيح!');
+        }
+      });
+
+  // تم حذف زر دخول المدير
+      
+      // أزرار التنقل
+      elements.homeBtn.addEventListener('click', () => {
+        playSound(elements.clickSound);
+        window.location.href = 'index.html';
+      });
+      
+      elements.activitiesBtn.addEventListener('click', () => {
+        playSound(elements.clickSound);
+        window.location.href = 'main.html';
+      });
+      
+      elements.fullscreenBtn.addEventListener('click', () => {
+        playSound(elements.clickSound);
+        toggleFullScreen();
+      });
+      
+      // اختصارات لوحة المفاتيح
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'a') {
+          e.preventDefault();
+          selectAll();
+        } else if (e.key === 'Escape') {
+          clearSelection();
+        } else if (e.key === 'F11') {
+          e.preventDefault();
+          toggleFullScreen();
+        }
+      });
+  // لا حاجة لتعطيل زر الغياب
+    }
+
+    // ملء الشاشة
+    async function toggleFullScreen() {
+      try {
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+        } else {
+          await document.exitFullscreen();
+        }
+      } catch (error) {
+        console.warn('⚠️ فشل في تغيير وضع ملء الشاشة:', error);
+      }
+    }
+
+    // عرض خطأ
+    function showError(message) {
+      const errorDiv = document.createElement('div');
+      errorDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--error-color);
+        color: white;
+        padding: var(--spacing-lg);
+        border-radius: var(--border-radius);
+        z-index: 2000;
+        box-shadow: 0 8px 32px var(--shadow-dark);
+      `;
+      errorDiv.textContent = `❌ ${message}`;
+      
+      document.body.appendChild(errorDiv);
+      setTimeout(() => {
+        document.body.removeChild(errorDiv);
+      }, 3000);
+    }
+
+    function showUpdateMessage(message) {
+  const msgDiv = document.createElement('div');
+  msgDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--info-color);
+    color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    z-index: 3000;
+    box-shadow: 0 8px 32px var(--shadow-dark);
+    font-size: 1.2rem;
+    text-align: center;
+  `;
+  msgDiv.textContent = message || 'تم تحديث بيانات الطلاب بنجاح! يرجى إرسال الملف للمطور لحفظ التغييرات.';
+  document.body.appendChild(msgDiv);
+  setTimeout(() => {
+    document.body.removeChild(msgDiv);
+  }, 5000);
+}
+
+    // بدء التطبيق
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('📄 تم تحميل DOM - بدء التهيئة...');
+      loadStudentsData();
+    });
+
+    // معالجة الأخطاء
+    window.addEventListener('error', (e) => {
+      console.error('💥 خطأ عام:', e.error);
+    });
+
+    window.addEventListener('unhandledrejection', (e) => {
+      console.error('💥 خطأ غير معالج:', e.reason);
+    });
+
+    console.log('📝 تم تحميل نصوص نظام إدارة الطلاب!');
+  </script>
+
+  <!-- ===== JavaScript للتصميم المتجاوب ===== -->
+  <script src="assets/js/responsive-helper.js"></script>
+  <script>
+    // تهيئة التصميم المتجاوب
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.responsiveHelper) {
+        console.log('🎯 تم تفعيل نظام التصميم المتجاوب في student-management.html');
+        
+        // استمع لتغييرات الجهاز
+        window.addEventListener('devicechange', (e) => {
+          console.log('📱 تم تغيير نوع الجهاز إلى:', e.detail.device);
+          
+          // إضافة فئات CSS حسب نوع الجهاز
+          document.body.classList.remove('mobile-device', 'tablet-device', 'desktop-device');
+          document.body.classList.add(e.detail.device + '-device');
+          
+          // تحسين شبكة الطلاب حسب الجهاز
+          const studentsGrid = document.querySelector('.students-grid');
+          const statsContainer = document.querySelector('.stats-container');
+          
+          if (studentsGrid) {
+            if (e.detail.device === 'mobile') {
+              studentsGrid.style.gridTemplateColumns = '1fr';
+            } else if (e.detail.device === 'tablet') {
+              studentsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            }
+          }
+          
+          if (statsContainer) {
+            if (e.detail.device === 'mobile') {
+              statsContainer.style.gridTemplateColumns = '1fr';
+            } else if (e.detail.device === 'tablet') {
+              statsContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            }
+          }
+        });
+
+        // استمع لتغييرات الاتجاه
+        window.addEventListener('orientationchange', (e) => {
+          console.log('🔄 تم تغيير اتجاه الشاشة إلى:', e.detail.orientation);
+          
+          // إضافة فئات CSS حسب الاتجاه
+          document.body.classList.remove('portrait-mode', 'landscape-mode');
+          document.body.classList.add(e.detail.orientation + '-mode');
+          
+          // تحسين شريط الأدوات في الوضع الأفقي للهواتف
+          if (e.detail.orientation === 'landscape' && window.responsiveHelper.isMobile()) {
+            const toolbar = document.querySelector('.toolbar');
+            if (toolbar) {
+              toolbar.style.padding = '8px 12px';
+            }
+            
+            const toolbarRow = document.querySelector('.toolbar-row');
+            if (toolbarRow) {
+              toolbarRow.style.flexDirection = 'row';
+              toolbarRow.style.gap = '10px';
+            }
+          }
+        });
+
+        // تحسين تجربة اللمس للأجهزة المحمولة
+        if (window.responsiveHelper.isTouchDevice()) {
+          // تحسين بطاقات الطلاب
+          const observerCallback = (mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach((node) => {
+                  if (node.nodeType === 1 && node.classList.contains('student-card')) {
+                    // تحسين استجابة اللمس
+                    node.addEventListener('touchstart', function() {
+                      this.style.transform = 'scale(0.98)';
+                    }, { passive: true });
+                    
+                    node.addEventListener('touchend', function() {
+                      setTimeout(() => {
+                        this.style.transform = '';
+                      }, 100);
+                    }, { passive: true });
+                  }
+                });
+              }
+            });
+          };
+
+          const observer = new MutationObserver(observerCallback);
+          const studentsGrid = document.getElementById('studentsGrid');
+          if (studentsGrid) {
+            observer.observe(studentsGrid, { childList: true });
+          }
+
+          // تحسين الأزرار
+          const actionButtons = document.querySelectorAll('.btn, .action-btn');
+          actionButtons.forEach(button => {
+            button.style.minHeight = '44px';
+            button.style.minWidth = '44px';
+          });
+        }
+
+        // تحسين البحث للأجهزة المحمولة
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput && window.responsiveHelper.isMobile()) {
+          // تحسين حجم الخط لمنع التكبير في iOS
+          searchInput.style.fontSize = '16px';
+          
+          // إضافة تأثير التركيز
+          searchInput.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+          });
+          
+          searchInput.addEventListener('blur', function() {
+            this.parentElement.style.transform = '';
+          });
+        }
+
+        // تحسين الفلاتر للأجهزة المحمولة
+        const filterSelects = document.querySelectorAll('.filter-select');
+        if (window.responsiveHelper.isMobile()) {
+          filterSelects.forEach(select => {
+            select.style.fontSize = '16px';
+            select.style.minHeight = '44px';
+          });
+        }
+
+        // تحسين الأداء للأجهزة الضعيفة
+        const reduceAnimations = window.responsiveHelper.isMobile() && 
+                                 window.devicePixelRatio < 2;
+        
+        if (reduceAnimations) {
+          console.log('🔧 تقليل التأثيرات البصرية للأجهزة الضعيفة');
+          
+          const style = document.createElement('style');
+          style.textContent = `
+            .student-card { transition: transform 0.1s ease !important; }
+            .stat-card { transition: all 0.1s ease !important; }
+            .btn { transition: all 0.1s ease !important; }
+            * { animation-duration: 0.1s !important; }
+          `;
+          document.head.appendChild(style);
+        }
+
+        // تحسين عرض الإحصائيات
+        function updateResponsiveStats() {
+          const statCards = document.querySelectorAll('.stat-card');
+          if (window.responsiveHelper.isMobile()) {
+            statCards.forEach(card => {
+              const number = card.querySelector('.stat-number');
+              const label = card.querySelector('.stat-label');
+              if (number) number.style.fontSize = 'clamp(1.2rem, 4vw, 1.5rem)';
+              if (label) label.style.fontSize = 'clamp(0.7rem, 2.5vw, 0.8rem)';
+            });
+          }
+        }
+
+        // تطبيق التحسينات عند التحميل
+        setTimeout(updateResponsiveStats, 500);
+      }
+    });
+
+    // تحسين أداء التمرير على الأجهزة المحمولة
+    let scrollTicking = false;
+    function updateOnScroll() {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          // تحسينات أداء التمرير
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }
+
+    if (window.responsiveHelper && window.responsiveHelper.isMobile()) {
+      window.addEventListener('scroll', updateOnScroll, { passive: true });
+    }
+
+    // تحسين إدارة الذاكرة على الأجهزة المحمولة
+    if (window.responsiveHelper && window.responsiveHelper.isMobile()) {
+      // تنظيف الذاكرة عند إخفاء الصفحة
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+          // تنظيف المتغيرات غير الضرورية
+          if (window.gc) {
+            window.gc();
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
