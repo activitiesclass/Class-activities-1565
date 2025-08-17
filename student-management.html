@@ -1670,7 +1670,7 @@ function sendAbsenceToGoogleSheets() {
       elements.absentBtn.addEventListener('click', function() {
         const pass = prompt('الرجاء إدخال الرقم السري لتسجيل الغياب:');
         if (pass === null) return; // إلغاء
-        if (pass === 'Demo1234') {
+        if (pass === 'user0') {
           sendAbsenceToGoogleSheets();
         } else {
           showError('الرقم السري غير صحيح!');
