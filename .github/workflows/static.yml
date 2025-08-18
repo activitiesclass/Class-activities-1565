@@ -1,4 +1,4 @@
-name: Deploy School Website
+name: Deploy School Website Automatically
 
 on:
   push:
@@ -8,43 +8,45 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout المستودع
         uses: actions/checkout@v4
 
-      - name: Read subscription info
+      - name: استخراج اسم المدرسة تلقائيًا
+        id: repo
+        run: |
+          echo "REPO_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+
+      - name: قراءة حالة الاشتراك
         id: subscription
         run: |
-          SCHOOL_NAME="Class-activities-1565"   # ← معرف المدرسة
-
-          START=$(jq -r .${SCHOOL_NAME}.start subscriptions.json)
-          END=$(jq -r .${SCHOOL_NAME}.end subscriptions.json)
+          START=$(jq -r .${REPO_NAME}.start subscriptions.json)
+          END=$(jq -r .${REPO_NAME}.end subscriptions.json)
           TODAY=$(date +%Y-%m-%d)
 
-          echo "اشتراك $SCHOOL_NAME يبدأ $START وينتهي $END (اليوم $TODAY)"
+          echo "اشتراك المدرسة '$REPO_NAME' يبدأ في $START وينتهي في $END (اليوم $TODAY)"
 
-          # إذا اليوم قبل البداية أو مساوي/أكبر من النهاية → منتهي
           if [[ "$TODAY" < "$START" || "$TODAY" >= "$END" ]]; then
             echo "expired=true" >> $GITHUB_OUTPUT
           else
             echo "expired=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Prepare expired page
+      - name: تجهيز صفحة "انتهى الاشتراك"
         if: steps.subscription.outputs.expired == 'true'
         run: |
           mkdir out
           echo "<!DOCTYPE html><html><head><meta charset='utf-8'><title>انتهى الاشتراك</title></head><body><h1 style='text-align:center;color:red'>⚠️ تم إيقاف الخدمة لعدم تجديد الاشتراك</h1></body></html>" > out/index.html
 
-      - name: Copy real website
+      - name: نشر الموقع الحقيقي
         if: steps.subscription.outputs.expired == 'false'
         run: |
           mkdir out
-          cp -r schools/Class-activities-1565/* out/
+          cp -r schools/${REPO_NAME}/* out/
 
-      - name: Upload artifact
+      - name: رفع الملفات لنشرها
         uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
-      - name: Deploy to GitHub Pages
+      - name: نشر على GitHub Pages
         uses: actions/deploy-pages@v4
