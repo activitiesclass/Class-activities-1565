@@ -15,14 +15,15 @@ jobs:
         id: subscription
         run: |
           SCHOOL_NAME="Class-activities-1565"   # ← معرف المدرسة
-          
+
           START=$(jq -r .${SCHOOL_NAME}.start subscriptions.json)
           END=$(jq -r .${SCHOOL_NAME}.end subscriptions.json)
           TODAY=$(date +%Y-%m-%d)
 
           echo "اشتراك $SCHOOL_NAME يبدأ $START وينتهي $END (اليوم $TODAY)"
 
-          if [[ "$TODAY" < "$START" || "$TODAY" > "$END" ]]; then
+          # إذا اليوم قبل البداية أو مساوي/أكبر من النهاية → منتهي
+          if [[ "$TODAY" < "$START" || "$TODAY" >= "$END" ]]; then
             echo "expired=true" >> $GITHUB_OUTPUT
           else
             echo "expired=false" >> $GITHUB_OUTPUT
