@@ -138,7 +138,7 @@
   <div class="container" aria-live="polite">
     <div class="game-header">
       <div>
-        <div class="game-title">🧩 مسابقة الحروف — 30 حرف</div>
+  <div class="game-title">🧩 مسابقة الحروف</div>
         <div class="game-subtitle">🟢 الأخضر يفوز بإكمال صف أفقي • 🔴 الأحمر يفوز بإكمال عمود رأسي</div>
       </div>
       <div class="control-bar">
@@ -182,9 +182,6 @@
         <button class="btn" id="demoCorrectBtn" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff">✨ تجربة احتفال الإجابة</button>
         <button class="btn" id="demoWinBtn" style="background:linear-gradient(135deg,#f59e0b,#eab308);color:#0F172A">🏆 تجربة احتفال الفوز</button>
       </div>
-      <p style="margin-top:.6rem;color:var(--text-secondary)">
-        ملاحظة: ضع هذا الملف وملف <b>questions_bank.json</b> في نفس المجلد.
-      </p>
     </div>
 
     <div class="game-area hidden" id="gameArea">
@@ -662,6 +659,13 @@ function openVictory(winner){
   playSound('win');
   pushNotification('🏆 فوز مستحق!', winner==='green'?'الأخضر أبدع!':'الأحمر تألق!');
   openOverlay('#victoryModal');
+  // إصلاح زر حسنًا في نافذة الفوز
+  setTimeout(()=>{
+    const okBtn = document.querySelector('#victoryModal .btn.success.close');
+    if(okBtn) {
+      okBtn.onclick = ()=> closeOverlay('#victoryModal');
+    }
+  }, 100);
 }
 
 /* =========================
