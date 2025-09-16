@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>مسابقة الحروف (30 حرف) - نسخة معدلة</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/notification-bar.css">
   <style>
     :root{
       --oman-red:#DC143C;--oman-green:#228B22;--oman-gold:#FFD700;--oman-white:#fff;--oman-navy:#1B365D;
@@ -70,7 +71,9 @@
 </head>
 <body>
   <div class="container">
-    <div class="game-header">
+     <!-- إشعارات عائمة -->
+     <div id="notificationBar" class="notification-bar hidden"></div>
+     <div class="game-header">
       <div class="game-title">🧩 مسابقة الحروف — نسخة 30 حرف</div>
       <div class="game-subtitle">الفريق الأخضر يفوز بإكمال صف أفقي • الفريق الأحمر يفوز بإكمال عمود رأسي</div>
     </div>
@@ -370,7 +373,7 @@ function claimCell(){
   const winner = checkVictory();
   if(winner){
     victoryTitle.textContent = "🎉 انتهت اللعبة!";
-    victoryMsg.textContent = winner === "green" ? "مبروك للفريق الأخضر: أكمل صفًا أفقيًا!" : "مبروك للفريق الأحمر: أكمل عمودًا رأسيًا!";
+    victoryMsg.textContent = winner === "green" ? "مبروك للفريق الأخضر: أكمل صفًا أفقياً!" : "مبروك للفريق الأحمر: أكمل عمودًا رأسيًا!";
     openOverlay("#victoryModal");
   }
 
@@ -417,6 +420,37 @@ function resetGameState(){
   greenScoreEl.textContent = "0";
   redScoreEl.textContent = "0";
 }
+
+// ======== إشعارات ========
+function showNotification(msg, type = 'info'){
+  const bar = document.getElementById("notificationBar");
+  bar.textContent = msg;
+  bar.className = `notification-bar show ${type}`;
+  setTimeout(() => bar.classList.remove("show"), 3000);
+}
+
+function showCelebration(message) {
+  const celebrationEl = document.createElement("div");
+  celebrationEl.className = "celebration-message";
+  celebrationEl.textContent = message;
+  document.body.appendChild(celebrationEl);
+
+  setTimeout(() => {
+    celebrationEl.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    celebrationEl.classList.remove("show");
+    setTimeout(() => {
+      document.body.removeChild(celebrationEl);
+    }, 300);
+  }, 3000);
+}
+
+// اختبارات سريعة
+// showNotification('تم تسجيل الإجابة بنجاح', 'success');
+// showNotification('حدث خطأ، حاول مرة أخرى', 'error');
+// showCelebration('🎉 الفريق الأخضر فاز!');
 </script>
 </body>
 </html>
