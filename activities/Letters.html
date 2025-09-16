@@ -102,6 +102,11 @@
   </style>
 </head>
 <body>
+  <!-- نظام الصوت الاحترافي -->
+  <audio id="snd-win" src="../assets/media/sounds/win.mp3"></audio>
+  <audio id="snd-success" src="../assets/media/sounds/perfect-score.mp3"></audio>
+  <audio id="snd-point" src="../assets/media/sounds/select.mp3"></audio>
+  <audio id="snd-click" src="../assets/media/sounds/Click.mp3"></audio>
   <div class="container">
     <div class="game-header">
       <div class="game-title">🧩 مسابقة الحروف — نسخة 30 حرف</div>
@@ -193,6 +198,23 @@
   </div>
 
 <script>
+// ==== نظام الصوت الاحترافي (من Blockbusters) ====
+function playSound(type){
+  let id = '';
+  switch(type){
+    case 'win': id = 'snd-win'; break;
+    case 'success': id = 'snd-success'; break;
+    case 'point': id = 'snd-point'; break;
+    case 'click': id = 'snd-click'; break;
+    default: id = 'snd-click'; break;
+  }
+  const audio = document.getElementById(id);
+  if(audio){
+    audio.currentTime = 0;
+    audio.volume = 0.85;
+    audio.play();
+  }
+}
 // ==== الرسائل التفاعلية الاحترافية (من Blockbusters) ====
 let lastInteractiveMessageTime = 0;
 let interactiveMessagesEnabled = true;
