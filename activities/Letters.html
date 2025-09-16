@@ -2204,7 +2204,7 @@ window.gameData = window.gameData || {
       // الإعدادات
       settingsPanel: document.getElementById('settingsPanel'),
       gameSettingsForm: document.getElementById('gameSettingsForm'),
-           classSelect: document.getElementById('classSelect'),
+                               classSelect: document.getElementById('classSelect'),
       modeSelect: document.getElementById('modeSelect'),
       playersContainer: document.getElementById('playersContainer'),
       startGameBtn: document.getElementById('startGameBtn'),
@@ -3230,7 +3230,7 @@ window.gameData = window.gameData || {
       element.style.boxShadow = `0 8px 25px ${OMAN_COLORS.gold}40`;
       
       setTimeout(() => {
-        element.style.transform = '';
+        element.style.transform = 'scale(1)';
         element.style.boxShadow = '';
       }, 200);
       
@@ -3863,7 +3863,7 @@ window.gameData = window.gameData || {
               <div style="color: ${teamColor}; font-weight: 700; font-size: 1.1rem;">
                 ${result.team}
               </div>
-              <div style="font-size: 0.9rem; color: ${OMAN_COLORS.navy}; margin-top: 0.25rem;">
+              <div style="font-size: 0.9rem; color: ${OMAN_COLORS.navy}; margin: 0.25rem 0;">
                 👥 ${result.members}
               </div>
               <div style="font-size: 0.8rem; color: ${OMAN_COLORS.navy}; opacity: 0.7; margin-top: 0.25rem;">
@@ -4009,7 +4009,7 @@ window.gameData = window.gameData || {
       const modes = {
         'team2-manual': 'طالب واحد',
         'team4-manual': 'طالبان',
-        'team2-random': 'عشوائي',
+        'team2-random': 'طالبان',
         'team-free': 'فريق ضد فريق'
       };
       return modes[mode] || 'غير محدد';
@@ -4150,8 +4150,8 @@ window.gameData = window.gameData || {
       if (gameData.greenTeam.length === 0 || gameData.redTeam.length === 0) {
         showInteractiveMessage(
           '⚠️ يجب أن يحتوي كل فريق على طالب واحد على الأقل!',
-          '../assets/media/sounds/kingdom-sounds/ancient-bell.mp3',
-          '#FF6B6B'
+            '../assets/media/sounds/kingdom-sounds/ancient-bell.mp3',
+            '#FF6B6B'
         );
         return false;
       }
@@ -4344,7 +4344,10 @@ window.gameData = window.gameData || {
             33% { transform: translateY(-20px) rotate(5deg); }
             66% { transform: translateY(-10px) rotate(-5deg); }
           }
-          .floating {
+            .floating {
+              animation: float 3s infinite ease-in-out;
+              display: inline-block;
+            }
             animation: float 6s ease-in-out infinite;
           }
         `;
@@ -4427,7 +4430,10 @@ window.gameData = window.gameData || {
       gameData.gameStartTime = null;
       setupEventListeners();
       optimizeGamePerformance();
-      
+      // التأكد من إظهار لوحة الحروف عند التهيئة
+      if (elements.gameArea) {
+        elements.gameArea.classList.remove('hidden');
+      }
       // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
       hideLoadingIndicator();
       showAdvancedNotification(
@@ -4764,7 +4770,10 @@ window.gameData = window.gameData || {
       gameData.gameStartTime = null;
       setupEventListeners();
       optimizeGamePerformance();
-      
+      // التأكد من إظهار لوحة الحروف عند التهيئة
+      if (elements.gameArea) {
+        elements.gameArea.classList.remove('hidden');
+      }
       // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
       hideLoadingIndicator();
       showAdvancedNotification(
@@ -5101,7 +5110,10 @@ window.gameData = window.gameData || {
       gameData.gameStartTime = null;
       setupEventListeners();
       optimizeGamePerformance();
-      
+      // التأكد من إظهار لوحة الحروف عند التهيئة
+      if (elements.gameArea) {
+        elements.gameArea.classList.remove('hidden');
+      }
       // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
       hideLoadingIndicator();
       showAdvancedNotification(
@@ -5438,7 +5450,10 @@ window.gameData = window.gameData || {
       gameData.gameStartTime = null;
       setupEventListeners();
       optimizeGamePerformance();
-      
+      // التأكد من إظهار لوحة الحروف عند التهيئة
+      if (elements.gameArea) {
+        elements.gameArea.classList.remove('hidden');
+      }
       // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
       hideLoadingIndicator();
       showAdvancedNotification(
@@ -5775,7 +5790,10 @@ window.gameData = window.gameData || {
       gameData.gameStartTime = null;
       setupEventListeners();
       optimizeGamePerformance();
-      
+      // التأكد من إظهار لوحة الحروف عند التهيئة
+      if (elements.gameArea) {
+        elements.gameArea.classList.remove('hidden');
+      }
       // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
       hideLoadingIndicator();
       showAdvancedNotification(
@@ -5981,3 +5999,56 @@ window.gameData = window.gameData || {
       hideModal(elements.teamSelectionModal);
       hideModal(elements.victoryModal);
       
+      showAdvancedNotification(
+        '🔄 تم إعادة تعيين اللعبة',
+        'جاهز لبدء مسابقة جديدة',
+        'success'
+      );
+    }
+
+    // ==== وظائف التحكم المتقدمة ====
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+          showAdvancedNotification(
+            '⛶ وضع ملء الشاشة',
+            'تم تفعيل ملء الشاشة بنجاح',
+            'success',
+            2000
+          );
+        }).catch(err => {
+          console.log('خطأ في ملء الشاشة:', err);
+          showAdvancedNotification(
+            '❌ خطأ في ملء الشاشة',
+            'تعذر تفعيل وضع ملء الشاشة',
+            'error'
+          );
+        });
+      } else {
+        document.exitFullscreen().then(() => {
+          showAdvancedNotification(
+            '⛶ تم إلغاء ملء الشاشة',
+            'تم العودة للوضع العادي',
+            'info',
+            2000
+          );
+        });
+      }
+    }
+
+    // ==== إضافات بصرية متقدمة ====
+    function addFloatingAnimation() {
+      if (!document.getElementById('floating-animation')) {
+        const style = document.createElement('style');
+        style.id = 'floating-animation';
+        style.textContent = `
+          @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(-10px) rotate(-5deg); }
+          }
+          .floating {
+            animation: float 3s infinite ease-in-out;
+            display: inline-block;
+          }
+        `;
