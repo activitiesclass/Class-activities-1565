@@ -2858,8 +2858,8 @@
         if (answerTimeSelect && answerTimeSelect.value === 'limited' && answerTimeInput && answerTimeInput.value) {
           answerTime = parseInt(answerTimeInput.value);
         }
-        // جلب بنك الأسئلة من ملف JSON
-        fetch('activities/questions_bank.json')
+  // جلب بنك الأسئلة من ملف JSON (متوافق مع GitHub Pages)
+  fetch('activities/questions_bank.json')
           .then(res => res.json())
           .then(data => {
             let questionsList = [];
