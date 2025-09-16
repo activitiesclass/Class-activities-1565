@@ -4789,8 +4789,9 @@
     }
 
     function handleGameStart(e) {
-      gameData.gameStartTime = Date.now();
-      startGame(e);
+  if (e) e.preventDefault();
+  gameData.gameStartTime = Date.now();
+  startGame(e);
     }
 
     function handleClassChange() {
