@@ -6,6 +6,39 @@
   <title>مسابقة الحروف (30 حرف) - نسخة معدلة</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+/* ==== انميشن الخلايا والأزرار ==== */
+.letter-cell {
+  transition: transform 0.22s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.22s, background 0.22s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(27,54,93,0.08);
+}
+.letter-cell:hover:not(.taken-green):not(.taken-red) {
+  transform: scale(1.13) rotate(-2deg);
+  box-shadow: 0 8px 24px #FFD70055, 0 2px 8px #1B365D22;
+  background: linear-gradient(135deg,#fffbe6 60%,#fff 100%);
+}
+.letter-cell:active:not(.taken-green):not(.taken-red) {
+  transform: scale(0.97) rotate(1deg);
+  box-shadow: 0 2px 8px #1B365D22;
+  background: linear-gradient(135deg,#fffbe6 60%,#fff 100%);
+}
+.btn {
+  transition: transform 0.18s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.18s, background 0.18s;
+}
+.btn:hover:not(:disabled) {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px #FFD70033, 0 2px 8px #1B365D22;
+  filter: brightness(1.07);
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px #1B365D22;
+  filter: brightness(0.98);
+}
+/* ==== الرسائل التفاعلية ==== */
+.interactive-message {
+  pointer-events: none;
+}
     :root{
       --oman-red:#DC143C;--oman-green:#228B22;--oman-gold:#FFD700;--oman-white:#fff;--oman-navy:#1B365D;
       --red-gradient:linear-gradient(135deg,#DC143C 0%,#B91C3C 50%,#991B1B 100%);
@@ -160,6 +193,62 @@
   </div>
 
 <script>
+// ==== الرسائل التفاعلية الاحترافية (من Blockbusters) ====
+let lastInteractiveMessageTime = 0;
+let interactiveMessagesEnabled = true;
+function showInteractiveMessage(messageText, soundType = 'success') {
+  // منع تكرار الرسائل المتقاربة
+  const currentTime = Date.now();
+  if (currentTime - lastInteractiveMessageTime < 1000) return;
+  lastInteractiveMessageTime = currentTime;
+  if (!interactiveMessagesEnabled) return;
+  // إزالة الرسالة السابقة
+  const existingMessage = document.querySelector('.interactive-message');
+  if (existingMessage) existingMessage.remove();
+  // إنشاء عنصر الرسالة
+  const messageElement = document.createElement('div');
+  messageElement.className = 'interactive-message';
+  messageElement.innerHTML = messageText;
+  messageElement.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(240,248,255,0.98));
+    backdrop-filter: blur(15px);
+    border: 2px solid #FFD700;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+    font-weight: 600;
+    color: #1B365D;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px #FFD70040;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+    max-width: 90vw;
+    word-wrap: break-word;
+    font-family: 'Cairo',sans-serif;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  `;
+  document.body.appendChild(messageElement);
+  // تشغيل صوت
+  playSound(soundType);
+  // إظهار الرسالة مع تأثير
+  setTimeout(() => {
+    messageElement.style.opacity = '1';
+    messageElement.style.transform = 'translate(-50%, -50%) scale(1)';
+  }, 50);
+  // إخفاء الرسالة بعد 2.5 ثانية
+  setTimeout(() => {
+    messageElement.style.opacity = '0';
+    messageElement.style.transform = 'translate(-50%, -50%) scale(0.9)';
+    setTimeout(() => {
+      if (messageElement.parentNode) messageElement.remove();
+    }, 400);
+  }, 2500);
+}
 // ======== بيانات اللعبة ========
 const letters30 = ["ا","ب","ت","ث","ج","ح","خ","د","ذ","ر","ز","س","ش","ص","ض","ط","ظ","ع","غ","ف","ق","ك","ل","م","ن","ه","و","ي","ة","ء"];
 const COLS = 6, ROWS = 5; // 6×5 = 30 خلايا
@@ -366,17 +455,73 @@ function claimCell(){
   greenScoreEl.textContent = greenCount;
   redScoreEl.textContent = redCount;
 
+  // احتفال عند الإجابة الصحيحة
+  showCelebrationEffect('success');
+
   // فحص الفوز
   const winner = checkVictory();
   if(winner){
     victoryTitle.textContent = "🎉 انتهت اللعبة!";
     victoryMsg.textContent = winner === "green" ? "مبروك للفريق الأخضر: أكمل صفًا أفقيًا!" : "مبروك للفريق الأحمر: أكمل عمودًا رأسيًا!";
     openOverlay("#victoryModal");
+    showCelebrationEffect('win');
   }
 
   // تفريغ المتغيرات
   selectedCell = null;
   currentTeam = null;
+}
+// ==== مؤثرات الاحتفال (كونفيتي وصوت الفوز) من Blockbusters ====
+function showCelebrationEffect(type = 'win') {
+  // صوت الفوز
+  playSound(type === 'win' ? 'win' : 'success');
+  // كونفيتي
+  launchConfetti();
+}
+
+// كونفيتي بسيط (Canvas)
+function launchConfetti() {
+  if (document.getElementById('confetti-canvas')) return; // منع التكرار
+  const canvas = document.createElement('canvas');
+  canvas.id = 'confetti-canvas';
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '9999';
+  document.body.appendChild(canvas);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  // إعداد الكونفيتي
+  const confettiCount = 120;
+  const confetti = Array.from({length: confettiCount}, () => ({
+    x: Math.random() * canvas.width,
+    y: -20 - Math.random() * 40,
+    r: 6 + Math.random() * 8,
+    d: Math.random() * 2 + 1.5,
+    color: `hsl(${Math.random()*360},90%,60%)`,
+    tilt: Math.random() * 10 - 5
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach(c => {
+      ctx.beginPath();
+      ctx.ellipse(c.x, c.y, c.r, c.r/2, c.tilt, 0, 2*Math.PI);
+      ctx.fillStyle = c.color;
+      ctx.fill();
+      c.y += c.d + Math.sin(frame/10 + c.x/100)*1.5;
+      c.x += Math.sin(frame/15 + c.y/80)*2;
+      c.tilt += Math.random()*0.2-0.1;
+    });
+    frame++;
+    if (frame < 90) requestAnimationFrame(draw);
+    else setTimeout(() => canvas.remove(), 600);
+  }
+  draw();
 }
 
 function countCells(team){
