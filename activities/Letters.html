@@ -281,6 +281,7 @@ let selectedCell = null;   // {row,col,el}
 let currentTeam  = null;   // 'green' | 'red'
 let currentStage = "";
 let questionsDataByStage = {};
+let questionsPool = []; // قائمة الأسئلة المتبقية
 let timerId = null;
 let remaining = 0;
 let notificationsEnabled = false;
@@ -458,6 +459,8 @@ startGameBtn.addEventListener('click', ()=>{
   if(!currentStage){ toast('اختر المرحلة أولًا','','warn'); return; }
   const list = questionsDataByStage[currentStage] || [];
   if(list.length === 0){ toast('لا توجد أسئلة لهذه المرحلة','','error'); return; }
+  // نسخ الأسئلة إلى قائمة مؤقتة لمنع التكرار
+  questionsPool = list.slice();
 
   settingsPanel.classList.add('hidden');
   gameArea.classList.remove('hidden');
@@ -515,8 +518,15 @@ const timerStroke = $("#timerStroke");
 const timerNum = $("#timerNum");
 
 function askQuestion(){
-  const list = questionsDataByStage[currentStage] || [];
-  const q = list[(Math.random()*list.length)|0];
+  // اختيار سؤال عشوائي من الأسئلة المتبقية
+  if(questionsPool.length === 0){
+    toast('انتهت الأسئلة لهذه المرحلة!','أعد تشغيل اللعبة أو اختر مرحلة أخرى','warn',3500);
+    return;
+  }
+  const idx = Math.floor(Math.random() * questionsPool.length);
+  const q = questionsPool[idx];
+  // إزالة السؤال المختار من القائمة
+  questionsPool.splice(idx, 1);
   renderQuestion(q);
 }
 function renderQuestion(q){
