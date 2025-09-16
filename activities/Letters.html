@@ -4242,97 +4242,116 @@
       
       const classValue = elements.classSelect.value;
       const modeValue = elements.modeSelect.value;
-      
-      if (!classValue || !modeValue) {
+      const stageValue = document.getElementById('stageSelect')?.value;
+
+      if (!classValue || !modeValue || !stageValue) {
         showAdvancedNotification(
           '⚠️ معلومات ناقصة',
-          'يرجى اختيار الصف الدراسي ونوع المسابقة أولاً',
+          'يرجى اختيار الصف الدراسي، المرحلة، ونوع المسابقة أولاً',
           'warning'
         );
         return;
       }
-      
+
       showLoadingIndicator('🎮 جاري تحضير اللعبة...');
-      
-      setTimeout(() => {
-        try {
-          const classStudents = gameData.classesData[classValue] || [];
-          gameData.currentMode = modeValue;
-          
-          // تحديد أعضاء الفرق
-          gameData.greenTeam = [];
-          gameData.redTeam = [];
-          
-          if (modeValue === 'team2-random') {
-            setupRandomTeams(classStudents, 2);
-          } else if (modeValue === 'team-free') {
-            setupFreeTeams();
-          } else {
-            if (!setupManualTeams()) {
-              hideLoadingIndicator();
-              return;
+
+      // تحقق من وجود أسئلة للمرحلة المختارة قبل بدء اللعبة
+      fetch('activities/questions_bank.json')
+        .then(res => res.json())
+        .then(data => {
+          let questionsList = [];
+          if (data['بنك الأسئلة']) {
+            const stageObj = data['بنك الأسئلة'].find(s => s['الصف'] === stageValue);
+            if (stageObj && stageObj['الأسئلة']) {
+              questionsList = stageObj['الأسئلة'];
             }
           }
-          
-          // تحديث عرض الفرق مع تأثيرات بصرية
-          updateTeamDisplays();
-          
-          // إخفاء الإعدادات وإظهار اللعبة
-          elements.settingsPanel.classList.add('hidden');
-          elements.gameArea.classList.remove('hidden');
-          
-          // بدء اللعبة
-          gameData.gameStarted = true;
-          gameData.greenScore = 0;
-          gameData.redScore = 0;
-          elements.greenTeamScore.textContent = '0';
-          elements.redTeamScore.textContent = '0';
-          
-          // إعادة تعيين اللوحة مع تأثيرات
-          resetBoardWithAnimation();
-          
-          hideLoadingIndicator();
-          
-          // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
-          playSound(elements.successSound, 4000);
-          
-          // رسالة ترحيب مخصصة
-          const welcomeMessage = generateWelcomeMessage();
-          showAdvancedNotification(
-            '🎉 بدأت اللعبة!',
-            welcomeMessage,
-            'success',
-            5000
-          );
-          
-          // رسالة تفاعلية لبدء اللعبة
-          setTimeout(() => {
-            const gameStartMessages = [
-              '🚀 لتبدأ المعركة الذكية!',
-              '⚡ الآن يمكنكم اختيار الحروف!',
-              '🎯 اختاروا بحكمة لتحققوا النصر!',
-              '🏁 المنافسة بدأت رسمياً!'
-            ];
-            const randomStartMessage = gameStartMessages[Math.floor(Math.random() * gameStartMessages.length)];
-            showInteractiveMessage(
-              randomStartMessage,
-              '../assets/media/sounds/kingdom-sounds/battle-horn.mp3'
+          if (!questionsList || questionsList.length === 0) {
+            hideLoadingIndicator();
+            showAdvancedNotification(
+              '❌ لا توجد أسئلة',
+              'لا توجد أسئلة متوفرة للمرحلة المختارة. يرجى اختيار مرحلة أخرى أو إضافة أسئلة.',
+              'error'
             );
-          }, 2000);
-          
-          // إضافة تأثير احتفالي
-          addGameStartAnimation();
-          
-        } catch (error) {
-          console.error('خطأ في بدء اللعبة:', error);
+            return;
+          }
+          // منطق بدء اللعبة الأصلي
+          setTimeout(() => {
+            try {
+              const classStudents = gameData.classesData[classValue] || [];
+              gameData.currentMode = modeValue;
+              // تحديد أعضاء الفرق
+              gameData.greenTeam = [];
+              gameData.redTeam = [];
+              if (modeValue === 'team2-random') {
+                setupRandomTeams(classStudents, 2);
+              } else if (modeValue === 'team-free') {
+                setupFreeTeams();
+              } else {
+                if (!setupManualTeams()) {
+                  hideLoadingIndicator();
+                  return;
+                }
+              }
+              // تحديث عرض الفرق مع تأثيرات بصرية
+              updateTeamDisplays();
+              // إخفاء الإعدادات وإظهار اللعبة
+              elements.settingsPanel.classList.add('hidden');
+              elements.gameArea.classList.remove('hidden');
+              // بدء اللعبة
+              gameData.gameStarted = true;
+              gameData.greenScore = 0;
+              gameData.redScore = 0;
+              elements.greenTeamScore.textContent = '0';
+              elements.redTeamScore.textContent = '0';
+              // إعادة تعيين اللوحة مع تأثيرات
+              resetBoardWithAnimation();
+              hideLoadingIndicator();
+              // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
+              playSound(elements.successSound, 4000);
+              // رسالة ترحيب مخصصة
+              const welcomeMessage = generateWelcomeMessage();
+              showAdvancedNotification(
+                '🎉 بدأت اللعبة!',
+                welcomeMessage,
+                'success',
+                5000
+              );
+              // رسالة تفاعلية لبدء اللعبة
+              setTimeout(() => {
+                const gameStartMessages = [
+                  '🚀 لتبدأ المعركة الذكية!',
+                  '⚡ الآن يمكنكم اختيار الحروف!',
+                  '🎯 اختاروا بحكمة لتحققوا النصر!',
+                  '🏁 المنافسة بدأت رسمياً!'
+                ];
+                const randomStartMessage = gameStartMessages[Math.floor(Math.random() * gameStartMessages.length)];
+                showInteractiveMessage(
+                  randomStartMessage,
+                  '../assets/media/sounds/kingdom-sounds/battle-horn.mp3'
+                );
+              }, 2000);
+              // إضافة تأثير احتفالي
+              addGameStartAnimation();
+            } catch (error) {
+              console.error('خطأ في بدء اللعبة:', error);
+              hideLoadingIndicator();
+              showAdvancedNotification(
+                '❌ خطأ في بدء اللعبة',
+                'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
+                'error'
+              );
+            }
+          }, 1000);
+        })
+        .catch(() => {
           hideLoadingIndicator();
           showAdvancedNotification(
-            '❌ خطأ في بدء اللعبة',
-            'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
+            '❌ خطأ في تحميل الأسئلة',
+            'تعذر تحميل ملف الأسئلة. يرجى التأكد من وجوده في المسار الصحيح.',
             'error'
           );
-        }
-      }, 1000);
+        });
     }
 
     function setupRandomTeams(classStudents, playersPerTeam) {
@@ -5023,6 +5042,21 @@
 
     // بدء التطبيق عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', initializeApp);
+    // منطق إظهار وإخفاء مدخل زمن الإجابة
+    const answerTimeSelect = document.getElementById('answerTimeSelect');
+    const answerTimeInput = document.getElementById('answerTimeInput');
+    if (answerTimeSelect && answerTimeInput) {
+      answerTimeSelect.addEventListener('change', function() {
+        if (this.value === 'limited') {
+          answerTimeInput.style.display = 'block';
+          answerTimeInput.required = true;
+        } else {
+          answerTimeInput.style.display = 'none';
+          answerTimeInput.required = false;
+          answerTimeInput.value = '';
+        }
+      });
+    }
 
     console.log('🧩 تم تحميل لعبة بلوك باسترز الاحترافية بنجاح!');
   </script>
@@ -5067,130 +5101,135 @@
               gameArea.style.gap = '1rem';
             } else if (e.detail.device === 'tablet') {
               gameArea.style.gridTemplateColumns = '1fr';
-              gameArea.style.gap = '1.5rem';
-            }
-          }
-        });
+              const classValue = elements.classSelect.value;
+              const modeValue = elements.modeSelect.value;
+              const stageValue = document.getElementById('stageSelect')?.value;
+              const answerTimeSelect = document.getElementById('answerTimeSelect');
+              const answerTimeInput = document.getElementById('answerTimeInput');
 
-        // استمع لتغييرات الاتجاه
-        window.addEventListener('orientationchange', (e) => {
-          console.log('🔄 تم تغيير اتجاه الشاشة إلى:', e.detail.orientation);
-          
-          // إضافة فئات CSS حسب الاتجاه
-          document.body.classList.remove('portrait-mode', 'landscape-mode');
-          document.body.classList.add(e.detail.orientation + '-mode');
-          
-          // تحسين الأدوات في الوضع الأفقي للهواتف
-          if (e.detail.orientation === 'landscape' && window.responsiveHelper.isMobile()) {
-            const controlHeader = document.querySelector('.control-header');
-            if (controlHeader) {
-              controlHeader.style.padding = '0.5rem 1rem';
-            }
-            
-            const gameArea = document.querySelector('.game-area');
-            if (gameArea && !gameArea.classList.contains('hidden')) {
-              gameArea.style.gridTemplateColumns = '1fr 1.5fr 1fr';
-              gameArea.style.gap = '0.75rem';
-            }
-            
-            // تحسين حاوية الطلاب في الوضع الأفقي
-            const playersContainer = document.querySelector('.players-container');
-            if (playersContainer) {
-              playersContainer.style.gridTemplateColumns = '1fr 1fr';
-              playersContainer.style.gap = '0.5rem';
-            }
-          }
-        });
-
-        // تحسين تجربة اللمس للأجهزة المحمولة
-        if (window.responsiveHelper.isTouchDevice()) {
-          // تحسين حاوية الطلاب للمس
-          const observePlayersContainer = () => {
-            const playersContainer = document.querySelector('.players-container');
-            if (playersContainer) {
-              playersContainer.style.minHeight = '60px';
-              playersContainer.style.display = 'grid';
-              
-              // تحسين مدخلات الطلاب للمس
-              const playerInputs = playersContainer.querySelectorAll('.player-input');
-              playerInputs.forEach(input => {
-                input.style.minHeight = '60px';
-                input.style.touchAction = 'manipulation';
-                
-                const inputField = input.querySelector('input');
-                if (inputField) {
-                  inputField.style.fontSize = '16px'; // منع التكبير في iOS
-                  inputField.style.minHeight = '50px';
-                }
-              });
-            }
-          };
-
-          // مراقبة تغييرات حاوية الطلاب
-          const playersObserver = new MutationObserver(observePlayersContainer);
-          const playersContainer = document.getElementById('playersContainer');
-          if (playersContainer) {
-            playersObserver.observe(playersContainer, { 
-              childList: true, 
-              subtree: true 
-            });
-          }
-          
-          // تحسين بطاقات الحروف
-          const observerCallback = (mutations) => {
-            mutations.forEach((mutation) => {
-              if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach((node) => {
-                  if (node.nodeType === 1 && node.classList.contains('hex-cell')) {
-                    // تحسين استجابة اللمس
-                    node.addEventListener('touchstart', function() {
-                      this.style.transform = 'scale(0.95)';
-                    }, { passive: true });
-                    
-                    node.addEventListener('touchend', function() {
-                      setTimeout(() => {
-                        if (!this.classList.contains('selected')) {
-                          this.style.transform = '';
-                        }
-                      }, 100);
-                    }, { passive: true });
-                  }
-                });
+              // تحقق من المدخلات الأساسية
+              if (!classValue || !modeValue || !stageValue) {
+                showAdvancedNotification(
+                  '⚠️ معلومات ناقصة',
+                  'يرجى اختيار الصف الدراسي، المرحلة، ونوع المسابقة أولاً',
+                  'warning'
+                );
+                return;
               }
-            });
-          };
 
-          const observer = new MutationObserver(observerCallback);
-          const hexagonBoard = document.getElementById('hexagonBoard');
-          if (hexagonBoard) {
-            observer.observe(hexagonBoard, { childList: true });
-          }
+              // تحقق من زمن الإجابة إذا كان "محدد"
+              if (answerTimeSelect && answerTimeSelect.value === 'limited') {
+                const timeValue = answerTimeInput?.value;
+                if (!timeValue || isNaN(timeValue) || Number(timeValue) < 5 || Number(timeValue) > 300) {
+                  showAdvancedNotification(
+                    '⚠️ زمن الإجابة غير صحيح',
+                    'يرجى إدخال زمن الإجابة بالثواني (بين 5 و 300 ثانية) عند اختيار "محدد".',
+                    'warning'
+                  );
+                  answerTimeInput?.focus();
+                  return;
+                }
+              }
 
-          // تحسين الأزرار
-          const actionButtons = document.querySelectorAll('.control-btn, .action-btn');
-          actionButtons.forEach(button => {
-            button.style.minHeight = '44px';
-            button.style.minWidth = '44px';
-          });
-        }
+              showLoadingIndicator('🎮 جاري تحضير اللعبة...');
 
-        // تحسين الحقول للأجهزة المحمولة
-        const inputs = document.querySelectorAll('.setting-input, .setting-select');
-        if (window.responsiveHelper.isMobile()) {
-          inputs.forEach(input => {
-            // تحسين حجم الخط لمنع التكبير في iOS
-            input.style.fontSize = '16px';
-            
-            // إضافة تأثير التركيز
-            input.addEventListener('focus', function() {
-              this.style.transform = 'scale(1.02)';
-            });
-            
-            input.addEventListener('blur', function() {
-              this.style.transform = '';
-            });
-          });
-        }
+              // تحقق من وجود أسئلة للمرحلة المختارة قبل بدء اللعبة
+              fetch('activities/questions_bank.json')
+                .then(res => res.json())
+                .then(data => {
+                  let questionsList = [];
+                  if (data['بنك الأسئلة']) {
+                    const stageObj = data['بنك الأسئلة'].find(s => s['الصف'] === stageValue);
+                    if (stageObj && stageObj['الأسئلة']) {
+                      questionsList = stageObj['الأسئلة'];
+                    }
+                  }
+                  if (!questionsList || questionsList.length === 0) {
+                    hideLoadingIndicator();
+                    showAdvancedNotification(
+                      '❌ لا توجد أسئلة',
+                      'لا توجد أسئلة متوفرة للمرحلة المختارة. يرجى اختيار مرحلة أخرى أو إضافة أسئلة.',
+                      'error'
+                    );
+                    return;
+                  }
+                  // منطق بدء اللعبة الأصلي
+                  setTimeout(() => {
+                    try {
+                      const classStudents = gameData.classesData[classValue] || [];
+                      gameData.currentMode = modeValue;
+                      // تحديد أعضاء الفرق
+                      gameData.greenTeam = [];
+                      gameData.redTeam = [];
+                      if (modeValue === 'team2-random') {
+                        setupRandomTeams(classStudents, 2);
+                      } else if (modeValue === 'team-free') {
+                        setupFreeTeams();
+                      } else {
+                        if (!setupManualTeams()) {
+                          hideLoadingIndicator();
+                          return;
+                        }
+                      }
+                      // تحديث عرض الفرق مع تأثيرات بصرية
+                      updateTeamDisplays();
+                      // إخفاء الإعدادات وإظهار اللعبة
+                      elements.settingsPanel.classList.add('hidden');
+                      elements.gameArea.classList.remove('hidden');
+                      // بدء اللعبة
+                      gameData.gameStarted = true;
+                      gameData.greenScore = 0;
+                      gameData.redScore = 0;
+                      elements.greenTeamScore.textContent = '0';
+                      elements.redTeamScore.textContent = '0';
+                      // إعادة تعيين اللوحة مع تأثيرات
+                      resetBoardWithAnimation();
+                      hideLoadingIndicator();
+                      // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
+                      playSound(elements.successSound, 4000);
+                      // رسالة ترحيب مخصصة
+                      const welcomeMessage = generateWelcomeMessage();
+                      showAdvancedNotification(
+                        '🎉 بدأت اللعبة!',
+                        welcomeMessage,
+                        'success',
+                        5000
+                      );
+                      // رسالة تفاعلية لبدء اللعبة
+                      setTimeout(() => {
+                        const gameStartMessages = [
+                          '🚀 لتبدأ المعركة الذكية!',
+                          '⚡ الآن يمكنكم اختيار الحروف!',
+                          '🎯 اختاروا بحكمة لتحققوا النصر!',
+                          '🏁 المنافسة بدأت رسمياً!'
+                        ];
+                        const randomStartMessage = gameStartMessages[Math.floor(Math.random() * gameStartMessages.length)];
+                        showInteractiveMessage(
+                          randomStartMessage,
+                          '../assets/media/sounds/kingdom-sounds/battle-horn.mp3'
+                        );
+                      }, 2000);
+                      // إضافة تأثير احتفالي
+                      addGameStartAnimation();
+                    } catch (error) {
+                      console.error('خطأ في بدء اللعبة:', error);
+                      hideLoadingIndicator();
+                      showAdvancedNotification(
+                        '❌ خطأ في بدء اللعبة',
+                        'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
+                        'error'
+                      );
+                    }
+                  }, 1000);
+                })
+                .catch(() => {
+                  hideLoadingIndicator();
+                  showAdvancedNotification(
+                    '❌ خطأ في تحميل الأسئلة',
+                    'تعذر تحميل ملف الأسئلة. يرجى التأكد من وجوده في المسار الصحيح.',
+                    'error'
+                  );
+                });
 
         // تحسين الأداء للأجهزة الضعيفة
         const reduceAnimations = window.responsiveHelper.isMobile() && 
@@ -5288,7 +5327,6 @@
           }, 250);
         });
       }
-    });
 
     // تحسين أداء التمرير على الأجهزة المحمولة
     let scrollTicking = false;
