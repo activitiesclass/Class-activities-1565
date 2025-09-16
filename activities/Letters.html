@@ -4322,6 +4322,8 @@
             showAdvancedNotification('❌ لا توجد أسئلة', 'لا توجد أسئلة متوفرة للمرحلة المختارة. يرجى اختيار مرحلة أخرى أو إضافة أسئلة.', 'error');
             return;
           }
+          // حفظ الأسئلة في متغير عام
+          window.currentQuestionsList = questionsList;
           // إخفاء الإعدادات وإظهار اللعبة
           elements.settingsPanel.classList.add('hidden');
           elements.gameArea.classList.remove('hidden');
