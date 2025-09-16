@@ -540,12 +540,44 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-function showNotification(msg, type = 'info'){
+// إشعار احترافي عائم مع أيقونات وأنميشن
+function showNotification(msg, type = 'info') {
   const bar = document.getElementById("notificationBar");
-  bar.textContent = msg;
+  let icon = '';
+  let color = '';
+  switch(type) {
+    case 'success': icon = '✅'; color = '#228B22'; break;
+    case 'error': icon = '❌'; color = '#DC143C'; break;
+    case 'celebrate': icon = '🎉'; color = '#FFD700'; break;
+    case 'info': default: icon = 'ℹ️'; color = '#1B365D'; break;
+  }
+  bar.innerHTML = `<span style="font-size:1.3em;margin-left:8px">${icon}</span> <span>${msg}</span>`;
+  bar.style.background = `linear-gradient(135deg, ${color} 0%, ${color}33 100%)`;
+  bar.style.color = '#fff';
+  bar.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
+  bar.style.borderRadius = '16px';
+  bar.style.fontWeight = '700';
+  bar.style.padding = '1.1em 1.7em';
+  bar.style.top = '2.5em';
+  bar.style.right = '2em';
+  bar.style.left = 'auto';
+  bar.style.position = 'fixed';
+  bar.style.zIndex = '9999';
+  bar.style.transition = 'all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55)';
   bar.className = `notification-bar show ${type}`;
-  playNotificationSound(type);
-  setTimeout(() => bar.classList.remove("show"), 3000);
+  bar.style.transform = 'translateY(-30px) scale(0.95)';
+  setTimeout(() => {
+    bar.style.transform = 'translateY(0) scale(1)';
+  }, 50);
+  // تشغيل صوت الإشعار
+  if(type === 'success') playSound('success');
+  else if(type === 'error') playSound('click');
+  else if(type === 'celebrate') playSound('win');
+  else playSound('click');
+  setTimeout(() => {
+    bar.classList.remove("show");
+    bar.style.transform = 'translateY(-30px) scale(0.95)';
+  }, 3000);
 }
 
 function showCelebration(message) {
