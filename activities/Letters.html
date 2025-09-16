@@ -1643,6 +1643,45 @@
         <!-- لا يوجد سؤال هنا، فقط اختيار الفريق -->
       </div>
       <script>
+// منطق بدء اللعبة الاحترافي
+document.addEventListener('DOMContentLoaded', function(){
+  var startBtn = document.getElementById('startGameBtn');
+  if(startBtn){
+    startBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      // إخفاء لوحة الإعدادات
+      var settingsPanel = document.getElementById('settingsPanel');
+      if(settingsPanel) settingsPanel.style.display = 'none';
+      // إظهار منطقة اللعبة
+      var gameArea = document.getElementById('gameArea');
+      if(gameArea) gameArea.classList.remove('hidden');
+      // إعادة تهيئة المتغيرات
+      window.gameData.gameStarted = true;
+      // عرض الشبكة من جديد
+      var hexBoard = document.getElementById('hexagonBoard');
+      if(hexBoard){
+        hexBoard.innerHTML = '';
+        var BOARD_LETTERS = [
+          ['ا', 'ب', 'ت', 'ث', 'ج', 'ح'],
+          ['خ', 'د', 'ذ', 'ر', 'ز', 'س'],
+          ['ش', 'ص', 'ض', 'ط', 'ظ', 'ع'],
+          ['غ', 'ف', 'ق', 'ك', 'ل', 'م'],
+          ['ن', 'ه', 'و', 'ي', 'ء', 'ة']
+        ];
+        BOARD_LETTERS.forEach(function(row){
+          row.forEach(function(letter){
+            var cell = document.createElement('div');
+            cell.className = 'hex-cell';
+            cell.textContent = letter;
+            hexBoard.appendChild(cell);
+          });
+        });
+      }
+      // إعادة تفعيل منطق اختيار الحرف
+      if(window.setupHexBoardQuestionLogic) window.setupHexBoardQuestionLogic();
+    });
+  }
+});
         // عند الضغط على الحرف، تظهر نافذة الفريق ثم يتم استبدالها بسؤال من بنك الأسئلة
         // منطق احترافي لاختيار الحرف والسؤال
         window.setupHexBoardQuestionLogic = function(){
