@@ -4251,7 +4251,7 @@
         showAdvancedNotification('⚠️ يرجى اختيار المرحلة أولاً', '', 'warning');
         return;
       }
-      fetch('activities/questions_bank.json')
+  fetch('questions_bank.json')
         .then(res => res.json())
         .then(data => {
           let questionsList = [];
