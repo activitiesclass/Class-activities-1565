@@ -296,8 +296,9 @@ fetch("questions_bank.json")
     alert("⚠️ لم يتم العثور على ملف بنك الأسئلة (questions_bank.json). ضع الملف بجوار هذه الصفحة.");
   });
 
-// ======== إنشاء اللوحة 30 حرف ========
+// ======== إنشاء اللوحة 30 حرف (من الكود الأصلي) ========
 function createBoard(){
+  const boardEl = document.getElementById("board");
   boardEl.innerHTML = "";
   const shuffledLetters = shuffle(letters30);
   let idx = 0;
@@ -308,7 +309,6 @@ function createBoard(){
       cell.setAttribute("data-r", r);
       cell.setAttribute("data-c", c);
       cell.textContent = shuffledLetters[idx++];
-
       cell.addEventListener("click", () => onCellClick(cell, r, c));
       boardEl.appendChild(cell);
     }
