@@ -618,6 +618,26 @@ function claimCell(){
   showCelebrationEffect('success');
   toast('إجابة صحيحة!','تم حجز الخلية','success');
   navigator.vibrate?.([30,40,30]);
+  // رسالة تفاعلية وصوت عند إضافة نقطة
+  if(currentTeam === 'green') {
+    const greenMessages = [
+      '🔥 اختيار رائع!',
+      '✅ إجابة ممتازة!',
+      '🎯 الفريق الأخضر يتقدم!',
+      '💚 عمل جيد!'
+    ];
+    const msg = greenMessages[Math.floor(Math.random() * greenMessages.length)];
+    showInteractiveMessage(msg, '../assets/media/sounds/kingdom-sounds/bonus-collect.mp3');
+  } else if(currentTeam === 'red') {
+    const redMessages = [
+      '🔥 اختيار رائع!',
+      '✅ إجابة ممتازة!',
+      '🎯 الفريق الأحمر يتقدم!',
+      '❤️ عمل جيد!'
+    ];
+    const msg = redMessages[Math.floor(Math.random() * redMessages.length)];
+    showInteractiveMessage(msg, '../assets/media/sounds/kingdom-sounds/bonus-collect.mp3');
+  }
 
   // فحص الفوز
   const winner = checkVictory();
