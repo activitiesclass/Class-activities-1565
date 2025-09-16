@@ -1640,7 +1640,7 @@
         <button class="close-btn btn-responsive" id="closeTeamSelectionBtn">✕</button>
       </div>
       <div class="team-selection-title text-responsive" id="teamSelectionTitle">
-        أي فريق يريد الإجابة على هذا الحرف؟
+        <span id="questionArea">أي فريق يريد الإجابة على هذا الحرف؟</span>
       </div>
       <div class="team-buttons">
         <button class="team-btn green" id="selectGreenTeamBtn">
@@ -1649,13 +1649,61 @@
         <button class="team-btn red" id="selectRedTeamBtn">
           🔴 الفريق الأحمر
         </button>
+      <div id="questionOptions" style="display:none; margin-top:1rem;"></div>
+      <div id="teacherPrompt" style="display:none; margin-top:1rem; color:#DC143C; font-weight:bold;"></div>
       <script>
+        // تحديث: عند اختيار الفريق، أظهر السؤال والاختيارات في نفس النافذة
+        function showQuestion(team) {
+          // جلب السؤال عشوائي من بنك الأسئلة
+          var questions = window.currentQuestionsList || [];
+          var questionObj = questions.length > 0 ? questions[Math.floor(Math.random()*questions.length)] : null;
+          var questionArea = document.getElementById('questionArea');
+          var optionsDiv = document.getElementById('questionOptions');
+          var teacherPrompt = document.getElementById('teacherPrompt');
+          if (!questionObj) {
+            questionArea.innerHTML = 'لا يوجد سؤال متاح.';
+            optionsDiv.style.display = 'none';
+            return;
+          }
+          questionArea.innerHTML = '<span style="font-size:1.2rem; font-weight:700;">'+questionObj['السؤال']+'</span>';
+          // عرض الاختيارات
+          optionsDiv.innerHTML = '';
+          questionObj['الاختيارات'].forEach(function(opt, idx){
+            var btn = document.createElement('button');
+            btn.className = 'action-btn';
+            btn.style.margin = '0.25rem';
+            btn.innerText = opt;
+            btn.onclick = function(){
+              if(opt === questionObj['الإجابة']){
+                // احتفال
+                if(typeof confetti !== 'undefined') confetti({particleCount:80,spread:60,origin:{y:0.6}});
+                questionArea.innerHTML = '<span style="color:#228B22;font-weight:800;">إجابة صحيحة!</span>';
+                optionsDiv.style.display = 'none';
+                teacherPrompt.innerHTML = '🎉 اضغط على الفريق الذي أجاب إجابة صحيحة ليتم تلوين الخلية بلون الفريق.';
+                teacherPrompt.style.display = 'block';
+                // صوت الفوز
+                if(window.elements && window.elements.winBlockbustersSound) playSound(window.elements.winBlockbustersSound);
+              }else{
+                questionArea.innerHTML = '<span style="color:#DC143C;font-weight:800;">إجابة خاطئة!</span>';
+                btn.style.background = '#DC143C';
+                btn.style.color = '#fff';
+                // صوت خطأ
+                if(window.elements && window.elements.wrongAnswerSound) playSound(window.elements.wrongAnswerSound);
+              }
+            };
+            optionsDiv.appendChild(btn);
+          });
+          optionsDiv.style.display = 'block';
+          teacherPrompt.style.display = 'none';
+        }
         document.getElementById('selectGreenTeamBtn').onclick = function() {
-          if (typeof showQuestionModal === 'function') showQuestionModal('green');
+          showQuestion('green');
         };
         document.getElementById('selectRedTeamBtn').onclick = function() {
-          if (typeof showQuestionModal === 'function') showQuestionModal('red');
+          showQuestion('red');
         };
+        // عند الضغط على الفريق بعد الإجابة الصحيحة، يتم تلوين الخلية (يجب أن يكون هناك منطق JS إضافي لذلك)
+        // ملاحظة: يجب أن يكون window.currentQuestionsList محدثاً عند بدء اللعبة
       </script>
       </div>
     </div>
