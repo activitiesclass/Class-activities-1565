@@ -1673,13 +1673,20 @@
           }
           questionArea.innerHTML = '<span style="font-size:1.2rem; font-weight:700;">'+questionObj['السؤال']+'</span>';
           optionsDiv.innerHTML = '';
-          questionObj['الاختيارات'].forEach(function(opt, idx){
+          // تحويل الخيارات من كائن إلى مصفوفة [{key, text}]
+          var optsArr = [];
+          if(questionObj['الخيارات']){
+            for(var key in questionObj['الخيارات']){
+              optsArr.push({key:key, text:questionObj['الخيارات'][key]});
+            }
+          }
+          optsArr.forEach(function(opt, idx){
             var btn = document.createElement('button');
             btn.className = 'action-btn';
             btn.style.margin = '0.25rem';
-            btn.innerText = opt;
+            btn.innerText = opt.text;
             btn.onclick = function(){
-              if(opt === questionObj['الإجابة']){
+              if(opt.key === questionObj['الإجابة الصحيحة']){
                 if(typeof confetti !== 'undefined') confetti({particleCount:80,spread:60,origin:{y:0.6}});
                 questionArea.innerHTML = '<span style="color:#228B22;font-weight:800;">إجابة صحيحة!</span>';
                 optionsDiv.style.display = 'none';
@@ -1687,7 +1694,6 @@
                 teacherPrompt.style.display = 'block';
                 greenBtn.style.display = 'inline-block';
                 redBtn.style.display = 'inline-block';
-                // صوت الفوز
                 if(window.elements && window.elements.winBlockbustersSound) playSound(window.elements.winBlockbustersSound);
               }else{
                 questionArea.innerHTML = '<span style="color:#DC143C;font-weight:800;">إجابة خاطئة!</span>';
