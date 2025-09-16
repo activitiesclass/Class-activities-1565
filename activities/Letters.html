@@ -124,6 +124,11 @@
 </style>
 </head>
 <body>
+  <!-- أصوات إضافية من kingdom-sounds -->
+  <audio id="snd-unlock" src="../assets/media/sounds/kingdom-sounds/achievement-unlock.mp3" preload="auto"></audio>
+  <audio id="snd-bell" src="../assets/media/sounds/kingdom-sounds/ancient-bell.mp3" preload="auto"></audio>
+  <audio id="snd-horn" src="../assets/media/sounds/kingdom-sounds/battle-horn.mp3" preload="auto"></audio>
+  <audio id="snd-victory" src="../assets/media/sounds/kingdom-sounds/epic-victory.mp3" preload="auto"></audio>
   <!-- الأصوات -->
   <audio id="snd-win"     src="../assets/media/sounds/win.mp3" preload="auto"></audio>
   <audio id="snd-success" src="../assets/media/sounds/perfect-score.mp3" preload="auto"></audio>
@@ -253,7 +258,7 @@
       <div class="title" id="victoryTitle">🎉 مبروك!</div>
       <p id="victoryMsg" style="text-align:center"></p>
       <div class="victory-explanation" id="victoryExplanation" style="text-align:center; margin:.8rem 0; font-size:1.05rem; color:#1B365D; font-weight:700;"></div>
-      <div class="actions"><button class="btn success" data-close="#victoryModal">حسنًا</button></div>
+  <div class="actions"><button class="btn success close" data-close="#victoryModal">حسنًا</button></div>
     </div>
   </div>
 
@@ -287,10 +292,14 @@ let notificationsEnabled = false;
    نظام الصوت المحترف
 ========================= */
 const audioMap = {
-  win:     $("#snd-win"),
-  success: $("#snd-success"),
-  point:   $("#snd-point"),
-  click:   $("#snd-click")
+  win:     document.getElementById("snd-win"),
+  success: document.getElementById("snd-success"),
+  point:   document.getElementById("snd-point"),
+  click:   document.getElementById("snd-click"),
+  unlock:  document.getElementById("snd-unlock"),
+  bell:    document.getElementById("snd-bell"),
+  horn:    document.getElementById("snd-horn"),
+  victory: document.getElementById("snd-victory")
 };
 const volumeRange = $("#volumeRange");
 const muteToggle  = $("#muteToggle");
@@ -320,7 +329,11 @@ muteToggle.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') {
 function playSound(type){
   const a = audioMap[type] || audioMap.click;
   if(!a) return;
-  try { a.currentTime=0; a.play(); } catch {}
+  try {
+    a.currentTime=0;
+    a.volume = load('vol', 0.85);
+    a.play();
+  } catch {}
 }
 
 /* =========================
@@ -378,7 +391,7 @@ function showInteractiveMessage(messageText, soundType = 'success') {
     max-width: 90vw; word-wrap: break-word; font-family: 'Cairo',sans-serif; text-shadow: 0 1px 2px rgba(0,0,0,.08);
   `;
   document.body.appendChild(msg);
-  playSound(soundType);
+  playSound('bell');
   setTimeout(()=>{ msg.style.opacity='1'; msg.style.transform='translate(-50%,-50%) scale(1)';}, 30);
   setTimeout(()=>{ msg.style.opacity='0'; msg.style.transform='translate(-50%,-50%) scale(.95)'; setTimeout(()=>msg.remove(), 350); }, 2300);
 }
@@ -656,7 +669,7 @@ function openVictory(winner){
 ========================= */
 function showCelebrationEffect(type='win'){
   // صوت
-  playSound(type==='win' ? 'win' : 'success');
+  playSound(type==='win' ? 'victory' : 'success');
 
   // كونفيتي
   confettiBurst();
@@ -731,6 +744,19 @@ function fireworksShow(duration=2000){
    تحسين تأثيرات الأزرار والخلايا
 ========================= */
 document.addEventListener('DOMContentLoaded', ()=>{
+  // مؤثر صوتي عند اختيار الحرف
+  $$('.cell').forEach(cell=>{
+    cell.addEventListener('click', ()=>{
+      playSound('point');
+      cell.animate([
+        { transform:'scale(1)', boxShadow:'0 0 0 #FFD700' },
+        { transform:'scale(1.15)', boxShadow:'0 0 20px #FFD700' },
+        { transform:'scale(1)', boxShadow:'0 0 0 #FFD700' }
+      ], { duration:400, easing:'cubic-bezier(.68,-0.55,.27,1.55)' });
+    });
+  });
+  // صوت unlock عند حجز أول خلية في الصف الأول (مثال ذكي)
+  if(selectedCell && selectedCell.row === 0 && selectedCell.col === 0) playSound('unlock');
   // تأثير لجميع الأزرار
   $$('button').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -777,3 +803,4 @@ function setTeamTurn(team){ currentTeam = team; indicateTurn(null); }
 </script>
 </body>
 </html>
+
