@@ -1644,35 +1644,127 @@
       </div>
       <script>
         // عند الضغط على الحرف، تظهر نافذة الفريق ثم يتم استبدالها بسؤال من بنك الأسئلة
+        // منطق احترافي لاختيار الحرف والسؤال
         window.setupHexBoardQuestionLogic = function(){
           var hexCells = document.querySelectorAll('.hex-cell');
           hexCells.forEach(function(cell){
             cell.onclick = function(){
               if(!window.gameData.gameStarted || cell.classList.contains('selected')) return;
               window.gameData.selectedCell = {element:cell};
-              // عرض نافذة اختيار الفريق أولاً
-              var teamModal = document.getElementById('teamSelectionModal');
-              var teamTitle = document.getElementById('teamSelectionTitle');
-              teamTitle.innerHTML = 'اختر الفريق الذي سيجيب على السؤال';
-              teamModal.classList.add('show');
-              // إضافة أزرار اختيار الفريق
-              teamTitle.innerHTML += '<div style="margin-top:1rem;display:flex;gap:1rem;justify-content:center;">'+
-                '<button id="selectGreenTeamBtn" class="team-btn green">🟢 الفريق الأخضر</button>'+
-                '<button id="selectRedTeamBtn" class="team-btn red">🔴 الفريق الأحمر</button>'+
-              '</div>';
-              // إضافة مستمعين للأزرار
-              setTimeout(function(){
-                var greenBtn = document.getElementById('selectGreenTeamBtn');
-                var redBtn = document.getElementById('selectRedTeamBtn');
-                if(greenBtn) greenBtn.onclick = function(){
-                  teamModal.classList.remove('show');
-                  showQuestionModal('green');
-                };
-                if(redBtn) redBtn.onclick = function(){
-                  teamModal.classList.remove('show');
-                  showQuestionModal('red');
-                };
-              },100);
+              // جلب المرحلة المختارة
+              var stageSelect = document.getElementById('stageSelect');
+              var selectedStage = stageSelect ? stageSelect.value : '';
+              // جلب زمن الإجابة
+              var answerTimeSelect = document.getElementById('answerTimeSelect');
+              var answerTimeInput = document.getElementById('answerTimeInput');
+              var answerTime = 0;
+              if(answerTimeSelect && answerTimeSelect.value === 'limited' && answerTimeInput && answerTimeInput.value){
+                answerTime = parseInt(answerTimeInput.value);
+              }
+              // جلب بنك الأسئلة من ملف JSON
+              fetch('activities/questions_bank.json')
+                .then(res => res.json())
+                .then(data => {
+                  let questionsList = [];
+                  if(data['بنك الأسئلة']){
+                    var stageObj = data['بنك الأسئلة'].find(s => s['الصف'] === selectedStage);
+                    if(stageObj && stageObj['الأسئلة']){
+                      questionsList = stageObj['الأسئلة'];
+                    }
+                  }
+                  // اختيار سؤال عشوائي
+                  var questionObj = questionsList.length > 0 ? questionsList[Math.floor(Math.random()*questionsList.length)] : null;
+                  // بناء نافذة السؤال
+                  var questionModal = document.getElementById('questionModal');
+                  var questionTitle = document.getElementById('popupQuestionTitle');
+                  var questionOptions = document.getElementById('popupQuestionOptions');
+                  var questionFeedback = document.getElementById('popupQuestionFeedback');
+                  var teacherPrompt = document.getElementById('teacherPrompt');
+                  questionTitle.innerHTML = questionObj ? questionObj['السؤال'] : '<span style="color:red;font-weight:700;">لا يوجد سؤال مناسب لهذه المرحلة</span>';
+                  questionOptions.innerHTML = '';
+                  questionFeedback.innerHTML = '';
+                  teacherPrompt.style.display = 'none';
+                  // منطق العداد
+                  var timerDiv = document.createElement('div');
+                  timerDiv.id = 'question-timer';
+                  timerDiv.style = 'font-size:2rem;color:#DC143C;margin-bottom:1rem;display:none;';
+                  if(answerTime > 0){
+                    timerDiv.style.display = 'block';
+                    timerDiv.textContent = answerTime;
+                  }
+                  questionTitle.parentNode.insertBefore(timerDiv, questionTitle.nextSibling);
+                  // منطق الخيارات
+                  if(questionObj){
+                    Object.entries(questionObj['الخيارات']).forEach(function(entry){
+                      var key = entry[0], val = entry[1];
+                      var btn = document.createElement('button');
+                      btn.className = 'answer-btn';
+                      btn.setAttribute('data-key', key);
+                      btn.style = 'padding:1rem 2rem;font-size:1.1rem;border-radius:12px;border:none;background:#F1F5F9;color:#222;font-weight:600;cursor:pointer;transition:0.2s;margin-bottom:0.5rem;';
+                      btn.innerHTML = key+') '+val;
+                      btn.onclick = function(){
+                        if(key === questionObj['الإجابة الصحيحة']){
+                          btn.style.background = '#27ae60';
+                          btn.style.color = '#fff';
+                          questionFeedback.innerHTML = 'إجابة صحيحة! 🎉';
+                          teacherPrompt.style.display = 'block';
+                          // صوت واحتفال
+                          var winAudio = new Audio('../assets/media/sounds/win.mp3');
+                          winAudio.play();
+                          if(typeof confetti !== 'undefined') confetti({particleCount:80,spread:60,origin:{y:0.6}});
+                          // زر اختيار الفريق الفائز
+                          teacherPrompt.innerHTML = '<button id="colorGreenCell" style="margin:0 1rem;padding:1rem 2rem;background:#228B22;color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;">🟢 الفريق الأخضر</button>'+
+                            '<button id="colorRedCell" style="margin:0 1rem;padding:1rem 2rem;background:#DC143C;color:#fff;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;">🔴 الفريق الأحمر</button>';
+                          document.getElementById('colorGreenCell').onclick = function(){
+                            window.gameData.selectedCell.element.classList.add('selected','green');
+                            questionModal.style.display = 'none';
+                            questionFeedback.innerHTML = '';
+                            teacherPrompt.style.display = 'none';
+                          };
+                          document.getElementById('colorRedCell').onclick = function(){
+                            window.gameData.selectedCell.element.classList.add('selected','red');
+                            questionModal.style.display = 'none';
+                            questionFeedback.innerHTML = '';
+                            teacherPrompt.style.display = 'none';
+                          };
+                        }else{
+                          btn.style.background = '#c0392b';
+                          btn.style.color = '#fff';
+                          questionFeedback.innerHTML = 'إجابة خاطئة! حاول مرة أخرى.';
+                          var wrongAudio = new Audio('../assets/media/sounds/wrong_answer.mp3');
+                          wrongAudio.play();
+                          setTimeout(function(){
+                            questionFeedback.innerHTML = '';
+                          },1500);
+                        }
+                      };
+                      questionOptions.appendChild(btn);
+                    });
+                  }
+                  // منطق العداد الرقمي
+                  if(answerTime > 0){
+                    var timeLeft = answerTime;
+                    var timerInterval = setInterval(function(){
+                      timeLeft--;
+                      timerDiv.textContent = timeLeft;
+                      var beepAudio = new Audio('../assets/media/sounds/countdown-beep.mp3');
+                      beepAudio.play();
+                      if(timeLeft <= 0){
+                        clearInterval(timerInterval);
+                        questionModal.style.display = 'none';
+                        questionFeedback.innerHTML = '';
+                        teacherPrompt.style.display = 'none';
+                        // إشعار انتهاء الوقت
+                        var wrongAudio = new Audio('../assets/media/sounds/wrong_answer.mp3');
+                        wrongAudio.play();
+                        setTimeout(function(){
+                          alert('انتهى الوقت! لم يتم اختيار إجابة.');
+                        },500);
+                      }
+                    },1000);
+                  }
+                  questionModal.style.display = 'flex';
+                });
             };
           });
         };
