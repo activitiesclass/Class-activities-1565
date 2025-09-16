@@ -4713,44 +4713,25 @@
       setupEventListeners();
       optimizeGamePerformance();
       
-      // تحميل البيانات بشكل غير متزامن
-      loadStudentData()
-        .then((success) => {
-          hideLoadingIndicator();
-          
-          if (success) {
-            showAdvancedNotification(
-              '🎉 جاهز للعب!',
-              'جميع المكونات تم تحميلها بنجاح',
-              'success',
-              3000
-            );
-            
-            // رسالة ترحيب تفاعلية
-            setTimeout(() => {
-              showInteractiveMessage(
-                '🎉 مرحبًا بكم في لعبة Blockbusters!',
-                '../assets/media/sounds/kingdom-sounds/achievement-unlock.mp3'
-              );
-            }, 1000);
-          }
-          
-          // إضافة تحسينات بصرية
-          addFloatingAnimation();
-          
-          // نصائح تفاعلية بعد فترة قصيرة
-          setTimeout(() => showGameTips(), 1500);
-          
-        })
-        .catch((error) => {
-          console.error('❌ خطأ في التهيئة:', error);
-          hideLoadingIndicator();
-          showAdvancedNotification(
-            '❌ خطأ في التهيئة',
-            'تم تحميل البيانات الاحتياطية للمتابعة',
-            'warning'
-          );
-        });
+      // لا حاجة لتحميل بيانات الطلاب من ملف خارجي
+      hideLoadingIndicator();
+      showAdvancedNotification(
+        '🎉 جاهز للعب!',
+        'جميع المكونات تم تحميلها بنجاح',
+        'success',
+        3000
+      );
+      // رسالة ترحيب تفاعلية
+      setTimeout(() => {
+        showInteractiveMessage(
+          '🎉 مرحبًا بكم في لعبة Blockbusters!',
+          '../assets/media/sounds/kingdom-sounds/achievement-unlock.mp3'
+        );
+      }, 1000);
+      // إضافة تحسينات بصرية
+      addFloatingAnimation();
+      // نصائح تفاعلية بعد فترة قصيرة
+      setTimeout(() => showGameTips(), 1500);
     }
 
     // ==== إعداد مستمعي الأحداث ====
