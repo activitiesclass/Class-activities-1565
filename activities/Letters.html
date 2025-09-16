@@ -4238,24 +4238,19 @@
 
     // ==== بدء اللعبة المتقدم ====
     function startGame(e) {
-      e.preventDefault();
-      
-      const classValue = elements.classSelect.value;
-      const modeValue = elements.modeSelect.value;
+      if (e) e.preventDefault();
+      showLoadingIndicator('🎮 جاري تحضير اللعبة...');
+      // دائماً وضع فريق ضد فريق
+      gameData.currentMode = 'team-free';
+      gameData.greenTeam = ['الفريق الأخضر'];
+      gameData.redTeam = ['الفريق الأحمر'];
+      // المرحلة المختارة
       const stageValue = document.getElementById('stageSelect')?.value;
-
-      if (!classValue || !modeValue || !stageValue) {
-        showAdvancedNotification(
-          '⚠️ معلومات ناقصة',
-          'يرجى اختيار الصف الدراسي، المرحلة، ونوع المسابقة أولاً',
-          'warning'
-        );
+      if (!stageValue) {
+        hideLoadingIndicator();
+        showAdvancedNotification('⚠️ يرجى اختيار المرحلة أولاً', '', 'warning');
         return;
       }
-
-      showLoadingIndicator('🎮 جاري تحضير اللعبة...');
-
-      // تحقق من وجود أسئلة للمرحلة المختارة قبل بدء اللعبة
       fetch('activities/questions_bank.json')
         .then(res => res.json())
         .then(data => {
@@ -4268,89 +4263,34 @@
           }
           if (!questionsList || questionsList.length === 0) {
             hideLoadingIndicator();
-            showAdvancedNotification(
-              '❌ لا توجد أسئلة',
-              'لا توجد أسئلة متوفرة للمرحلة المختارة. يرجى اختيار مرحلة أخرى أو إضافة أسئلة.',
-              'error'
-            );
+            showAdvancedNotification('❌ لا توجد أسئلة', 'لا توجد أسئلة متوفرة للمرحلة المختارة. يرجى اختيار مرحلة أخرى أو إضافة أسئلة.', 'error');
             return;
           }
-          // منطق بدء اللعبة الأصلي
+          // إخفاء الإعدادات وإظهار اللعبة
+          elements.settingsPanel.classList.add('hidden');
+          elements.gameArea.classList.remove('hidden');
+          // بدء اللعبة
+          gameData.gameStarted = true;
+          gameData.greenScore = 0;
+          gameData.redScore = 0;
+          elements.greenTeamScore.textContent = '0';
+          elements.redTeamScore.textContent = '0';
+          // إعادة تعيين اللوحة مع تأثيرات
+          resetBoardWithAnimation();
+          hideLoadingIndicator();
+          // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
+          playSound(elements.successSound, 4000);
+          // رسالة ترحيب مخصصة
+          showAdvancedNotification('🎉 بدأت اللعبة!', '🚀 لتبدأ المعركة الذكية! ⚡ الآن يمكنكم اختيار الحروف!', 'success', 5000);
           setTimeout(() => {
-            try {
-              const classStudents = gameData.classesData[classValue] || [];
-              gameData.currentMode = modeValue;
-              // تحديد أعضاء الفرق
-              gameData.greenTeam = [];
-              gameData.redTeam = [];
-              if (modeValue === 'team2-random') {
-                setupRandomTeams(classStudents, 2);
-              } else if (modeValue === 'team-free') {
-                setupFreeTeams();
-              } else {
-                if (!setupManualTeams()) {
-                  hideLoadingIndicator();
-                  return;
-                }
-              }
-              // تحديث عرض الفرق مع تأثيرات بصرية
-              updateTeamDisplays();
-              // إخفاء الإعدادات وإظهار اللعبة
-              elements.settingsPanel.classList.add('hidden');
-              elements.gameArea.classList.remove('hidden');
-              // بدء اللعبة
-              gameData.gameStarted = true;
-              gameData.greenScore = 0;
-              gameData.redScore = 0;
-              elements.greenTeamScore.textContent = '0';
-              elements.redTeamScore.textContent = '0';
-              // إعادة تعيين اللوحة مع تأثيرات
-              resetBoardWithAnimation();
-              hideLoadingIndicator();
-              // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
-              playSound(elements.successSound, 4000);
-              // رسالة ترحيب مخصصة
-              const welcomeMessage = generateWelcomeMessage();
-              showAdvancedNotification(
-                '🎉 بدأت اللعبة!',
-                welcomeMessage,
-                'success',
-                5000
-              );
-              // رسالة تفاعلية لبدء اللعبة
-              setTimeout(() => {
-                const gameStartMessages = [
-                  '🚀 لتبدأ المعركة الذكية!',
-                  '⚡ الآن يمكنكم اختيار الحروف!',
-                  '🎯 اختاروا بحكمة لتحققوا النصر!',
-                  '🏁 المنافسة بدأت رسمياً!'
-                ];
-                const randomStartMessage = gameStartMessages[Math.floor(Math.random() * gameStartMessages.length)];
-                showInteractiveMessage(
-                  randomStartMessage,
-                  '../assets/media/sounds/kingdom-sounds/battle-horn.mp3'
-                );
-              }, 2000);
-              // إضافة تأثير احتفالي
-              addGameStartAnimation();
-            } catch (error) {
-              console.error('خطأ في بدء اللعبة:', error);
-              hideLoadingIndicator();
-              showAdvancedNotification(
-                '❌ خطأ في بدء اللعبة',
-                'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
-                'error'
-              );
-            }
-          }, 1000);
+            showInteractiveMessage('🎯 اختاروا بحكمة لتحققوا النصر!', '../assets/media/sounds/kingdom-sounds/battle-horn.mp3');
+          }, 2000);
+          // إضافة تأثير احتفالي
+          addGameStartAnimation();
         })
         .catch(() => {
           hideLoadingIndicator();
-          showAdvancedNotification(
-            '❌ خطأ في تحميل الأسئلة',
-            'تعذر تحميل ملف الأسئلة. يرجى التأكد من وجوده في المسار الصحيح.',
-            'error'
-          );
+          showAdvancedNotification('❌ خطأ في تحميل الأسئلة', 'تعذر تحميل ملف الأسئلة. يرجى التأكد من وجوده في المسار الصحيح.', 'error');
         });
     }
 
@@ -5083,17 +5023,15 @@
               gameArea.style.gap = '1rem';
             } else if (e.detail.device === 'tablet') {
               gameArea.style.gridTemplateColumns = '1fr';
-              const classValue = elements.classSelect.value;
-              const modeValue = elements.modeSelect.value;
               const stageValue = document.getElementById('stageSelect')?.value;
               const answerTimeSelect = document.getElementById('answerTimeSelect');
               const answerTimeInput = document.getElementById('answerTimeInput');
 
-              // تحقق من المدخلات الأساسية
-              if (!classValue || !modeValue || !stageValue) {
+              // تحقق من اختيار المرحلة فقط
+              if (!stageValue) {
                 showAdvancedNotification(
                   '⚠️ معلومات ناقصة',
-                  'يرجى اختيار الصف الدراسي، المرحلة، ونوع المسابقة أولاً',
+                  'يرجى اختيار المرحلة أولاً',
                   'warning'
                 );
                 return;
@@ -5135,41 +5073,23 @@
                     );
                     return;
                   }
-                  // منطق بدء اللعبة الأصلي
+                  // منطق بدء اللعبة لوضع فريق ضد فريق فقط
                   setTimeout(() => {
                     try {
-                      const classStudents = gameData.classesData[classValue] || [];
-                      gameData.currentMode = modeValue;
-                      // تحديد أعضاء الفرق
-                      gameData.greenTeam = [];
-                      gameData.redTeam = [];
-                      if (modeValue === 'team2-random') {
-                        setupRandomTeams(classStudents, 2);
-                      } else if (modeValue === 'team-free') {
-                        setupFreeTeams();
-                      } else {
-                        if (!setupManualTeams()) {
-                          hideLoadingIndicator();
-                          return;
-                        }
-                      }
-                      // تحديث عرض الفرق مع تأثيرات بصرية
+                      gameData.currentMode = 'team-free';
+                      gameData.greenTeam = ['الفريق الأخضر'];
+                      gameData.redTeam = ['الفريق الأحمر'];
                       updateTeamDisplays();
-                      // إخفاء الإعدادات وإظهار اللعبة
                       elements.settingsPanel.classList.add('hidden');
                       elements.gameArea.classList.remove('hidden');
-                      // بدء اللعبة
                       gameData.gameStarted = true;
                       gameData.greenScore = 0;
                       gameData.redScore = 0;
                       elements.greenTeamScore.textContent = '0';
                       elements.redTeamScore.textContent = '0';
-                      // إعادة تعيين اللوحة مع تأثيرات
                       resetBoardWithAnimation();
                       hideLoadingIndicator();
-                      // تشغيل صوت بدء اللعبة مع كتم تلقائي بعد 4 ثوان
                       playSound(elements.successSound, 4000);
-                      // رسالة ترحيب مخصصة
                       const welcomeMessage = generateWelcomeMessage();
                       showAdvancedNotification(
                         '🎉 بدأت اللعبة!',
@@ -5177,7 +5097,6 @@
                         'success',
                         5000
                       );
-                      // رسالة تفاعلية لبدء اللعبة
                       setTimeout(() => {
                         const gameStartMessages = [
                           '🚀 لتبدأ المعركة الذكية!',
@@ -5191,7 +5110,6 @@
                           '../assets/media/sounds/kingdom-sounds/battle-horn.mp3'
                         );
                       }, 2000);
-                      // إضافة تأثير احتفالي
                       addGameStartAnimation();
                     } catch (error) {
                       console.error('خطأ في بدء اللعبة:', error);
