@@ -1732,6 +1732,13 @@
         };
         // تأكد من تفعيل المنطق بعد تهيئة اللوحة
         setTimeout(window.setupHexBoardQuestionLogic, 1000);
+        // إذا كانت الأسئلة متوفرة بالفعل، أظهر عناصر السؤال دائماً
+        document.addEventListener('DOMContentLoaded', function() {
+          if(window.currentQuestionsList && window.currentQuestionsList.length > 0){
+            document.getElementById('questionArea').style.display = 'none';
+            document.getElementById('questionOptions').style.display = 'none';
+          }
+        });
       </script>
       </div>
     </div>
