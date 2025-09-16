@@ -1640,91 +1640,10 @@
         <button class="close-btn btn-responsive" id="closeTeamSelectionBtn">✕</button>
       </div>
       <div class="team-selection-title text-responsive" id="teamSelectionTitle">
-        <span id="questionArea" style="display:none;">أي فريق يريد الإجابة على هذا الحرف؟</span>
+        <!-- لا يوجد سؤال هنا، فقط اختيار الفريق -->
       </div>
-      <div class="team-buttons">
-        <button class="team-btn green" id="selectGreenTeamBtn" style="display:none;">
-          🟢 الفريق الأخضر
-        </button>
-        <button class="team-btn red" id="selectRedTeamBtn" style="display:none;">
-          🔴 الفريق الأحمر
-        </button>
-      <div id="questionOptions" style="display:none; margin-top:1rem;"></div>
-      <div id="teacherPrompt" style="display:none; margin-top:1rem; color:#DC143C; font-weight:bold;"></div>
       <script>
-        // عند الضغط على الحرف، أظهر السؤال أولاً
-        window.showQuestionForCell = function() {
-          var questions = window.currentQuestionsList || [];
-          var questionObj = questions.length > 0 ? questions[Math.floor(Math.random()*questions.length)] : null;
-          var questionArea = document.getElementById('questionArea');
-          var optionsDiv = document.getElementById('questionOptions');
-          var teacherPrompt = document.getElementById('teacherPrompt');
-          var greenBtn = document.getElementById('selectGreenTeamBtn');
-          var redBtn = document.getElementById('selectRedTeamBtn');
-          questionArea.style.display = 'block';
-          optionsDiv.style.display = 'block';
-          greenBtn.style.display = 'none';
-          redBtn.style.display = 'none';
-          teacherPrompt.style.display = 'none';
-          if (!questionObj) {
-            questionArea.innerHTML = 'لا يوجد سؤال متاح.';
-            optionsDiv.style.display = 'none';
-            return;
-          }
-          questionArea.innerHTML = '<span style="font-size:1.2rem; font-weight:700;">'+questionObj['السؤال']+'</span>';
-          optionsDiv.innerHTML = '';
-          // تحويل الخيارات من كائن إلى مصفوفة [{key, text}]
-          var optsArr = [];
-          if(questionObj['الخيارات']){
-            for(var key in questionObj['الخيارات']){
-              optsArr.push({key:key, text:questionObj['الخيارات'][key]});
-            }
-          }
-          optsArr.forEach(function(opt, idx){
-            var btn = document.createElement('button');
-            btn.className = 'action-btn';
-            btn.style.margin = '0.25rem';
-            btn.innerText = opt.text;
-            btn.onclick = function(){
-              if(opt.key === questionObj['الإجابة الصحيحة']){
-                if(typeof confetti !== 'undefined') confetti({particleCount:80,spread:60,origin:{y:0.6}});
-                questionArea.innerHTML = '<span style="color:#228B22;font-weight:800;">إجابة صحيحة!</span>';
-                optionsDiv.style.display = 'none';
-                teacherPrompt.innerHTML = '🎉 اختر الفريق الذي أجاب إجابة صحيحة ليتم تلوين الخلية.';
-                teacherPrompt.style.display = 'block';
-                greenBtn.style.display = 'inline-block';
-                redBtn.style.display = 'inline-block';
-                if(window.elements && window.elements.winBlockbustersSound) playSound(window.elements.winBlockbustersSound);
-              }else{
-                questionArea.innerHTML = '<span style="color:#DC143C;font-weight:800;">إجابة خاطئة!</span>';
-                btn.style.background = '#DC143C';
-                btn.style.color = '#fff';
-                if(window.elements && window.elements.wrongAnswerSound) playSound(window.elements.wrongAnswerSound);
-              }
-            };
-            optionsDiv.appendChild(btn);
-          });
-        };
-        // عند ضغط زر الفريق بعد الإجابة الصحيحة، يتم تلوين الخلية
-        document.getElementById('selectGreenTeamBtn').onclick = function() {
-          if(window.gameData && window.gameData.selectedCell){
-            var el = window.gameData.selectedCell.element;
-            el.classList.add('selected','green');
-            el.style.background = 'var(--green-gradient)';
-            el.style.color = '#fff';
-            document.getElementById('teamSelectionModal').classList.remove('show');
-          }
-        };
-        document.getElementById('selectRedTeamBtn').onclick = function() {
-          if(window.gameData && window.gameData.selectedCell){
-            var el = window.gameData.selectedCell.element;
-            el.classList.add('selected','red');
-            el.style.background = 'var(--red-gradient)';
-            el.style.color = '#fff';
-            document.getElementById('teamSelectionModal').classList.remove('show');
-          }
-        };
-        // عند الضغط على خلية الحرف، استدعِ showQuestionForCell
+        // عند الضغط على الحرف، تظهر نافذتا الفريق والسؤال معاً
         window.setupHexBoardQuestionLogic = function(){
           var hexCells = document.querySelectorAll('.hex-cell');
           hexCells.forEach(function(cell){
@@ -1732,12 +1651,26 @@
               if(!window.gameData.gameStarted || cell.classList.contains('selected')) return;
               window.gameData.selectedCell = {element:cell};
               document.getElementById('teamSelectionModal').classList.add('show');
-              window.showQuestionForCell();
+              showQuestionModal();
             };
           });
         };
-        // تأكد من تفعيل المنطق بعد تهيئة اللوحة
         setTimeout(window.setupHexBoardQuestionLogic, 1000);
+      </script>
+    </div>
+  </div>
+
+  <!-- نافذة السؤال المنبثقة -->
+  <div class="modal-overlay" id="questionModal" style="display:none;">
+    <div class="modal-content card-responsive">
+      <div class="modal-header">
+        <div class="modal-title heading-responsive">السؤال</div>
+        <button class="close-btn btn-responsive" id="closeQuestionModalBtn">✕</button>
+      </div>
+      <div class="question-title text-responsive" id="popupQuestionTitle"></div>
+      <div class="question-options" id="popupQuestionOptions" style="margin-top:1rem;"></div>
+      <div class="question-feedback" id="popupQuestionFeedback" style="margin-top:1rem; font-weight:bold;"></div>
+    </div>
         // إذا كانت الأسئلة متوفرة بالفعل، أظهر عناصر السؤال دائماً
         document.addEventListener('DOMContentLoaded', function() {
           if(window.currentQuestionsList && window.currentQuestionsList.length > 0){
