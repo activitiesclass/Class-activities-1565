@@ -1649,6 +1649,14 @@
         <button class="team-btn red" id="selectRedTeamBtn">
           🔴 الفريق الأحمر
         </button>
+      <script>
+        document.getElementById('selectGreenTeamBtn').onclick = function() {
+          if (typeof showQuestionModal === 'function') showQuestionModal('green');
+        };
+        document.getElementById('selectRedTeamBtn').onclick = function() {
+          if (typeof showQuestionModal === 'function') showQuestionModal('red');
+        };
+      </script>
       </div>
     </div>
   </div>
