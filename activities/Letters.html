@@ -4736,38 +4736,38 @@
 
     // ==== إعداد مستمعي الأحداث ====
     function setupEventListeners() {
-      // أزرار التحكم
-      elements.backBtn.addEventListener('click', handleBackButton);
-      elements.soundBtn.addEventListener('click', toggleSound);
-      elements.interactiveMessagesBtn.addEventListener('click', toggleInteractiveMessages);
-      elements.instructionsBtn.addEventListener('click', () => showModal(elements.instructionsModal));
-      elements.fullscreenBtn.addEventListener('click', toggleFullscreen);
-      
-      // الإعدادات
-      elements.gameSettingsForm.addEventListener('submit', handleGameStart);
-      elements.classSelect.addEventListener('change', handleClassChange);
-      elements.modeSelect.addEventListener('change', handleModeChange);
-      elements.resetGameBtn.addEventListener('click', handleGameReset);
-      elements.statisticsBtn.addEventListener('click', handleStatisticsView);
-      
-      // اختيار الفريق
-      elements.selectGreenTeamBtn.addEventListener('click', () => selectTeamForCell('green'));
-      elements.selectRedTeamBtn.addEventListener('click', () => selectTeamForCell('red'));
-      elements.closeTeamSelectionBtn.addEventListener('click', () => hideModal(elements.teamSelectionModal));
-      
-      // نافذة الفوز
-      elements.newGameBtn.addEventListener('click', handleNewGame);
-      elements.closeVictoryBtn.addEventListener('click', () => hideModal(elements.victoryModal));
-      elements.closeVictoryModalBtn.addEventListener('click', () => hideModal(elements.victoryModal));
-      
-      // نافذة التعليمات
-      elements.closeInstructionsBtn.addEventListener('click', () => hideModal(elements.instructionsModal));
-      elements.understoodBtn.addEventListener('click', () => hideModal(elements.instructionsModal));
-      
-      // تفعيل التبويبات في نافذة التعليمات
-      setupInstructionsTabs();
-      
-      // نافذة الإحصائيات
+  // أزرار التحكم
+  if (elements.backBtn) elements.backBtn.addEventListener('click', handleBackButton);
+  if (elements.soundBtn) elements.soundBtn.addEventListener('click', toggleSound);
+  if (elements.interactiveMessagesBtn) elements.interactiveMessagesBtn.addEventListener('click', toggleInteractiveMessages);
+  if (elements.instructionsBtn) elements.instructionsBtn.addEventListener('click', () => showModal(elements.instructionsModal));
+  if (elements.fullscreenBtn) elements.fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+  // الإعدادات
+  if (elements.gameSettingsForm) elements.gameSettingsForm.addEventListener('submit', handleGameStart);
+  if (elements.classSelect) elements.classSelect.addEventListener('change', handleClassChange);
+  if (elements.modeSelect) elements.modeSelect.addEventListener('change', handleModeChange);
+  if (elements.resetGameBtn) elements.resetGameBtn.addEventListener('click', handleGameReset);
+  if (elements.statisticsBtn) elements.statisticsBtn.addEventListener('click', handleStatisticsView);
+
+  // اختيار الفريق
+  if (elements.selectGreenTeamBtn) elements.selectGreenTeamBtn.addEventListener('click', () => selectTeamForCell('green'));
+  if (elements.selectRedTeamBtn) elements.selectRedTeamBtn.addEventListener('click', () => selectTeamForCell('red'));
+  if (elements.closeTeamSelectionBtn) elements.closeTeamSelectionBtn.addEventListener('click', () => hideModal(elements.teamSelectionModal));
+
+  // نافذة الفوز
+  if (elements.newGameBtn) elements.newGameBtn.addEventListener('click', handleNewGame);
+  if (elements.closeVictoryBtn) elements.closeVictoryBtn.addEventListener('click', () => hideModal(elements.victoryModal));
+  if (elements.closeVictoryModalBtn) elements.closeVictoryModalBtn.addEventListener('click', () => hideModal(elements.victoryModal));
+
+  // نافذة التعليمات
+  if (elements.closeInstructionsBtn) elements.closeInstructionsBtn.addEventListener('click', () => hideModal(elements.instructionsModal));
+  if (elements.understoodBtn) elements.understoodBtn.addEventListener('click', () => hideModal(elements.instructionsModal));
+
+  // تفعيل التبويبات في نافذة التعليمات
+  setupInstructionsTabs();
+
+  // نافذة الإحصائيات
       elements.clearStatisticsBtn.addEventListener('click', handleClearStatistics);
       elements.closeStatisticsBtn.addEventListener('click', () => hideModal(elements.statisticsModal));
       elements.closeStatisticsModalBtn.addEventListener('click', () => hideModal(elements.statisticsModal));
